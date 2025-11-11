@@ -1,0 +1,100 @@
+.pagina-curriculo {
+  padding-top: 10vh;
+}
+
+.curriculo-container {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.curriculo-container h1 {
+  font-weight: bold;
+  color: var(--Preto);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.curriculo-container .intro {
+  color: var(--Preto);
+  margin-bottom: 18px;
+}
+
+.curriculo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.curriculo-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  background: var(--Branco-Gelo);
+  padding: 16px;
+  border-radius: 12px;
+}
+.curriculo-form .duo,
+.curriculo-form .full,
+.curriculo-form .api-key {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.curriculo-form .full {
+  grid-column: 1 / -1;
+}
+.curriculo-form label { color: var(--Preto); font-weight: 600; }
+.curriculo-form input,
+.curriculo-form textarea {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--Preto);
+  background: var(--Branco-Gelo-Claro);
+  color: var(--Preto);
+}
+.curriculo-form .actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+}
+.curriculo-form .actions button {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--Magenta);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.curriculo-preview {
+  background: var(--Branco-Gelo);
+  padding: 16px;
+  border-radius: 12px;
+}
+.preview .cv h1 { font-size: 1.6rem; }
+.preview .cv h3 { font-size: 1rem; color: var(--cinza); margin-bottom: 8px; }
+.preview .cv .contato { color: var(--Preto); margin-bottom: 10px; }
+.preview .cv-section { margin-bottom: 12px; }
+.preview .cv-section h2 { font-size: 1.1rem; margin-bottom: 6px; }
+
+.sugestoes h2 { font-size: 1.1rem; margin-top: 10px; }
+.sugestoes pre {
+  white-space: pre-wrap;
+  background: var(--Branco-Gelo-Claro);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--Preto);
+}
+
+@media screen and (max-width: 1024px) {
+  .pagina-curriculo { padding-top: 10vh; }
+  .curriculo-grid { grid-template-columns: 1fr; }
+}
+
+.intro {
+    margin-left: 18px;
+}
+h1 {
+    margin-left: 13px;
+}

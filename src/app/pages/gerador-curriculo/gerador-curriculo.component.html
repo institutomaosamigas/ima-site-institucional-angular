@@ -1,0 +1,50 @@
+<section class="curriculo-container">
+    <h1>Gerador de Currículo</h1>
+    <p class="intro">Preencha suas informações e gere um currículo. Em seguida, peça sugestões da IA para melhorar texto, estrutura e pontos fortes.</p>
+
+    <div class="curriculo-grid">
+        <form id="curriculoForm" class="curriculo-form">
+        <div class="duo">
+            <label>Nome completo</label>
+            <input type="text" id="nome" placeholder="Seu nome" required />
+        </div>
+        <div class="duo">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="seu@email.com" />
+        </div>
+        <div class="duo">
+            <label>Telefone</label>
+            <input type="text" id="telefone" placeholder="(xx) xxxxx-xxxx" />
+        </div>
+
+        <div class="full">
+            <label>Título profissional</label>
+            <input type="text" id="titulo" placeholder="Ex.: Analista de Dados" />
+        </div>
+
+        <div class="full">
+            <label>Resumo profissional</label>
+            <textarea id="resumo" rows="4" placeholder="Resumo breve das suas experiências e conquistas"></textarea>
+        </div>
+
+        <div class="full">
+            <label>Habilidades</label>
+            <textarea id="habilidades" rows="3" placeholder="Ex.: Excel, Python, Comunicação"></textarea>
+        </div>
+
+        <div class="full">
+            <label>Experiências</label>
+            <textarea id="experiencias" rows="6" placeholder="Empresa, cargo, período e principais resultados"></textarea>
+        </div>
+
+        <div class="full">
+            <label>Formação</label>
+            <textarea id="formacao" rows="3" placeholder="Cursos, graduação, certificações"></textarea>
+        </div>
+
+        <div class="actions">
+            <button type="button" id="btnGerar">Gerar currículo</button>
+        </div>
+        </form>
+    </div>
+</section>

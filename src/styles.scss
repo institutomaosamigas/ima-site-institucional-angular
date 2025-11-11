@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth@0,75;1,75&display=swap');
+
+
+:root {
+    /* Botões com rosa escuro (Magenta) */
+    --Laranja: var(--Magenta);
+    --Branco-Gelo: #F2F5FA;
+    --Branco-Gelo-Claro: #F7F9FC;
+    --Preto: #262626;
+    /* Rosa escuro para hover e elementos de contraste */
+    --Laranja-escuro: var(--Magenta);
+    --azulEscuro: #1A1466;
+    --Magenta: #C2185B;
+    --cinza: #ADADAD;
+    --bordas: 1px solid var(--Preto);
+    --bordas-hover: 1px solid var(--Laranja);
+    --trasicao-botao: transition-duration: 1s;
+    --tamanho-fonte-menor: 0.8rem;
+    --tamanho-fonte: 1rem;
+    --tamanho-fonte-maior: 2.25rem;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+p,
+button,
+li,
+a,
+label,
+h4 {
+    font-size: var(--tamanho-fonte);
+    ;
+}
+
+h1 {
+    font-size: var(--tamanho-fonte-maior);
+}
+
+body {
+    background-color: var(--Branco-Gelo);
+    overflow-x: hidden;
+}

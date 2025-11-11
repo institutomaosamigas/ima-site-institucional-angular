@@ -1,0 +1,400 @@
+<section id="home" class="home">
+  <div class="home-text">
+    <h1>MÃOS QUE ACOLHEM, CORAÇÕES QUE TRANSFORMAM.</h1>
+    <p>
+      Juntos construímos um futuro mais justo.
+    </p>
+    <button class="botao-voluntario" (click)="scrollToQuemSomos()" aria-label="Saiba mais" id="botao-saiba-mais">
+      SAIBA MAIS
+    </button>
+  </div>
+</section>
+
+<section id="quem-somos" class="quem-somos">
+    <div class="quem-somos-text">
+      <h1>QUEM SOMOS</h1>
+      <p>
+        Somos um grupo de voluntários dedicados a orientar pessoas sem acesso
+        à informação e/ou condição financeira sobre seus direitos e serviços
+        públicos, ajudando-as a encontrar soluções para suas questões
+      </p>
+    </div>
+    <div class="quem-somos-container">
+      <div class="images-quem-somos">
+        <img class="enfermeira" src="../assets/imgs/post-4 1.svg" alt="Enfermeira" />
+        <img class="mulher-mascara" src="../assets/imgs/post-3 1.svg" alt="Mulher com máscara" />
+        <img class="menino-cabelo" src="../assets/imgs/image 127.svg" alt="Menino segurando cabelo" />
+      </div>
+      <div class="logo-quem-somos">
+        <img class="logo" src="../assets/imgs/logo-v2-vetor.svg" alt="Logo Mãos Amigas" />
+      </div>
+    </div>
+</section>
+
+<section id="sobre-ima" class="sobre-ima">
+    <div class="sobre-ima-text">
+      <div class="sobre-ima-blocos">
+        <div class="bloco">
+          <h2>Missão</h2>
+          <p>
+            Promover o desenvolvimento humano e social por meio da solidariedade, do acolhimento e da educação,
+            oferecendo orientação e suporte multidisciplinar gratuito a pessoas em situação de vulnerabilidade.
+            Nosso propósito é devolver dignidade, autonomia e esperança, ajudando cada indivíduo a encontrar
+            caminhos possíveis para transformar a própria realidade e construir um futuro mais justo e igualitário.
+          </p>
+        </div>
+        <div class="bloco">
+          <h2>Visão</h2>
+          <p>
+            Ser reconhecido como uma referência nacional em acolhimento, orientação e engajamento voluntário,
+            unindo profissionais de diferentes áreas em torno de um propósito comum: Usar o conhecimento como
+            ferramenta de transformação social, ampliando o acesso à informação, fortalecendo redes de apoio e
+            promovendo inclusão com empatia e responsabilidade.
+          </p>
+        </div>
+      </div>
+      <div class="bloco-valores">
+        <h2>Valores</h2>
+        <div class="valores-container">
+          <div class="valor-card">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <h3>Solidariedade</h3>
+            <div class="tooltip">Estendemos a mão a quem precisa, acreditando que cada gesto de apoio pode mudar uma história.</div>
+          </div>
+
+          <div class="valor-card">
+            <i class="fa-solid fa-handshake-angle"></i>
+            <h3>Respeito</h3>
+            <div class="tooltip">Reconhecemos a dignidade de cada pessoa, valorizando sua história, cultura e singularidade.</div>
+          </div>
+
+          <div class="valor-card">
+            <i class="fa-solid fa-hand-fist"></i>
+            <h3>Empoderamento</h3>
+            <div class="tooltip">Oferecemos ferramentas e caminhos para que cada indivíduo se torne protagonista da própria vida.</div>
+          </div>
+
+          <div class="valor-card">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>Transparência</h3>
+            <div class="tooltip">Atuamos com clareza e responsabilidade, mantendo a confiança e a credibilidade em todas as ações.</div>
+          </div>
+
+          <div class="valor-card">
+            <i class="fa-solid fa-seedling"></i>
+            <h3>Sustentabilidade</h3>
+            <div class="tooltip">Buscamos manter nossas iniciativas de forma ética, duradoura e responsável com o meio ambiente e as gerações futuras.</div>
+          </div>
+
+          <div class="valor-card">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3>Inovação</h3>
+            <div class="tooltip"> Estamos sempre abertos a novas ideias, tecnologias e práticas que potencializem nosso impacto social.</div>
+          </div>
+
+          <div class="valor-card">
+            <i class="fa-solid fa-people-group"></i>
+            <h3>Inclusão</h3>
+            <div class="tooltip">Acolhemos todas as pessoas, sem distinções, acreditando que a diversidade é fonte de força e aprendizado coletivo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section id="galeria" class="galeria">
+  <div class="carrossel-container">
+    <div
+      class="carrossel-slide"
+      [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
+    >
+      <img *ngFor="let img of images" [src]="img" alt="Imagem" />
+    </div>
+
+    <!-- Botões de navegação com a classe nav-btn -->
+    <button class="nav-btn prev" (click)="prev()">&#10094;</button>
+    <button class="nav-btn next" (click)="next()">&#10095;</button>
+
+    <!-- Botão de pause/play continua igual -->
+    <button class="pause" (click)="toggleAutoplay()">
+      {{ autoplay ? '❚❚' : '▶' }}
+    </button>
+  </div>
+</section>
+
+<section id="impacto" class="impacto">
+    <div class="impacto-container">
+      <div class="impacto-header">
+        <h1>Nosso impacto</h1>
+      </div>
+
+      <div class="impacto-metricas">
+        <div class="impacto-card">
+          <div class="impacto-numero">5+</div>
+          <div class="impacto-legenda">Anos impactando vidas</div>
+        </div>
+        <div class="impacto-card">
+          <div class="impacto-numero">950+</div>
+          <div class="impacto-legenda">Pessoas atendidas</div>
+        </div>
+        <div class="impacto-card">
+          <div class="impacto-numero">4</div>
+          <div class="impacto-legenda">Comunidades visitadas e impactadas</div>
+        </div>
+        <div class="impacto-card">
+          <div class="impacto-numero">60+</div>
+          <div class="impacto-legenda">Voluntários engajados</div>
+        </div>
+      </div>
+
+      <p class="impacto-subtitulo">Projetos em destaque:</p>
+
+        <div class="impacto-acoes">
+          <div class="acao-card">
+          <h3>Comunidade Viva</h3>
+          <p>Ações educativas e serviços itinerantes em territórios periféricos.</p>
+        </div>
+        <div class="acao-card" role="link" tabindex="0" aria-label="Gerador de Currículo" onclick="window.location.href='view/curriculo.html'" onkeydown="if(event.key==='Enter'||event.key===' '){window.location.href='view/curriculo.html'}">
+          <h3>Gerador de currículo (Em andamento)</h3>
+          <p>Crie seu currículo e receba sugestões de melhoria com IA.</p>
+        </div>
+        <div class="acao-card">
+          <h3>Plataforma de educação (Em andamento)</h3>
+          <p>Cursos e trilhas educacionais gratuitas e de qualidade.</p>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section id="servicos" class="servicos"> 
+  <div class="servicos-text">
+      <h1>SERVIÇOS</h1>
+      <p>
+        Abaixo você encontra os serviços que oferecemos para ajudar você.
+        Nosso compromisso é transformar o mundo em um lugar justo e
+        igualitário.
+      </p>
+  </div>
+
+  <div class="icons">
+    <div class="icon-contabil">
+      <img src="assets/imgs/Accounting.svg" alt="" />
+      <h1>CONTÁBIL</h1>
+      <p>
+        Assessoria contábil completa, desde a regularização de CPF e CNPJ
+        até planejamento tributário e aposentadoria.
+      </p>
+    </div>
+
+    <div class="icon-fisioterapia">
+      <img src="assets/imgs/Physical Therapy.svg" alt="" />
+      <h1>FISIOTERAPIA</h1>
+      <p>
+        Assessoria contábil completa, desde a regularização de CPF e CNPJ
+        até planejamento tributário e aposentadoria.
+      </p>
+    </div>
+
+    <div class="icon-juridica">
+      <img src="assets/imgs/Scales.svg" alt="" />
+      <h1>JURÍDICA</h1>
+      <p>
+        Consulta e orientação jurídica nas áreas cível, consumidor, família
+        e sucessões, trabalhista.
+      </p>
+    </div>
+
+    <div class="icon-psicologia">
+      <img src="assets/imgs/Brain.svg" alt="" />
+
+      <h1>PSICOLOGIA</h1>
+      <p>
+        Consulta e orientação jurídica nas áreas cível, consumidor, família
+        e sucessões, trabalhista.
+      </p>
+    </div>
+
+    <div class="icon-nutricao">
+      <img src="assets/imgs/Healthy Eating.svg" alt="" />
+      <h1>NUTRIÇÃO</h1>
+      <p>Avaliação e orientação nutricional.</p>
+    </div>
+
+    <div class="icon-quiropraxia">
+      <img src="assets/imgs/Posture.svg" alt="" />
+      <h1>QUIROPRAXIA</h1>
+      <p>
+        Avaliação e orientação personalizadas para o tratamento de dores,
+        utilizando técnicas como quiropraxia e liberação miofascial.
+      </p>
+    </div>
+
+    <div class="icon-pediatria">
+      <img src="assets/imgs/Infant Massage.svg" alt="" />
+      <h1>PEDIATRIA</h1>
+      <p>Consulta ambulatorial, para orientação e dúvidas.</p>
+    </div>
+
+    <div class="icon-financeiro">
+      <img src="assets/imgs/Stack of Coins.svg" alt="" />
+
+      <h1>FINANCEIRO</h1>
+      <p>
+        Orientação na Organização, Endividamento, Planejamento financeiro,
+        Investimentos, Controles e gestão, Avalição situação financeira.
+      </p>
+    </div>
+  </div>
+
+  <button class="agendar-button" aria-label="Agendar Agora">
+    AGENDAR AGORA
+  </button>
+</section>
+
+<section id="depoimentos" class="depoimentos">
+    <div class="depoimentos-container">
+      <h1>DEPOIMENTOS</h1>
+      <div class="depoimentos-grid">
+        <div class="depo-card">
+          <p class="depo-quote">"Consegui orientação jurídica sem burocracia. Atendimento humano, claro e acessível."</p>
+          <p class="depo-author">- Ana Ribeiro</p>
+        </div>
+        <div class="depo-card">
+          <p class="depo-quote">"As mentorias me ajudaram a organizar o currículo e conquistar meu emprego."</p>
+          <p class="depo-author">- Carlos Mendes</p>
+        </div>
+        <div class="depo-card">
+          <p class="depo-quote">"Recebi apoio psicológico no momento certo. Equipe acolhedora e muito profissional."</p>
+          <p class="depo-author">- Júlia Ferreira</p>
+        </div>
+        <div class="depo-card">
+          <p class="depo-quote">"O atendimento contábil foi rápido e claro. Finalmente resolvi meu CPF sem dor de cabeça."</p>
+          <p class="depo-author">- Marcos Lima</p>
+        </div>
+      </div>
+  </div>
+</section>
+
+<div class="onda-top"></div>
+
+<section id="parceiros" class="parceiros">
+  <div class="parceiros-text">
+    <h1>PARCEIROS</h1>
+  </div>
+  <div class="slider">
+    <div class="image-parceiros">
+      <img src="../assets/imgs/image 128.svg" alt="Parceiro 1" />
+      <img src="../assets/imgs/image 129.svg" alt="Parceiro 2" />
+      <!-- Adicione mais imagens se quiser -->
+    </div>
+  </div>
+</section>
+
+<section id="onde-estamos" class="onde-estamos">
+    <div class="onde-estamos-container">
+      <div class="onde-estamos-header">
+        <h1>ONDE ESTAMOS</h1>
+      </div>
+      <div class="onde-grid">
+        <div class="onde-card">
+          <h3 class="onde-card-title">TERRITÓRIO NACIONAL <span>(Atendimentos online)</span></h3>
+          <p class="onde-card-text">
+            Temos atendimento online de consultoria de carreira, apoio psicológico,
+            o que nos permite alcançar pessoas de todo o Brasil e impactar ainda mais vidas.
+          </p>
+        </div>
+        <div class="onde-card">
+          <h3 class="onde-card-title">ESTADO DE SÃO PAULO <span>(Ações presenciais)</span></h3>
+          <p class="onde-card-text">
+            Em atendimentos presenciais, como ações em comunidade, por exemplo,
+            atuamos em todo o estado de São Paulo.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section id="contato" class="contato">
+    <div class="contato-container">
+      <div class="contato-form">
+        <h1>FALE <span class="highlight">CONOSCO</span></h1>
+        <p>
+          Tem alguma dúvida, sugestão ou precisa de mais informações? Entre em
+          contato conosco! Estamos prontos para ajudar.
+        </p>
+        <form>
+          <label for="nome">Nome *</label>
+          <input type="text" id="nome" name="nome" required />
+
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="telefone">Telefone</label>
+          <input type="tel" id="telefone" name="telefone" />
+
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" name="descricao"></textarea>
+
+          <button type="submit">ENVIAR</button>
+        </form>
+        <div class="contato-info">
+          <div class="info-item">
+            <img src="../assets/imgs/email-icon.svg" alt="Email Icon" />
+            <div class="text-item">
+              <h5>EMAIL</h5>
+              <p>contato&#64;maosamigas.org</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <img src="../assets/imgs/phone-icon.svg" alt="Phone Icon" />
+            <div class="text-item">
+              <h5>TELEFONE</h5>
+              <p>+55 (11) 96788-4145</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="perguntas-frequentes">
+    <div class="container-faq">
+      <img class="imagem-faq" src="assets/imgs/Man thinking about the question.svg" alt="Homem pensando" />
+
+      <div class="faq-container">
+        <div class="faq-header">PERGUNTAS FREQUENTES</div>
+        <div class="faq-item">
+          <div class="faq-question">O que vocês fazem? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-answer">No Instituto Mãos Amigas, orientamos e acompanhamos pessoas em situação de vulnerabilidade, ajudando-as a acessar seus direitos e a se conectar com serviços públicos essenciais.<br>
+Contamos com uma rede multidisciplinar de voluntários — formada por profissionais de diversas áreas — que oferecem acolhimento, escuta ativa e orientação personalizada.<br>
+Nosso propósito é promover dignidade, autonomia e inclusão social, criando pontes entre quem precisa de apoio e as oportunidades que podem transformar realidades.
+</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Quanto custa o atendimento? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-answer">O Instituto Mãos Amigas oferece dois formatos de atendimento, pensados para garantir acesso a todos que precisam:<br>
+- Atendimento gratuito: destinado a pessoas em situação de vulnerabilidade social ou econômica, garantindo que ninguém deixe de receber orientação e acolhimento por falta de recursos.<br>
+- Atendimento com valor social: voltado a quem tem condições de contribuir com uma taxa simbólica, que ajuda a manter os projetos e ampliar o alcance das ações do Instituto.<br>
+Nos dois casos, o objetivo é o mesmo: promover apoio humano e profissional acessível, com respeito, empatia e compromisso social.
+</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">O atendimento é presencial? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-answer">O Instituto Mãos Amigas realiza seus atendimentos principalmente de forma online, o que permite ampliar o alcance e atender pessoas de diferentes regiões com agilidade e conforto. No entanto, também promovemos ações presenciais, especialmente em eventos comunitários, mutirões sociais e atividades de campo, onde nossa equipe de voluntários oferece acolhimento direto e orientação individual.<br>
+Dessa forma, unimos o melhor dos dois mundos — a praticidade do digital e a proximidade do contato humano — para garantir que o apoio chegue a quem mais precisa.
+</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Em quais dias vocês atendem? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-answer">Os atendimentos do Instituto Mãos Amigas são realizados mediante agendamento prévio, de forma flexível e acessível. A própria pessoa interessada pode escolher o melhor dia e horário para ser atendida, diretamente pelo nosso WhatsApp oficial.<br>
+Essa modalidade de agendamento foi pensada para respeitar a rotina de cada pessoa e garantir que o atendimento aconteça com tranquilidade, no momento mais conveniente. Nosso objetivo é tornar o processo simples, humano e acolhedor, valorizando o tempo e as necessidades de quem busca nosso apoio.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Como posso me tornar voluntário(a)? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-answer">Fazer parte do Instituto Mãos Amigas é uma oportunidade de transformar vidas — inclusive a sua. Para se tornar voluntário(a), basta clicar em “SEJA VOLUNTÁRIO” no menu superior do nosso site e preencher o formulário de inscrição. Após o envio, nossa equipe entrará em contato para conhecer seu perfil, interesses e disponibilidade, e assim integrá-lo(a) à área de atuação mais adequada.<br>
+Junte-se à nossa rede de solidariedade e venha compartilhar seu tempo, conhecimento e empatia com quem mais precisa. No IMA, cada gesto de voluntariado faz a diferença!
+</div>
+        </div>
+      </div>
+    </div>
+</section>

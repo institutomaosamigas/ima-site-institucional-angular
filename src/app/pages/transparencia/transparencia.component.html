@@ -1,0 +1,78 @@
+<section class="pagina-transparencia">
+  <div class="transparencia-container">
+    <h1>Relatórios anuais</h1>
+    <div class="transparencia-linha"></div>
+    <p class="transparencia-intro">
+      Aqui você pode consultar os relatórios de transparência do Instituto
+      Mãos Amigas. Selecione o ano desejado para fazer download do
+      relatório.
+    </p>
+
+    <!-- Filtro e busca de relatórios por ano -->
+    <div class="transparencia-filtro">
+      <label for="filtro-ordem" class="transp-label">Ordenar:</label>
+      <select
+        #filtroOrdem
+        id="filtro-ordem"
+        aria-label="Ordenar relatórios"
+        class="transp-input"
+      >
+        <option value="desc" selected>Mais novo → Mais antigo</option>
+        <option value="asc">Mais antigo → Mais novo</option>
+      </select>
+
+      <label for="filtro-ano" class="transp-label">Buscar por ano:</label>
+      <input
+        #filtroAno
+        id="filtro-ano"
+        type="number"
+        min="2023"
+        max="2025"
+        placeholder="Ex: 2024"
+        class="transp-input transp-input-ano"
+        aria-label="Buscar relatório por ano"
+      />
+      <button #btnBuscar id="btn-buscar" class="transp-btn primario">Buscar</button>
+      <button #btnLimpar id="btn-limpar" class="transp-btn secundario">Limpar</button>
+    </div>
+
+    <div #grid class="relatorios-grid">
+      <a
+        class="relatorio-card"
+        data-year="2023"
+        href="../../../assets/pdfs/relatório_IMA_2023.pdf"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="relatorio-card-content">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span class="relatorio-ano">2023</span>
+        </div>
+      </a>
+      <a
+        class="relatorio-card"
+        data-year="2024"
+        href="../../../assets/pdfs/relatório_IMA_2024.pdf"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="relatorio-card-content">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span class="relatorio-ano">2024</span>
+        </div>
+      </a>
+      <a
+        class="relatorio-card"
+        data-year="2025"
+        href="../../../assets/pdfs/relatório_IMA_2025.pdf"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="relatorio-card-content">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span class="relatorio-ano">2025</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

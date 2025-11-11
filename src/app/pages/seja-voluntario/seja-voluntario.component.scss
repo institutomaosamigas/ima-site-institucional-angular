@@ -1,0 +1,97 @@
+.pagina-voluntarios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Mais espaço no desktop para não "comer" o título sob o header */
+  padding: 10vh 0 6vh;
+  background-color: var(--Branco-Gelo);
+}
+
+.voluntarios-container {
+  width: 80vw;
+}
+.voluntarios-container h1 {
+  font-weight: bold;
+  color: var(--Preto);
+  text-transform: uppercase;
+}
+.voluntarios-linha {
+  width: 100%;
+  height: 2px;
+  background: var(--Preto);
+  margin: 10px 0 24px;
+  display: none;
+}
+.voluntarios-intro {
+  color: var(--Preto);
+  margin-bottom: 20px;
+}
+
+.vol-form {
+  display: flex;
+  flex-direction: column;
+}
+.vol-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 20px;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+.input-group.full {
+  grid-column: 1 / -1;
+}
+.vol-form label {
+  color: var(--Preto);
+  margin-bottom: 5px;
+}
+.vol-form input,
+.vol-form select,
+.vol-form textarea {
+  padding: 10px;
+  border: 1px solid var(--Preto);
+  background-color: var(--Branco-Gelo-Claro);
+  border-radius: 5px;
+}
+.vol-form input:focus,
+.vol-form select:focus,
+.vol-form textarea:focus {
+  outline: none;
+  border-color: var(--Preto);
+  box-shadow: 0 0 0 3px rgba(38, 38, 38, 0.15);
+}
+.vol-form textarea {
+  resize: vertical;
+}
+.vol-submit {
+  margin-top: 16px;
+}
+.vol-submit button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--Laranja);
+  color: var(--Branco-Gelo);
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.vol-submit button:hover {
+  background-color: var(--Laranja-escuro);
+}
+
+@media screen and (max-width: 1024px) {
+  .vol-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ajuste extra de padding para telas menores onde o header fica mais alto */
+@media screen and (max-width: 1024px) {
+  .pagina-voluntarios {
+    /* Reduz o espaço no mobile para evitar gap excessivo */
+    padding-top: 10vh;
+  }
+}

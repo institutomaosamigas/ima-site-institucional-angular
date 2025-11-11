@@ -1,0 +1,155 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Unificar para um único tom: azul escuro */
+  background-color: #0f172a; /* slate-900 */
+  color: #fff;
+  padding: 30px 0;
+}
+
+.rodape {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  /* Azul mais escuro para melhor contraste */
+  background-color: #0f172a; /* slate-900 */
+  justify-content: center;
+  flex-direction: column;
+}
+
+.rodape_conteudo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  align-items: start;
+  padding: 28px 24px 18px;
+  box-sizing: border-box;
+}
+
+.logo_rodape {
+  width: 130px;
+}
+
+.colunas {
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.colunas p {
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px; 
+  line-height: 1.3; 
+  text-transform: uppercase;
+}
+
+.coluna a,
+.button_rodape {
+  text-decoration: none;
+  color: #ffffff; /* todo o texto branco */
+  font-size: 15px;
+  display: block;
+  text-transform: uppercase; /* padroniza caixa */
+  line-height: 1.3; /* altura de linha mais compacta */
+  margin: 2px 0; /* reduzir distância vertical entre itens */
+}
+
+.colunas a:hover {
+  color: #e2e8f0;
+}
+
+.coluna span {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  gap: 8px; /* gap menor entre título e lista */
+}
+
+.button_rodape {
+  text-align: left;
+}
+
+.rodape-contribuir {
+  text-align: center;
+}
+
+.rodape-contribuir p {
+  color: #cbd5e1;
+  font-size: 3;
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+
+.rodape-contribuir button {
+  width: 200px;
+  height: 45px;
+  border-radius: 25px;
+  background-color: var(--Laranja);
+  color: var(--Branco-Gelo);
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.rodape-contribuir button:hover {
+  background-color: #fff;
+  color: var(--Preto);
+  border: 1px solid #fff;
+}
+
+.ultima-linha-rodape {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 10px 24px 14px; /* reduzir padding para compactar o rodapé */
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ultima-linha-rodape p {
+  font-size: 13px;
+}
+
+.rodape-redes-sociais {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.rodape-redes-sociais i {
+  color: #ffffff;
+}
+
+/* Botão flutuante do WhatsApp */
+.whatsapp-btn {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 56px;
+  height: 56px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+}
+.whatsapp-btn i {
+  font-size: 26px;
+}
+.whatsapp-btn:hover {
+  transform: scale(1.05);
+}
