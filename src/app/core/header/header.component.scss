@@ -107,3 +107,102 @@
 body {
     padding-top: 10vh;
 }
+
+/* BOTÃO HAMBÚRGUER */
+.hamburger {
+  width: 32px;
+  height: 28px;
+  display: none; /* só aparece no mobile */
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 30;
+
+  span {
+    width: 100%;
+    height: 4px;
+    background: var(--Preto);
+    border-radius: 4px;
+    transition: 0.3s ease;
+  }
+}
+
+/* NAV MOBILE FECHADO */
+nav {
+  transition: transform 0.3s ease;
+}
+
+/* NAV MOBILE ABERTO */
+nav.open {
+  transform: translateX(0);
+}
+
+/* RESPONSIVO - ATIVAR MENU HAMBÚRGUER */
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 260px;
+    height: 100vh;
+    background: var(--Branco-Gelo);
+    padding: 100px 20px;
+    flex-direction: column;
+    align-items: start;
+    transform: translateX(100%); /* escondido */
+    box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+  }
+
+  nav.open {
+    transform: translateX(0); /* aparece */
+  }
+
+  nav .menu ul {
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .botao-doar {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+/* item especial no mobile */
+.mobile-doar a {
+  color: var(--Laranja);
+  font-weight: 700;
+  border: 2px solid var(--Laranja);
+  padding: 10px 16px;
+  border-radius: 12px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+/* esconder no desktop */
+.mobile-doar {
+  display: none;
+}
+
+/* manter botão DOAR AGORA normal no desktop */
+.desktop-doar {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  /* no mobile, mostrar o DOAR AGORA dentro da lista */
+  .mobile-doar {
+    display: block;
+    margin-top: 20px;
+  }
+
+  /* e esconder o botão tradicional */
+  .desktop-doar {
+    display: none;
+  }
+}

@@ -10,4 +10,9 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
 
+  menuAberto = false;
+
+  toggleMenu() {
+    this.menuAberto = !this.menuAberto;
+  }
 }
