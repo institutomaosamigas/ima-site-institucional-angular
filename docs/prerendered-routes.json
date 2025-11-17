@@ -1,9 +1,0 @@
-{
-  "routes": [
-    "/",
-    "/doacoes",
-    "/gerador-curriculo",
-    "/seja-voluntario",
-    "/transparencia"
-  ]
-}
