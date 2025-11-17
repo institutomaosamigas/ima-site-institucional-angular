@@ -74,4 +74,8 @@ export class HomeComponent {
   toggleAutoplay() {
     this.autoplay = !this.autoplay;
   }
+
+  abrirWhatsApp() {
+    window.open('https://api.whatsapp.com/send?phone=5511967884145&text=Ol%C3%A1!%20Vim%20por%20meio%20do%20site%20maosamigas.org.', '_blank');
+  }
 }
