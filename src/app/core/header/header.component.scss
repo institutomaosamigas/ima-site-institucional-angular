@@ -69,6 +69,31 @@
     }
 }
 
+@media (max-width: 768px) {
+    .note-nav nav {
+        flex: unset;
+    }
+}
+
+@media (max-width: 768px) {
+    .note-nav nav ul {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 768px) {
+    .botao-doar {
+        width: 100%;
+        max-width: 200px; // opcional
+    }
+}
+
+@media (max-width: 768px) {
+    .note-nav {
+        padding-right: 16px; // evita que o ícone fique grudado demais na borda
+    }
+}
+
 .botao-doar {
     width: 200px;
     height: 2.2rem;
