@@ -10,11 +10,11 @@ import { Component, ElementRef, NgZone } from '@angular/core';
 })
 export class HomeComponent {
   images = [
-    '../../../assets/galeria/acao1.jpg',
-    '../../../assets/galeria/acao2.jpg',
-    '../../../assets/galeria/acao3.jpg',
-    '../../../assets/galeria/acao4.jpg',
-    '../../../assets/galeria/acao5.jpg'
+    'assets/galeria/acao1.jpg',
+    'assets/galeria/acao2.jpg',
+    'assets/galeria/acao3.jpg',
+    'assets/galeria/acao4.jpg',
+    'assets/galeria/acao5.jpg'
   ];
 
   currentIndex = 0;
