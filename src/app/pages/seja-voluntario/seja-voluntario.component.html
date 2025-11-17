@@ -1,173 +1,167 @@
-<section class="pagina-voluntarios">
-    <div class="voluntarios-container">
-        <h1>Junte-se a nós</h1>
-        <div class="voluntarios-linha"></div>
-        <p class="voluntarios-intro">
-        Quer fazer parte do time que transforma milhares de vidas?
-        Inscreva-se abaixo e aguarde nosso retorno!
-        </p>
+<section class="voluntario-container">
+    <h1>Junte-se a nós</h1>
+    <div *ngIf="showSuccess" class="success-message">
+        Inscrição enviada com sucesso! Obrigado por se voluntariar 💜
+    </div>
 
-        <form
-        class="vol-form"
-        action="#"
-        method="post"
-        enctype="multipart/form-data"
-        >
-        <div class="vol-grid">
-            <div class="input-group full">
-            <label for="nome">Nome completo *</label>
-            <input
-                type="text"
-                id="nome"
-                name="nome"
-                required
-                placeholder="Digite seu nome completo"
-            />
+    <p>Quer fazer parte do time que transforma milhares de vidas?<br>
+        Inscreva-se abaixo e aguarde nosso retorno!</p>
+    
+    <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Nome -->
+        <div class="form-group">
+        <label>Nome completo *</label>
+        <input formControlName="nome" type="text" [class.invalid]="isInvalid('nome')" placeholder="Digite seu nome completo" />
+        <small *ngIf="isInvalid('nome')">Informe seu nome completo</small>
+        </div>
+
+        <!-- Idade / Cidade -->
+        <div class="form-row">
+        <div class="form-group">
+            <label>
+                <input type="checkbox" formControlName="maior18" />
+                Sou maior de 18 anos *
+            </label>
+            <div *ngIf="volunteerForm.get('maior18')?.touched && volunteerForm.get('maior18')?.invalid" class="error">
+                Você precisa confirmar que é maior de 18 anos
             </div>
+        </div>
 
-            <div class="input-group">
+        <div class="form-group">
             <label for="cpf">CPF *</label>
             <input
-                type="text"
                 id="cpf"
-                name="cpf"
-                required
+                type="text"
+                formControlName="cpf"
                 placeholder="000.000.000-00"
-                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-            />
-            </div>
-
-            <div class="input-group">
-            <label for="localizacao">Localização *</label>
-            <input
-                type="text"
-                id="localizacao"
-                name="localizacao"
-                required
-                placeholder="Ex: São Paulo - SP"
-            />
-            </div>
-
-            <div class="input-group">
-            <label for="whatsapp">WhatsApp *</label>
-            <input
-                type="tel"
-                id="whatsapp"
-                name="whatsapp"
-                required
-                placeholder="(99) 99999-9999"
-            />
-            </div>
-
-            <div class="input-group">
-            <label for="email">E-mail *</label>
-            <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="seuemail@exemplo.com"
-            />
-            </div>
-
-            <div class="input-group full">
-            <label for="profissao">Profissão / Área de atuação *</label>
-            <input
-                type="text"
-                id="profissao"
-                name="profissao"
-                required
-                placeholder="Ex: Designer, Engenheira..."
-            />
-            </div>
-
-            <div class="input-group full">
-            <label for="setor">Setor de interesse *</label>
-            <select id="setor" name="setor" required>
-                <option value="" selected disabled>
-                Selecione uma opção
-                </option>
-                <option>Juridica</option>
-                <option>Psicologia</option>
-                <option>Nutrição</option>
-                <option>Quiropraxia</option>
-                <option>Pediatria</option>
-                <option>Financeiro</option>
-                <option>Contábil</option>
-                <option>Outros</option>
-            </select>
-            </div>
-
-            <div class="input-group full">
-            <label for="contribuicao"
-                >Como você pode contribuir conosco? *</label
-            >
-            <textarea
-                id="contribuicao"
-                name="contribuicao"
-                required
-                placeholder="Conte um pouco sobre como você gostaria de impactar vidas."
-                rows="5"
-            ></textarea>
-            </div>
-
-            <div class="input-group">
-            <label for="horas">Disponibilidade semanal (em horas) *</label>
-            <input
-                type="number"
-                id="horas"
-                name="horas"
-                min="1"
-                placeholder="Ex: 6"
+                (input)="formatCPF($event)"
+                maxlength="14"
                 required
             />
-            </div>
-
-            <div class="input-group">
-            <label for="disponibilidade">Disponibilidade *</label>
-            <select id="disponibilidade" name="disponibilidade" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Manhã</option>
-                <option>Tarde</option>
-                <option>Noite</option>
-                <option>Finais de semana</option>
-            </select>
-            </div>
-
-            <div class="input-group full">
-            <label for="curriculo">Currículo (PDF, opcional)</label>
-            <input
-                type="file"
-                id="curriculo"
-                name="curriculo"
-                accept="application/pdf"
-            />
-            </div>
-
-            <div class="input-group">
-            <label for="linkedin">LinkedIn (opcional)</label>
-            <input
-                type="url"
-                id="linkedin"
-                name="linkedin"
-                placeholder="https://linkedin.com/in/seu-perfil"
-            />
-            </div>
-
-            <div class="input-group">
-            <label for="portfolio">Portfólio (opcional)</label>
-            <input
-                type="url"
-                id="portfolio"
-                name="portfolio"
-                placeholder="https://seuportfolio.com"
-            />
+            <div *ngIf="volunteerForm.get('cpf')?.touched && volunteerForm.get('cpf')?.invalid" class="error">
+                CPF é obrigatório
             </div>
         </div>
 
-        <div class="vol-submit">
-            <button type="submit">Enviar inscrição</button>
+
+        <div class="form-group">
+            <label>Localização *</label>
+            <input formControlName="cidadeEstado" type="text" [class.invalid]="isInvalid('cidadeEstado')" placeholder="Ex: São Paulo - SP" />
+            <small *ngIf="isInvalid('cidadeEstado')">Campo obrigatório</small>
         </div>
-        </form>
-    </div>
+        </div>
+
+        <!-- Contato -->
+        <div class="form-row">
+        <div class="form-group">
+            <label>WhatsApp *</label>
+            <input
+            formControlName="whatsapp"
+            type="text"
+            [class.invalid]="isInvalid('whatsapp')"
+            placeholder="(99) 99999-9999"
+            (input)="formatPhone($event)"
+            />
+            <small *ngIf="isInvalid('whatsapp')">Informe um número válido</small>
+        </div>
+
+        <div class="form-group">
+            <label>E-mail *</label>
+            <input formControlName="email" type="email" [class.invalid]="isInvalid('email')" placeholder="seuemail@exemplo.com" />
+            <small *ngIf="isInvalid('email')">E-mail inválido</small>
+        </div>
+        </div>
+
+        <!-- Profissão -->
+        <div class="form-group">
+        <label>Profissão / Área de atuação *</label>
+        <input formControlName="profissao" type="text" [class.invalid]="isInvalid('profissao')" placeholder="Ex: Designer, Engenheira..." />
+        <small *ngIf="isInvalid('profissao')">Campo obrigatório</small>
+        </div>
+
+        <!-- Setor -->
+        <div class="form-group">
+        <label>Setor de interesse *</label>
+        <select formControlName="setorInteresse" [class.invalid]="isInvalid('setorInteresse')">
+            <option value="">Selecione uma opção</option>
+            <option value="Ações sociais">Ações sociais</option>
+            <option value="Administração">Administração</option>
+            <option value="Contabilidade">Contabilidade</option>
+            <option value="Educação">Educação</option>
+            <option value="Enfermagem">Enfermagem</option>
+            <option value="Finanças">Finanças</option>
+            <option value="Fisioterapia">Fisioterapia</option>
+            <option value="Jurídico">Jurídico</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Mentoria de carreira">Mentoria de carreira</option>
+            <option value="Medicina">Medicina</option>
+            <option value="Odontologia">Odontologia</option>
+            <option value="Psicologia">Psicologia</option>
+            <option value="Tecnologia">Tecnologia</option>
+            <option value="Outras">Outras</option>
+        </select>
+        <small *ngIf="isInvalid('setorInteresse')">Selecione uma área</small>
+        </div>
+
+        <!-- Contribuição -->
+        <div class="form-group">
+        <label>Como você pode contribuir conosco? *</label>
+        <textarea
+            formControlName="contribuicao"
+            rows="4"
+            [class.invalid]="isInvalid('contribuicao')"
+            placeholder="Conte um pouco sobre como você gostaria de impactar vidas."
+        ></textarea>
+        <small *ngIf="isInvalid('contribuicao')">Campo obrigatório</small>
+        </div>
+
+        <!-- Disponibilidade -->
+        <div class="form-row">
+        <div class="form-group">
+            <label>Disponibilidade semanal (em horas) *</label>
+            <input
+            formControlName="disponibilidadeHoras"
+            type="number"
+            [class.invalid]="isInvalid('disponibilidadeHoras')"
+            placeholder="Ex: 6"
+            />
+            <small *ngIf="isInvalid('disponibilidadeHoras')">Informe quantas horas semanais</small>
+        </div>
+
+        <div class="form-group">
+            <label>Disponibilidade *</label>
+            <select formControlName="tipoDisponibilidade" [class.invalid]="isInvalid('tipoDisponibilidade')">
+            <option value="">Selecione</option>
+            <option value="Remoto">Remoto</option>
+            <option value="Presencial">Presencial</option>
+            <option value="Híbrido">Híbrido</option>
+            </select>
+            <small *ngIf="isInvalid('tipoDisponibilidade')">Campo obrigatório</small>
+        </div>
+        </div>
+
+        <!-- Currículo -->
+        <div class="form-group">
+            <label for="curriculum">Currículo (PDF, opcional)</label>
+            <input type="file" id="curriculum" (change)="onFileChange($event)" />
+        </div>
+
+        <!-- Links -->
+        <div class="form-row">
+        <div class="form-group">
+            <label>LinkedIn (opcional)</label>
+            <input formControlName="linkedin" type="url" placeholder="https://linkedin.com/in/seu-perfil" />
+        </div>
+
+        <div class="form-group">
+            <label>Portfólio (opcional)</label>
+            <input formControlName="portfolio" type="url" placeholder="https://seuportfolio.com" />
+        </div>
+        </div>
+
+        <!-- Botão -->
+        <div class="form-actions">
+        <button type="submit" [disabled]="volunteerForm.invalid">Enviar inscrição</button>
+        </div>
+    </form>
 </section>
