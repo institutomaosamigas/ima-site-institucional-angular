@@ -119,6 +119,23 @@
   padding: 0px;
 }
 
+@media screen and (max-width: 768px) {
+  .quem-somos .quem-somos-text {
+    padding: 0 4vw 6vh;  /* padding mais leve */
+  }
+
+  .quem-somos .quem-somos-text h1 {
+    text-align: center; /* força alinhamento */
+    width: 100%;        /* garante centralização real */
+  }
+
+  .quem-somos .quem-somos-text p {
+    width: 90vw;        /* evita ficar estreito demais */
+    padding: 2vh 0 4vh;
+  }
+}
+
+
 .images-quem-somos {
   position: relative;
   width: 280px;
