@@ -760,6 +760,68 @@
   }
 }
 
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1024px) {
+  .servicos .icons {
+    grid-template-columns: repeat(2, 1fr);
+    width: 90vw;
+  }
+
+  .servicos .servicos-text p {
+    width: 80vw;
+    padding: 2vh;
+  }
+
+  .servicos .servicos-text {
+    padding: 5vh 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .servicos {
+    padding: 0 10px;
+  }
+
+  .servicos .icons {
+    grid-template-columns: 1fr; /* UM POR LINHA */
+    gap: 16px;
+    width: 100%;
+    padding: 0 0 40px;
+  }
+
+  .servicos .icon-contabil,
+  .servicos .icon-fisioterapia,
+  .servicos .icon-juridica,
+  .servicos .icon-psicologia,
+  .servicos .icon-nutricao,
+  .servicos .icon-quiropraxia,
+  .servicos .icon-pediatria,
+  .servicos .icon-financeiro {
+    width: 100%;
+    margin: 0;
+    padding: 20px 10px;
+    box-sizing: border-box;
+  }
+
+  .servicos button {
+    width: 60vw;
+    height: 6vh;
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .servicos .servicos-text p {
+    width: 90vw;
+    padding: 0;
+    font-size: 14px;
+  }
+
+  .servicos .servicos-text h1 {
+    font-size: 24px;
+  }
+}
+
+
 /* DEPOIMENTOS */
 .depoimentos {
   display: flex;
