@@ -93,19 +93,20 @@
     flex-direction: column;
     align-items: center;
     font-weight: 400;
-    /* Remove padding superior para evitar dupla margem; deixa 10vh como nas seções padrão */
-    padding: 0 10vh 10vh;
+    padding: 10vh;
+    padding-bottom: 150px;
+  }
 
-    h1 {
-      font-weight: bold;
-    }
+  .quem-somos-text h1 {
+    font-weight: bold;
+  }
 
-    p {
-      font-weight: 100;
-      width: 40vw;
-      text-align: center;
-      padding: 3vh 3vh 6vh;
-    }
+  .quem-somos-text p {
+    font-weight: 100;
+    width: 50vw;
+    text-align: center;
+    padding: 5vh;
+    padding-bottom: 0px;
   }
 }
 
@@ -1017,6 +1018,21 @@
   color: var(--Preto);
   margin-top: 15px;
   margin-bottom: 55px;
+}
+
+.onde-estamos-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 400;
+    padding: 10vh;
+}
+
+.onde-estamos-header p {
+    font-weight: 100;
+    width: 50vw;
+    text-align: center;
+    padding-bottom: 2vw;
 }
 
 .onde-grid {
