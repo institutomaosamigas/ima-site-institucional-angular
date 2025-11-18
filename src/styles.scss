@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth@0,75;1,75&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
 
 :root {
@@ -10,9 +11,10 @@
     --Preto: #262626;
     /* Rosa escuro para hover e elementos de contraste */
     --Laranja-escuro: var(--Magenta);
-    --azulEscuro: #1A1466;
-    --Magenta: #C2185B;
+    --azulEscuro: #0e0095;
+    --Magenta: #b300aa;
     --cinza: #ADADAD;
+    --roxo: #500150;
     --bordas: 1px solid var(--Preto);
     --bordas-hover: 1px solid var(--Laranja);
     --trasicao-botao: transition-duration: 1s;
@@ -27,7 +29,7 @@
     box-sizing: border-box;
     border: none;
     text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 p,
