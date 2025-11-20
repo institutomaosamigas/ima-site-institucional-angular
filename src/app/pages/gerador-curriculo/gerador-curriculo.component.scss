@@ -56,6 +56,7 @@
 .curriculo-form .actions {
   grid-column: 1 / -1;
   display: flex;
+  justify-content: flex-end;
   gap: 12px;
 }
 .curriculo-form .actions button {
@@ -64,7 +65,7 @@
   background: var(--Magenta);
   color: #fff;
   font-weight: 700;
-  cursor: pointer;
+  cursor: pointer;;
 }
 
 .curriculo-preview {
