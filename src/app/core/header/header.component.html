@@ -1,33 +1,89 @@
-<header>
+<header role="banner">
   <div class="note-nav">
-    <img src="assets/imgs/Logo.png" onclick="voltarHome()" alt="Logo Mãos Amigas" />
+    <!-- Logo sem a borda de foco -->
+    <img src="assets/imgs/Logo.png" 
+         (click)="voltarHome()" 
+         alt="Logo do Instituto Mãos Amigas - Clique para voltar à página inicial"
+         role="img"
+         class="logo-header">
 
-    <div class="hamburger" (click)="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <!-- Hamburger menu sem borda de foco -->
+    <button class="hamburger" 
+            (click)="toggleMenu()"
+            aria-label="Abrir menu de navegação"
+            aria-expanded="false"
+            aria-controls="main-menu"
+            [attr.aria-expanded]="menuAberto">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
 
-    <nav [class.open]="menuAberto">
+    <!-- Navegação principal -->
+    <nav [class.open]="menuAberto" 
+         role="navigation" 
+         aria-label="Menu principal"
+         id="main-menu">
       <div class="menu">
-        <ul class="nav-list">
-          <li><a href="#home">INÍCIO</a></li>
-          <li><a href="#quem-somos">QUEM SOMOS</a></li>
-          <li><a href="#impacto">NOSSO IMPACTO</a></li>
-          <li><a href="#servicos">SERVIÇOS</a></li>
-          <li><a href="#contato">CONTATO</a></li>
-          <li><a routerLink="/seja-voluntario">SEJA VOLUNTÁRIO</a></li>
-          <li><a routerLink="/transparencia">TRANSPARÊNCIA</a></li>
+        <ul class="nav-list" role="menubar">
+          <li role="none">
+            <a href="#home" 
+               role="menuitem"
+               aria-current="page">
+              INÍCIO
+            </a>
+          </li>
+          <li role="none">
+            <a href="#quem-somos" 
+               role="menuitem">
+              QUEM SOMOS
+            </a>
+          </li>
+          <li role="none">
+            <a href="#impacto" 
+               role="menuitem">
+              NOSSO IMPACTO
+            </a>
+          </li>
+          <li role="none">
+            <a href="#servicos" 
+               role="menuitem">
+              SERVIÇOS
+            </a>
+          </li>
+          <li role="none">
+            <a href="#contato" 
+               role="menuitem">
+              CONTATO
+            </a>
+          </li>
+          <li role="none">
+            <a routerLink="/seja-voluntario" 
+               role="menuitem">
+              SEJA VOLUNTÁRIO
+            </a>
+          </li>
+          <li role="none">
+            <a routerLink="/transparencia" 
+               role="menuitem">
+              TRANSPARÊNCIA
+            </a>
+          </li>
 
-          <!-- DOAR AGORA dentro da lista (mobile) -->
-          <li class="mobile-doar">
-            <a routerLink="/doacoes">DOAR AGORA</a>
+          <!-- DOAR AGORA mobile -->
+          <li class="mobile-doar" role="none">
+            <a routerLink="/doacoes" 
+               role="menuitem">
+              DOAR AGORA
+            </a>
           </li>
         </ul>
       </div>
 
-      <!-- DOAR AGORA no desktop (continuando do jeito anterior) -->
-      <button class="botao-doar desktop-doar" routerLink="/doacoes">
+      <!-- DOAR AGORA desktop -->
+      <button class="botao-doar desktop-doar" 
+              routerLink="/doacoes"
+              aria-label="Doar agora para o Instituto Mãos Amigas">
         DOAR AGORA
       </button>
     </nav>

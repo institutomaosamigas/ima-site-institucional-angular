@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,21 @@ export class HeaderComponent {
 
   menuAberto = false;
 
+  constructor(private router: Router) {
+    
+  }
+
   toggleMenu() {
     this.menuAberto = !this.menuAberto;
+  }
+  handleLogoKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.voltarHome();
+    }
+  }
+
+  voltarHome() {
+    this.router.navigate(['/']);
   }
 }
