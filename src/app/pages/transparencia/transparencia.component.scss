@@ -67,7 +67,7 @@
 .transparencia-filtro {
   display: flex;
   gap: 12px;
-  align-items: center;
+  align-items: end; /* Mantém alinhamento pela base */
   margin-bottom: 16px;
   flex-wrap: wrap;
 }
@@ -97,6 +97,7 @@
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  height: fit-content; /* Garante que acompanhe a altura dos inputs */
 }
 .transp-btn.primario {
   background: var(--Laranja);
@@ -114,4 +115,106 @@
 .transp-btn.secundario:hover {
   border-color: var(--Magenta);
   color: var(--Branco-Gelo);
+}
+
+/* ===== ACESSIBILIDADE ===== */
+
+/* Classe para elementos visualmente ocultos mas acessíveis para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Grupos de filtro para melhor organização */
+.filtro-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filtro-botoes {
+  display: flex;
+  gap: 0.5rem;
+  align-items: end; /* Alinha os botões pela base com os inputs */
+  margin-top: auto; /* Empurra para baixo se necessário */
+}
+
+/* Melhorias de foco para acessibilidade - sem bordas azuis */
+.relatorio-card:focus {
+  outline: none;
+  border-color: var(--Magenta);
+  box-shadow: 0 0 0 3px rgba(255, 0, 128, 0.2);
+}
+
+.transp-input:focus,
+.transp-btn:focus {
+  outline: none;
+}
+
+.transp-btn.primario:focus {
+  background: var(--Laranja-escuro);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.3);
+}
+
+.transp-btn.secundario:focus {
+  border-color: var(--Magenta);
+  box-shadow: 0 0 0 3px rgba(255, 0, 128, 0.2);
+}
+
+/* Status e mensagens de acessibilidade */
+.status-resultados {
+  height: 0;
+  overflow: hidden;
+}
+
+.nenhum-resultado {
+  text-align: center;
+  padding: 2rem;
+  background: var(--Branco-Gelo-Claro);
+  border-radius: 16px;
+  margin-top: 2rem;
+  color: var(--Preto);
+  border-left: 4px solid var(--Laranja);
+}
+
+.nenhum-resultado.hidden {
+  display: none;
+}
+
+/* Ícones com acessibilidade */
+.relatorio-card i {
+  aria-hidden: true;
+}
+
+/* Responsividade mantendo acessibilidade */
+@media (max-width: 768px) {
+  .transparencia-filtro {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filtro-botoes {
+    justify-content: center;
+    margin-top: 1rem;
+    align-items: center; /* No mobile pode centralizar */
+  }
+  
+  .relatorios-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pagina-transparencia {
+    padding: 5vh 0 3vh;
+  }
+  
+  .transparencia-container {
+    width: 90vw;
+  }
 }

@@ -1,78 +1,147 @@
-<section class="pagina-transparencia">
+<section class="pagina-transparencia" role="main" aria-labelledby="transparencia-heading">
   <div class="transparencia-container">
-    <h1>Relatórios anuais</h1>
-    <div class="transparencia-linha"></div>
+    <h1 id="transparencia-heading">Relatórios anuais</h1>
+    <div class="transparencia-linha" aria-hidden="true"></div>
     <p class="transparencia-intro">
       Aqui você pode consultar os relatórios de transparência do Instituto
       Mãos Amigas. Selecione o ano desejado para fazer download do
       relatório.
     </p>
 
-    <!-- Filtro e busca de relatórios por ano -->
-    <div class="transparencia-filtro">
-      <label for="filtro-ordem" class="transp-label">Ordenar:</label>
-      <select
-        #filtroOrdem
-        id="filtro-ordem"
-        aria-label="Ordenar relatórios"
-        class="transp-input"
-      >
-        <option value="desc" selected>Mais novo → Mais antigo</option>
-        <option value="asc">Mais antigo → Mais novo</option>
-      </select>
+    <!-- Filtro e busca de relatórios por ano - Layout original -->
+    <div class="transparencia-filtro" role="search" aria-label="Filtrar relatórios">
+      <div class="filtro-grupo">
+        <label for="filtro-ordem" class="transp-label">Ordenar:</label>
+        <select
+          #filtroOrdem
+          id="filtro-ordem"
+          aria-describedby="ordenar-descricao"
+          class="transp-input"
+        >
+          <option value="desc" selected>Mais novo → Mais antigo</option>
+          <option value="asc">Mais antigo → Mais novo</option>
+        </select>
+        <span id="ordenar-descricao" class="sr-only">Ordena a lista de relatórios por data</span>
+      </div>
 
-      <label for="filtro-ano" class="transp-label">Buscar por ano:</label>
-      <input
-        #filtroAno
-        id="filtro-ano"
-        type="number"
-        min="2023"
-        max="2025"
-        placeholder="Ex: 2024"
-        class="transp-input transp-input-ano"
-        aria-label="Buscar relatório por ano"
-      />
-      <button #btnBuscar id="btn-buscar" class="transp-btn primario">Buscar</button>
-      <button #btnLimpar id="btn-limpar" class="transp-btn secundario">Limpar</button>
+      <div class="filtro-grupo">
+        <label for="filtro-ano" class="transp-label">Buscar por ano:</label>
+        <input
+          #filtroAno
+          id="filtro-ano"
+          type="number"
+          min="2023"
+          max="2025"
+          placeholder="Ex: 2024"
+          class="transp-input transp-input-ano"
+          aria-describedby="ano-descricao"
+        />
+        <span id="ano-descricao" class="sr-only">Digite o ano do relatório que deseja buscar</span>
+      </div>
+
+      <!-- Botões alinhados corretamente -->
+      <div class="filtro-botoes">
+        <button 
+          #btnBuscar 
+          id="btn-buscar" 
+          class="transp-btn primario"
+          aria-describedby="buscar-descricao"
+        >
+          Buscar
+          <span id="buscar-descricao" class="sr-only">Filtrar relatórios pelo ano digitado</span>
+        </button>
+        <button 
+          #btnLimpar 
+          id="btn-limpar" 
+          class="transp-btn secundario"
+          aria-describedby="limpar-descricao"
+        >
+          Limpar
+          <span id="limpar-descricao" class="sr-only">Limpar filtros e mostrar todos os relatórios</span>
+        </button>
+      </div>
     </div>
 
-    <div #grid class="relatorios-grid">
+    <!-- Status dos resultados (invisível) -->
+    <div class="status-resultados" aria-live="polite" aria-atomic="true">
+      <span class="sr-only">{{ mensagemResultados }}</span>
+    </div>
+
+    <!-- Área de resultados -->
+    <div 
+      #grid 
+      class="relatorios-grid" 
+      role="region" 
+      aria-label="Lista de relatórios"
+      aria-describedby="resultados-descricao"
+    >
+      <span id="resultados-descricao" class="sr-only">
+        Relatórios anuais disponíveis para download. Use os filtros acima para buscar por ano específico.
+      </span>
+      
       <a
         class="relatorio-card"
         data-year="2023"
         href="../../../assets/pdfs/relatório_IMA_2023.pdf"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
+        aria-label="Relatório anual de 2023 - PDF - Abrirá em nova janela"
+        (keydown)="onCardKeydown($event, '2023')"
+        tabindex="0"
       >
         <div class="relatorio-card-content">
-          <i class="fa-solid fa-file-pdf"></i>
+          <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
           <span class="relatorio-ano">2023</span>
+          <span class="sr-only"> - Formato PDF</span>
         </div>
+        <span class="sr-only">Clique para baixar o relatório anual de 2023</span>
       </a>
+      
       <a
         class="relatorio-card"
         data-year="2024"
         href="../../../assets/pdfs/relatório_IMA_2024.pdf"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
+        aria-label="Relatório anual de 2024 - PDF - Abrirá em nova janela"
+        (keydown)="onCardKeydown($event, '2024')"
+        tabindex="0"
       >
         <div class="relatorio-card-content">
-          <i class="fa-solid fa-file-pdf"></i>
+          <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
           <span class="relatorio-ano">2024</span>
+          <span class="sr-only"> - Formato PDF</span>
         </div>
+        <span class="sr-only">Clique para baixar o relatório anual de 2024</span>
       </a>
+      
       <a
         class="relatorio-card"
         data-year="2025"
         href="../../../assets/pdfs/relatório_IMA_2025.pdf"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
+        aria-label="Relatório anual de 2025 - PDF - Abrirá em nova janela"
+        (keydown)="onCardKeydown($event, '2025')"
+        tabindex="0"
       >
         <div class="relatorio-card-content">
-          <i class="fa-solid fa-file-pdf"></i>
+          <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
           <span class="relatorio-ano">2025</span>
+          <span class="sr-only"> - Formato PDF</span>
         </div>
+        <span class="sr-only">Clique para baixar o relatório anual de 2025</span>
       </a>
+    </div>
+
+    <!-- Mensagem para quando não houver resultados -->
+    <div 
+      id="nenhum-resultado" 
+      class="nenhum-resultado hidden" 
+      role="alert" 
+      aria-live="polite"
+    >
+      <p>Nenhum relatório encontrado para o ano selecionado.</p>
     </div>
   </div>
 </section>
