@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -10,4 +10,19 @@ import { RouterLink } from '@angular/router';
 })
 export class FooterComponent {
 
+  constructor(private router: Router) {
+    
+  }
+
+  // Função para suporte a teclado na logo
+  handleLogoKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.voltarHome();
+    }
+  }
+
+  voltarHome() {
+    this.router.navigate(['/']);
+  }
 }

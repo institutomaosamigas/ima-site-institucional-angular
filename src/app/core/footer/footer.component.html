@@ -1,54 +1,85 @@
-<footer>
+<footer role="contentinfo">
     <div class="rodape">
         <div class="rodape_conteudo">
-            <img class="logo_rodape" src="assets/imgs/Logo.png" onclick="voltarHome()" alt="Logo Mãos Amigas">
-            <div class="colunas">
+            <!-- Logo com melhor acessibilidade -->
+            <img class="logo_rodape" 
+                 src="assets/imgs/Logo.png" 
+                 (click)="voltarHome()" 
+                 alt="Logo Instituto Mãos Amigas - Voltar para página inicial"
+                 role="button"
+                 tabindex="0"
+                 (keydown)="handleLogoKeydown($event)">
+            
+            <div class="colunas" role="navigation" aria-label="Links do rodapé">
 
-                <div class="coluna">
+                <div class="coluna" role="list" aria-labelledby="sobre-heading">
                     <span>
-                    <p>SOBRE</p>
-                    <a href="#quem-somos" class="button_rodape">Quem Somos</a>
-                    <a href="#impacto" class="button_rodape">Nosso Impacto</a>
-                    <a href="#servicos" class="button_rodape">Serviços</a>
-                    <a routerLink="/transparencia" class="button_rodape">Transparência</a>
+                    <p id="sobre-heading">SOBRE</p>
+                    <a href="#quem-somos" class="button_rodape" role="listitem">Quem Somos</a>
+                    <a href="#impacto" class="button_rodape" role="listitem">Nosso Impacto</a>
+                    <a href="#servicos" class="button_rodape" role="listitem">Serviços</a>
+                    <a routerLink="/transparencia" class="button_rodape" role="listitem">Transparência</a>
                     </span>
                 </div>
 
-                <div class="coluna">
+                <div class="coluna" role="list" aria-labelledby="contato-heading">
                     <span>
-                    <p>CONTATO</p>
-                    <a href="#contato" class="button_rodape">Fale conosco</a>
-                    <a routerLink="/seja-voluntario" class="button_rodape">Seja voluntário</a>
-                    <a routerLink="/doacoes" class="button_rodape">Faça uma doação</a>
-                    
+                    <p id="contato-heading">CONTATO</p>
+                    <a href="#contato" class="button_rodape" role="listitem">Fale conosco</a>
+                    <a routerLink="/seja-voluntario" class="button_rodape" role="listitem">Seja voluntário</a>
+                    <a routerLink="/doacoes" class="button_rodape" role="listitem">Faça uma doação</a>
                     </span>
                 </div>
 
-                <div class="coluna">
+                <div class="coluna" role="list" aria-labelledby="outros-heading">
                     <span>
-                    <p>OUTROS</p>
-                    <!--<a href="#" class="button_rodape">Login</a>
-                    <a href="#" class="button_rodape">Cadastro</a> -->
-                    <a routerLink="/gerador-curriculo" class="button_rodape">Gerar Currículo</a>
+                    <p id="outros-heading">OUTROS</p>
+                    <!--<a href="#" class="button_rodape" role="listitem">Login</a>
+                    <a href="#" class="button_rodape" role="listitem">Cadastro</a> -->
+                    <a routerLink="/gerador-curriculo" class="button_rodape" role="listitem">Gerar Currículo</a>
                     </span>
                 </div>
             </div>
         </div>
+        
         <div class="ultima-linha-rodape">
-            <p>© 2025 Instituto Mãos Amigas. Todos os direitos reservados.</p>
-            <p>IMA - INSTITUTO MÃOS AMIGAS | CNPJ: 53.065.585/0001-94</p>
-            <div class="rodape-redes-sociais">
-            <a href="https://www.facebook.com/sejamaosamigas/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
-            <a href="https://www.instagram.com/sejamaosamigas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/m%C3%A3os-amigas/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <i class="fa-brands fa-linkedin"></i>
-            </a>
+            <!-- Informações legais com semântica apropriada -->
+            <p role="contentinfo">© 2025 Instituto Mãos Amigas. Todos os direitos reservados.</p>
+            <p role="contentinfo">IMA - INSTITUTO MÃOS AMIGAS | CNPJ: 53.065.585/0001-94</p>
+            
+            <!-- Redes sociais com melhor acessibilidade -->
+            <div class="rodape-redes-sociais" role="list" aria-label="Redes sociais">
+                <a href="https://www.facebook.com/sejamaosamigas/" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   aria-label="Siga-nos no Facebook"
+                   role="listitem">
+                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.instagram.com/sejamaosamigas/" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   aria-label="Siga-nos no Instagram"
+                   role="listitem">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/m%C3%A3os-amigas/posts/?feedView=all" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   aria-label="Conecte-se conosco no LinkedIn"
+                   role="listitem">
+                    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
     </div>
-    <a href="https://api.whatsapp.com/send?phone=5511967884145&text=Ol%C3%A1!%20Vim%20por%20meio%20do%20site%20maosamigas.org." class="whatsapp-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    
+    <!-- Botão do WhatsApp com melhor descrição -->
+    <a href="https://api.whatsapp.com/send?phone=5511967884145&text=Ol%C3%A1!%20Vim%20por%20meio%20do%20site%20maosamigas.org." 
+       class="whatsapp-btn" 
+       aria-label="Entre em contato pelo WhatsApp"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
 </footer>
