@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -25,17 +25,24 @@ export class TransparenciaComponent implements AfterViewInit, OnDestroy {
   relatoriosFiltrados: number = 0;
   mensagemResultados: string = '';
   private resultadosElement: HTMLElement | null = null;
+  private isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngAfterViewInit(): void {
-    // proteção caso o template ainda não tenha sido renderizado no cliente
-    if (!this.gridRef) return;
+    // Só executa no lado do cliente (browser)
+    if (!this.isBrowser || !this.gridRef) return;
 
     const grid = this.gridRef.nativeElement;
     this.cards = Array.from(grid.querySelectorAll<HTMLElement>('.relatorio-card'));
     this.relatoriosFiltrados = this.cards.length;
 
-    // Elemento para mensagens de acessibilidade
-    this.resultadosElement = document.getElementById('nenhum-resultado');
+    // Elemento para mensagens de acessibilidade - só no browser
+    if (this.isBrowser) {
+      this.resultadosElement = document.getElementById('nenhum-resultado');
+    }
 
     const selectOrdem = this.selectOrdemRef?.nativeElement;
     const inputAno = this.inputAnoRef?.nativeElement;
@@ -138,6 +145,9 @@ export class TransparenciaComponent implements AfterViewInit, OnDestroy {
   }
 
   private anunciarResultados(quantidade: number, filtroAno: string): void {
+    // Só anuncia no browser
+    if (!this.isBrowser) return;
+
     let mensagem = '';
     
     if (quantidade === 0) {
@@ -155,6 +165,9 @@ export class TransparenciaComponent implements AfterViewInit, OnDestroy {
   }
 
   private anunciarMudanca(mensagem: string): void {
+    // Só anuncia no browser
+    if (!this.isBrowser) return;
+
     // Criar elemento temporário para anunciar mudanças
     const anuncio = document.createElement('div');
     anuncio.setAttribute('aria-live', 'polite');
@@ -186,6 +199,9 @@ export class TransparenciaComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // Só executa no browser
+    if (!this.isBrowser) return;
+
     // remover listeners se necessário (bom pra evitar memory leaks)
     const selectOrdem = this.selectOrdemRef?.nativeElement;
     const inputAno = this.inputAnoRef?.nativeElement;
