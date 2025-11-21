@@ -109,3 +109,171 @@
     width: 90vw;
   }
 }
+
+/* ACESSIBILIDADE */
+/* Classe para elementos visualmente ocultos mas acessíveis para leitores de tela */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Estilos base */
+.destaque {
+    margin-top: 50px;
+    font-weight: bold;
+}
+
+.descricao {
+    margin-bottom: 40px;
+}
+
+/* Botões de valor */
+.valor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+    border: none;
+    padding: 0;
+}
+
+.valor-btn {
+    padding: 15px;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.valor-btn:hover {
+    border-color: #005fcc;
+    background-color: #f0f8ff;
+}
+
+.valor-btn.selecionado,
+.valor-btn[aria-pressed="true"] {
+    background-color: #005fcc;
+    color: white;
+    border-color: #005fcc;
+}
+
+.valor-btn:focus {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px;
+}
+
+/* Formulário */
+.doacao-form {
+    margin: 30px 0;
+}
+
+.doacao-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.doacao-form input {
+    width: 200px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+.doacao-form input:focus {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px;
+    border-color: #005fcc;
+}
+
+.instrucoes {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Botões de pagamento */
+.pagamento-opcoes {
+    margin: 30px 0;
+}
+
+.paypal-btn,
+.cartao-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.paypal-btn {
+    background-color: #0070ba;
+    color: white;
+}
+
+.cartao-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.paypal-btn:hover:not(.disabled),
+.cartao-btn:hover:not(.disabled) {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.paypal-btn:focus,
+.cartao-btn:focus {
+    outline: 3px solid #005fcc;
+    outline-offset: 2px;
+}
+
+.paypal-btn.disabled,
+.cartao-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.powered-paypal {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Informações de segurança */
+.seguranca-info {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border-left: 4px solid #28a745;
+}
+
+/* Alerta de valor mínimo */
+.alerta-valor {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 5px;
+    color: #856404;
+}

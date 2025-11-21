@@ -10,6 +10,5 @@ export const appRoutes: Routes = [
   { path: 'seja-voluntario', component: SejaVoluntarioComponent },
   { path: 'doacoes', component: DoacoesComponent },
   { path: 'transparencia', component: TransparenciaComponent },
-  { path: 'gerador-curriculo', component: GeradorCurriculoComponent },
   { path: '**', redirectTo: '' }
 ];

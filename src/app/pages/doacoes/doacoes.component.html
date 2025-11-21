@@ -1,33 +1,142 @@
-<section class="pagina-doacao">
+<section class="pagina-doacao" role="main" aria-labelledby="doacao-heading">
     <div class="doacao-container">
-        <h1>Faça sua doação</h1>
-        <p style="margin-top:50px;font-weight: bold;">SUA CONTRIBUIÇÃO TRANSFORMA VIDAS!</p>
-        <p style="margin-bottom: 40px;"><br>No IMA, cada doação ajuda a ampliar o alcance de nossos atendimentos, garantindo que mais pessoas em situação de vulnerabilidade tenham apoio multidisciplinar gratuito.
-        <br>Não importa o valor — toda contribuição faz a diferença e nos permite continuar oferecendo acolhimento, orientação e oportunidades de transformação.</p>
+        <h1 id="doacao-heading">Faça sua doação</h1>
+        
+        <div class="doacao-mensagem">
+            <p class="destaque">SUA CONTRIBUIÇÃO TRANSFORMA VIDAS!</p>
+            <p class="descricao">
+                No IMA, cada doação ajuda a ampliar o alcance de nossos atendimentos, garantindo que mais pessoas em situação de vulnerabilidade tenham apoio multidisciplinar gratuito.
+                <br>Não importa o valor — toda contribuição faz a diferença e nos permite continuar oferecendo acolhimento, orientação e oportunidades de transformação.
+            </p>
+        </div>
+
         <p class="doacao-intro">
-        Escolha um dos valores abaixo ou insira o valor desejado:
+            Escolha um dos valores abaixo ou insira o valor desejado:
         </p>
 
-        <div class="valor-grid" role="group" aria-label="Valores sugeridos">
-        <button class="valor-btn" data-valor="10">R$10</button>
-        <button class="valor-btn" data-valor="25">R$25</button>
-        <button class="valor-btn" data-valor="50">R$50</button>
-        <button class="valor-btn" data-valor="100">R$100</button>
-        <button class="valor-btn" data-valor="200">R$200</button>
-        </div>
+        <!-- Valores sugeridos com binding do Angular -->
+        <fieldset class="valor-grid" aria-labelledby="valores-sugeridos-label">
+            <legend id="valores-sugeridos-label" class="sr-only">Valores sugeridos para doação</legend>
+            
+            <button #valorBtn
+                    class="valor-btn" 
+                    [class.selecionado]="isBotaoSelecionado(10)"
+                    [attr.aria-pressed]="isBotaoSelecionado(10)"
+                    (click)="selecionarValor(10, $event)"
+                    (keydown)="onInputKeydown($event)"
+                    type="button" 
+                    aria-describedby="valor-10-desc">
+                R$10
+                <span id="valor-10-desc" class="sr-only">Dez reais</span>
+            </button>
+            
+            <button #valorBtn
+                    class="valor-btn" 
+                    [class.selecionado]="isBotaoSelecionado(25)"
+                    [attr.aria-pressed]="isBotaoSelecionado(25)"
+                    (click)="selecionarValor(25, $event)"
+                    (keydown)="onInputKeydown($event)"
+                    type="button" 
+                    aria-describedby="valor-25-desc">
+                R$25
+                <span id="valor-25-desc" class="sr-only">Vinte e cinco reais</span>
+            </button>
+            
+            <button #valorBtn
+                    class="valor-btn" 
+                    [class.selecionado]="isBotaoSelecionado(50)"
+                    [attr.aria-pressed]="isBotaoSelecionado(50)"
+                    (click)="selecionarValor(50, $event)"
+                    (keydown)="onInputKeydown($event)"
+                    type="button" 
+                    aria-describedby="valor-50-desc">
+                R$50
+                <span id="valor-50-desc" class="sr-only">Cinquenta reais</span>
+            </button>
+            
+            <button #valorBtn
+                    class="valor-btn" 
+                    [class.selecionado]="isBotaoSelecionado(100)"
+                    [attr.aria-pressed]="isBotaoSelecionado(100)"
+                    (click)="selecionarValor(100, $event)"
+                    (keydown)="onInputKeydown($event)"
+                    type="button" 
+                    aria-describedby="valor-100-desc">
+                R$100
+                <span id="valor-100-desc" class="sr-only">Cem reais</span>
+            </button>
+            
+            <button #valorBtn
+                    class="valor-btn" 
+                    [class.selecionado]="isBotaoSelecionado(200)"
+                    [attr.aria-pressed]="isBotaoSelecionado(200)"
+                    (click)="selecionarValor(200, $event)"
+                    (keydown)="onInputKeydown($event)"
+                    type="button" 
+                    aria-describedby="valor-200-desc">
+                R$200
+                <span id="valor-200-desc" class="sr-only">Duzentos reais</span>
+            </button>
+        </fieldset>
 
+        <!-- Formulário de valor personalizado com two-way binding -->
         <div class="doacao-form">
-        <label for="valor-final">Valor final (R$):</label>
-        <input type="number" id="valor-final" min="1" step="1" value="0" aria-label="Valor final da doação" />
+            <label for="valor-final">
+                Valor final (R$):
+                <span class="sr-only">Insira o valor desejado para doação</span>
+            </label>
+            <input type="number" 
+                   id="valor-final" 
+                   name="valor-final"
+                   [(ngModel)]="valorPersonalizado"
+                   (ngModelChange)="onValorPersonalizadoChange()"
+                   (keydown)="onInputKeydown($event)"
+                   min="1" 
+                   step="1" 
+                   aria-required="true"
+                   aria-describedby="valor-instructions" />
+            <div id="valor-instructions" class="instrucoes sr-only">
+                Insira o valor desejado para doação. Valor mínimo: R$ 1,00
+            </div>
         </div>
 
-        <div class="pagamento-opcoes">
-        <a class="paypal-btn" href="#" aria-label="Doar com PayPal">PayPal <span>Doar</span></a>
-        <a class="cartao-btn" href="#" aria-label="Doar com cartão">
-            <i class="fa-regular fa-credit-card"></i>
-            <span>Cartão de Débito ou Crédito</span>
-        </a>
-        <div class="powered-paypal">Powered by <strong>PayPal</strong></div>
+        <!-- Opções de pagamento com métodos do componente -->
+        <div class="pagamento-opcoes" role="group" aria-labelledby="opcoes-pagamento-label">
+            <h2 id="opcoes-pagamento-label" class="sr-only">Opções de pagamento</h2>
+            
+            <button class="paypal-btn" 
+                    (click)="doarComPaypal($event)"
+                    [attr.aria-disabled]="valorAtual < 1"
+                    [class.disabled]="valorAtual < 1"
+                    role="button"
+                    aria-label="Doar usando PayPal - Será redirecionado para página externa">
+                <span aria-hidden="true">PayPal</span>
+                <span class="sr-only">Doar com </span>Doar
+            </button>
+            
+            <button class="cartao-btn" 
+                    (click)="doarComCartao($event)"
+                    [attr.aria-disabled]="valorAtual < 1"
+                    [class.disabled]="valorAtual < 1"
+                    role="button"
+                    aria-label="Doar com cartão de crédito ou débito - Será redirecionado para página externa">
+                <i class="fa-regular fa-credit-card" aria-hidden="true"></i>
+                <span>Cartão de Débito ou Crédito</span>
+            </button>
+            
+            <div class="powered-paypal" aria-label="Sistema de pagamento fornecido por PayPal">
+                Powered by <strong>PayPal</strong>
+            </div>
+        </div>
+
+        <!-- Informações adicionais -->
+        <div class="seguranca-info" role="complementary" aria-label="Informações de segurança">
+            <p><strong>Doação segura:</strong> Todas as transações são processadas pelo PayPal com criptografia de dados.</p>
+        </div>
+
+        <!-- Mensagem de valor mínimo -->
+        <div *ngIf="valorAtual < 1" class="alerta-valor" role="alert" aria-live="polite">
+            <p>Por favor, selecione ou insira um valor mínimo de R$ 1,00 para prosseguir com a doação.</p>
         </div>
     </div>
 </section>

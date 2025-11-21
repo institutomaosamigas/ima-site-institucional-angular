@@ -37,7 +37,7 @@ footer {
   width: 80%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 50px;
 }
 
 .colunas p {
@@ -74,35 +74,6 @@ footer {
   text-align: left;
 }
 
-.rodape-contribuir {
-  text-align: center;
-}
-
-.rodape-contribuir p {
-  color: #cbd5e1;
-  font-size: 3;
-  font-weight: 600;
-  padding-bottom: 15px;
-}
-
-.rodape-contribuir button {
-  width: 200px;
-  height: 45px;
-  border-radius: 25px;
-  background-color: var(--Laranja);
-  color: var(--Branco-Gelo);
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.rodape-contribuir button:hover {
-  background-color: #fff;
-  color: var(--Preto);
-  border: 1px solid #fff;
-}
 
 .ultima-linha-rodape {
   display: flex;
