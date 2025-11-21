@@ -87,27 +87,27 @@
   flex-direction: column;
   padding-top: 10vh;
   padding-bottom: 30px;
+}
 
-  .quem-somos-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: 400;
-    padding: 10vh;
-    padding-bottom: 150px;
-  }
+.quem-somos .quem-somos-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 400;
+  padding: 10vh;
+  padding-bottom: 150px;
+}
 
-  .quem-somos-text h1 {
-    font-weight: bold;
-  }
+.quem-somos .quem-somos-text h1 {
+  font-weight: bold;
+}
 
-  .quem-somos-text p {
-    font-weight: 100;
-    width: 50vw;
-    text-align: center;
-    padding: 5vh;
-    padding-bottom: 0px;
-  }
+.quem-somos .quem-somos-text p {
+  font-weight: 100;
+  width: 50vw;
+  text-align: center;
+  padding: 5vh;
+  padding-bottom: 0px;
 }
 
 .quem-somos-container {
@@ -119,23 +119,6 @@
   justify-content: space-around;
   padding: 0px;
 }
-
-@media screen and (max-width: 768px) {
-  .quem-somos .quem-somos-text {
-    padding: 0 4vw 6vh;  /* padding mais leve */
-  }
-
-  .quem-somos .quem-somos-text h1 {
-    text-align: center; /* força alinhamento */
-    width: 100%;        /* garante centralização real */
-  }
-
-  .quem-somos .quem-somos-text p {
-    width: 90vw;        /* evita ficar estreito demais */
-    padding: 2vh 0 4vh;
-  }
-}
-
 
 .images-quem-somos {
   position: relative;
@@ -182,6 +165,229 @@
 
 .logo {
   width: 20vw;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .quem-somos {
+    padding-top: 8vh;
+    padding-bottom: 25px;
+  }
+
+  .quem-somos .quem-somos-text {
+    padding: 8vh 6vw 120px;
+  }
+
+  .quem-somos .quem-somos-text p {
+    width: 70vw;
+    padding: 4vh 0 0;
+  }
+
+  .quem-somos-container {
+    height: 45vh;
+    justify-content: center; /* Centraliza o container */
+  }
+
+  .images-quem-somos {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto; /* Centraliza as imagens */
+  }
+
+  .enfermeira {
+    width: 220px;
+    height: 220px;
+    top: -80px;
+    left: -5px;
+  }
+
+  .mulher-mascara {
+    width: 180px;
+    height: 180px;
+    top: 80px;
+    left: 120px;
+  }
+
+  .menino-cabelo {
+    width: 170px;
+    height: 230px;
+    top: -40px;
+    left: 250px;
+  }
+
+  /* Logo desaparece no tablet */
+  .logo-quem-somos {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .quem-somos {
+    padding-top: 6vh;
+    padding-bottom: 20px;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  .quem-somos .quem-somos-text {
+    padding: 0 4vw 80px;
+  }
+
+  .quem-somos .quem-somos-text h1 {
+    text-align: center;
+    width: 100%;
+  }
+
+  .quem-somos .quem-somos-text p {
+    width: 90vw;
+    padding: 2vh 0 4vh;
+    text-align: center;
+  }
+
+  .quem-somos-container {
+    height: auto;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px 0;
+    justify-content: center; /* Centraliza o container */
+    align-items: center; /* Centraliza os itens */
+  }
+
+  .images-quem-somos {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto; /* Centraliza as imagens */
+    left: 0; /* Remove qualquer deslocamento lateral */
+  }
+
+  .enfermeira {
+    width: 180px;
+    height: 180px;
+    top: -60px;
+    left: -10px;
+  }
+
+  .mulher-mascara {
+    width: 150px;
+    height: 150px;
+    top: 60px;
+    left: 100px;
+  }
+
+  .menino-cabelo {
+    width: 140px;
+    height: 190px;
+    top: -30px;
+    left: 200px;
+  }
+
+  /* Logo desaparece no mobile */
+  .logo-quem-somos {
+    display: none;
+  }
+}
+
+/* Mobile Pequeno */
+@media (max-width: 480px) {
+  .quem-somos {
+    padding-top: 5vh;
+    padding-bottom: 15px;
+  }
+
+  .quem-somos .quem-somos-text {
+    padding: 0 4vw 60px;
+  }
+
+  .quem-somos .quem-somos-text p {
+    width: 95vw;
+    padding: 2vh 0 3vh;
+    font-size: 0.9rem;
+  }
+
+  .quem-somos-container {
+    gap: 30px;
+    padding: 15px 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .images-quem-somos {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    left: 0;
+  }
+
+  .enfermeira {
+    width: 140px;
+    height: 140px;
+    top: -50px;
+    left: -8px;
+  }
+
+  .mulher-mascara {
+    width: 120px;
+    height: 120px;
+    top: 40px;
+    left: 80px;
+  }
+
+  .menino-cabelo {
+    width: 110px;
+    height: 150px;
+    top: -20px;
+    left: 150px;
+  }
+
+  /* Logo continua desaparecido no mobile pequeno */
+  .logo-quem-somos {
+    display: none;
+  }
+}
+
+/* Ajustes para orientação landscape em mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .quem-somos-container {
+    height: auto;
+    min-height: 200px;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .images-quem-somos {
+    width: 180px;
+    height: 180px;
+    margin: 0;
+    left: 0;
+  }
+
+  .enfermeira {
+    width: 160px;
+    height: 160px;
+    top: -40px;
+  }
+
+  .mulher-mascara {
+    width: 130px;
+    height: 130px;
+    top: 50px;
+    left: 90px;
+  }
+
+  .menino-cabelo {
+    width: 120px;
+    height: 160px;
+    top: -20px;
+    left: 170px;
+  }
+
+  /* Logo continua desaparecido no landscape mobile */
+  .logo-quem-somos {
+    display: none;
+  }
 }
 
 
@@ -993,7 +1199,7 @@
 /* Responsividade para mobile */
 @media (max-width: 768px) {
   .parceiros {
-    padding: 15vh 0 10vh 0;
+    padding: 25vh 0 10vh 0;
   }
   
   .image-parceiros {
@@ -1211,6 +1417,133 @@
   .endereco {
     padding: 15px;
     text-align: center;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .contato {
+    padding: 60px 40px !important;
+    
+    .contato-container {
+      flex-direction: column;
+      gap: 40px;
+    }
+    
+    .contato-form {
+      margin-right: 0 !important;
+      width: 100%;
+    }
+    
+    .contato-info {
+      flex-direction: column !important;
+      gap: 20px !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+    }
+    
+    .info-item {
+      margin-bottom: 15px !important;
+    }
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .contato {
+    padding: 40px 20px !important;
+    
+    .contato-form {
+      h1 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+      
+      p {
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    }
+    
+    .contato-form form {
+      input, textarea {
+        padding: 12px !important;
+        margin-bottom: 20px !important;
+        font-size: 16px; /* Previne zoom no iOS */
+      }
+      
+      button {
+        padding: 12px !important;
+        font-size: 1rem;
+      }
+    }
+    
+    .contato-info {
+      .info-item {
+        flex-direction: row !important;
+        align-items: center !important;
+        
+        img {
+          width: 24px !important;
+          height: 24px !important;
+          margin-right: 12px !important;
+        }
+        
+        .text-item {
+          h5 {
+            font-size: 0.9rem;
+          }
+          
+          p {
+            font-size: 0.85rem;
+            text-align: left !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Mobile Pequeno */
+@media (max-width: 480px) {
+  .contato {
+    padding: 30px 15px !important;
+    
+    .contato-form {
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      p {
+        font-size: 0.85rem;
+        margin-bottom: 25px !important;
+      }
+    }
+    
+    .contato-info {
+      gap: 15px !important;
+      
+      .info-item {
+        margin-bottom: 12px !important;
+        
+        img {
+          width: 22px !important;
+          height: 22px !important;
+          margin-right: 10px !important;
+        }
+      }
+    }
+  }
+}
+
+/* Ajustes para orientação landscape em mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .contato {
+    padding: 30px 20px !important;
+    
+    .contato-container {
+      gap: 30px;
+    }
   }
 }
 
