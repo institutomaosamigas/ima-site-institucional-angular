@@ -185,34 +185,41 @@
 
   .quem-somos-container {
     height: 45vh;
-    justify-content: center; /* Centraliza o container */
+    justify-content: center;
   }
 
   .images-quem-somos {
-    width: 240px;
-    height: 240px;
-    margin: 0 auto; /* Centraliza as imagens */
+    width: 430px;
+    height: 280px;
+    margin: 0 auto;
+  }
+
+  .images-quem-somos img {
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
   }
 
   .enfermeira {
     width: 220px;
     height: 220px;
-    top: -80px;
-    left: -5px;
+    top: 10px;
+    margin-left: -120px;
   }
 
   .mulher-mascara {
     width: 180px;
     height: 180px;
-    top: 80px;
-    left: 120px;
+    top: 110px;
+    margin-left: 0;
   }
 
   .menino-cabelo {
     width: 170px;
     height: 230px;
-    top: -40px;
-    left: 250px;
+    top: 10px;
+    margin-left: 120px;
   }
 
   /* Logo desaparece no tablet */
@@ -250,36 +257,43 @@
     flex-direction: column;
     gap: 40px;
     padding: 20px 0;
-    justify-content: center; /* Centraliza o container */
-    align-items: center; /* Centraliza os itens */
+    justify-content: center;
+    align-items: center;
   }
 
   .images-quem-somos {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto; /* Centraliza as imagens */
-    left: 0; /* Remove qualquer deslocamento lateral */
+    width: 360px;
+    height: 240px;
+    margin: 0 auto;
+    left: 0;
+  }
+
+  .images-quem-somos img {
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.22);
   }
 
   .enfermeira {
     width: 180px;
     height: 180px;
-    top: -60px;
-    left: -10px;
+    top: 10px;
+    margin-left: -100px;
   }
 
   .mulher-mascara {
     width: 150px;
     height: 150px;
-    top: 60px;
-    left: 100px;
+    top: 100px;
+    margin-left: 0;
   }
 
   .menino-cabelo {
     width: 140px;
     height: 190px;
-    top: -30px;
-    left: 200px;
+    top: 10px;
+    margin-left: 100px;
   }
 
   /* Logo desaparece no mobile */
@@ -313,31 +327,38 @@
   }
 
   .images-quem-somos {
-    width: 160px;
-    height: 160px;
+    width: 280px;
+    height: 200px;
     margin: 0 auto;
     left: 0;
+  }
+
+  .images-quem-somos img {
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
   }
 
   .enfermeira {
     width: 140px;
     height: 140px;
-    top: -50px;
-    left: -8px;
+    top: 8px;
+    margin-left: -70px;
   }
 
   .mulher-mascara {
     width: 120px;
     height: 120px;
-    top: 40px;
-    left: 80px;
+    top: 80px;
+    margin-left: 0;
   }
 
   .menino-cabelo {
     width: 110px;
     height: 150px;
-    top: -20px;
-    left: 150px;
+    top: 8px;
+    margin-left: 70px;
   }
 
   /* Logo continua desaparecido no mobile pequeno */
