@@ -1421,11 +1421,12 @@
   }
 
   .contato-info {
-    flex: 0 0 320px;              /* largura fixa para coluna lateral, ajuste se quiser */
+    flex: 0 0 320px;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    gap: 40px; 
     box-sizing: border-box;
     margin-top: 30px;
   }
