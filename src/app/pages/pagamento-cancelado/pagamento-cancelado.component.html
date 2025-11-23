@@ -1,0 +1,65 @@
+<section
+  class="pagamento-cancelado"
+  role="main"
+  aria-labelledby="cancelado-heading"
+>
+  <div class="cancelado-container">
+    <div class="cancelado-header">
+      <div class="cancelado-icon">
+        <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>
+      </div>
+      <h1 id="cancelado-heading">Doação cancelada</h1>
+    </div>
+
+    <div class="cancelado-content">
+      <div class="mensagem-principal">
+        <p class="destaque">NENHUM VALOR FOI COBRADO</p>
+        <p class="descricao">
+          Sua doação foi cancelada e nenhuma cobrança foi realizada.
+          <br />Se tiver alguma dúvida ou quiser tentar novamente, estamos aqui
+          para ajudar.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h2>Como podemos ajudar?</h2>
+        <ul>
+          <li>
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i> Encontrou
+            algum problema durante o pagamento?
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i> Tem
+            dúvidas sobre outras formas de doação?
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i> Entre em
+            contato conosco pelo WhatsApp
+          </li>
+        </ul>
+        <p *ngIf="orderId" class="order-id">
+          <strong>ID da Transação:</strong> {{ orderId }}
+        </p>
+      </div>
+
+      <div class="acoes">
+        <a
+          class="btn-primario"
+          routerLink="/doacoes"
+          aria-label="Tentar fazer a doação novamente"
+        >
+          <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+          Tentar Novamente
+        </a>
+        <a
+          class="btn-secundario"
+          routerLink="/"
+          aria-label="Voltar para a página inicial"
+        >
+          <i class="fa-solid fa-house" aria-hidden="true"></i>
+          Voltar para a Página Inicial
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

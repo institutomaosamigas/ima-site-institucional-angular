@@ -1,0 +1,66 @@
+<section
+  class="pagamento-sucesso"
+  role="main"
+  aria-labelledby="sucesso-heading"
+>
+  <div class="sucesso-container">
+    <div class="sucesso-header">
+      <div class="sucesso-icon">
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+      </div>
+      <h1 id="sucesso-heading">Doação realizada com sucesso!</h1>
+    </div>
+
+    <div class="sucesso-content">
+      <div class="mensagem-principal">
+        <p class="destaque">OBRIGADO PELA SUA GENEROSIDADE!</p>
+        <p class="descricao">
+          Sua doação foi processada com sucesso e faz toda a diferença em nossa
+          missão.
+          <br />Você receberá um email de confirmação em breve com todos os
+          detalhes da sua contribuição.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h2>O que acontece agora?</h2>
+        <ul>
+          <li>
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Você receberá
+            um email de confirmação
+          </li>
+          <li>
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Sua
+            contribuição já está ajudando a transformar vidas
+          </li>
+          <li>
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Acompanhe nosso
+            trabalho nas redes sociais
+          </li>
+        </ul>
+        <p *ngIf="orderId" class="order-id">
+          <strong>ID da Transação:</strong> {{ orderId }}
+        </p>
+      </div>
+
+      <div class="acoes">
+        <a
+          class="btn-primario"
+          routerLink="/"
+          aria-label="Voltar para a página inicial"
+        >
+          <i class="fa-solid fa-house" aria-hidden="true"></i>
+          Voltar para a Página Inicial
+        </a>
+        <a
+          class="btn-secundario"
+          routerLink="/doacoes"
+          aria-label="Fazer outra doação"
+        >
+          <i class="fa-solid fa-heart" aria-hidden="true"></i>
+          Fazer Outra Doação
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
