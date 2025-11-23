@@ -9,6 +9,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
+  logoSrc = 'assets/imgs/logo-v2-vetor-texto-branco.png';
 
   constructor(private router: Router) {
     
@@ -24,5 +25,9 @@ export class FooterComponent {
 
   voltarHome() {
     this.router.navigate(['/']);
+  }
+
+  onLogoError() {
+    this.logoSrc = 'assets/imgs/logo-v2-vetor.svg';
   }
 }
