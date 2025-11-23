@@ -295,10 +295,6 @@
     animation: alertaSlide .35s ease-out;
 }
 
-.alerta-paypal strong {
-    font-weight: 800;
-}
-
 @keyframes alertaSlide {
     from { opacity: 0; transform: translateY(-10px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -319,11 +315,6 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
     animation: alertaSlide .35s ease-out;
 }
-
-.alerta-warning strong {
-    font-weight: 800;
-}
-
 
 /* Reusa a animação do alerta vermelho */
 @keyframes alertaSlide {
