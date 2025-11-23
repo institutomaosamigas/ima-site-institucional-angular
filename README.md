@@ -1,5 +1,10 @@
 # Site IMA
 
+## Instruções de como subir para o github-pages
+1) Rodar o comando "ng build --configuration production --base-href / --deploy-url /"
+2) Copiar todo o conteúdo dentro de dist/site-institucional-ima-angular/browser para a raíz do projeto (onde tem as pastas dist, src, etc)
+3) Commit, push e comemoração.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
 
 ## Development server
