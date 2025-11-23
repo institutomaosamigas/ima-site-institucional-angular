@@ -14,7 +14,20 @@ export class HomeComponent {
     'assets/galeria/acao2.jpg',
     'assets/galeria/acao3.jpg',
     'assets/galeria/acao4.jpg',
-    'assets/galeria/acao5.jpg'
+    'assets/galeria/acao5.jpg',
+    'assets/galeria/acao6.jpg',
+    'assets/galeria/acao7.jpg',
+    'assets/galeria/acao8.jpg',
+    'assets/galeria/acao9.jpg',
+    'assets/galeria/acao10.jpg',
+    'assets/galeria/acao11.jpg',
+    'assets/galeria/acao12.jpg',
+    'assets/galeria/acao13.jpg',
+    'assets/galeria/acao14.jpg',
+    'assets/galeria/acao15.jpg',
+    'assets/galeria/acao16.jpg',
+    'assets/galeria/acao17.jpg'
+
   ];
 
   currentIndex = 0;
