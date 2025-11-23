@@ -1342,19 +1342,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 148px;
+  padding: 80px 0; 
   background-color: var(--Branco-Gelo);
+  box-sizing: border-box;
 
   .contato-container {
+    width: 80vw;   
+    margin: 0 auto;
+    padding: 0 0;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    width: 100%;
+    gap: 40px;   
   }
 
   .contato-form {
-    flex: 1;
-    margin-right: 123px;
+    flex: 1 1 60%;              
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    box-sizing: border-box;
   }
 
   .contato-form h1 {
@@ -1413,14 +1421,12 @@
   }
 
   .contato-info {
+    flex: 0 0 320px;              /* largura fixa para coluna lateral, ajuste se quiser */
     display: flex;
-    flex-direction: row;
-    padding: 10px;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    width: 100%;
-    margin: 0 auto;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    box-sizing: border-box;
   }
 
   .contato-info .info-item {
