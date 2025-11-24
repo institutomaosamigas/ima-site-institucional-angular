@@ -8,7 +8,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, RouterModule, HttpClientModule],
   templateUrl: './pagamento-cancelado.component.html',
-  styleUrl: './pagamento-cancelado.component.scss'
+  styleUrl: './pagamento-cancelado.component.scss',
 })
 export class PagamentoCanceladoComponent implements OnInit {
   orderId: string | null = null;
@@ -23,36 +23,116 @@ export class PagamentoCanceladoComponent implements OnInit {
 
   ngOnInit() {
     this.orderId = this.route.snapshot.queryParamMap.get('token');
+    this.subscriptionId =
+      this.route.snapshot.queryParamMap.get('subscription_id');
+
     const baseApi = (window as any).IMA_BFF_URL || 'http://localhost:3336';
-    if (this.orderId) {
-      this.http
-        .post(`${baseApi}/doacoes/cancelar`, { orderId: this.orderId })
-        .subscribe({
-          next: () => {
-            this.statusMsg = 'Doação cancelada, nenhum valor foi cobrado.';
-            this.buscarDetalhes(baseApi);
-          },
-          error: () => {
-            this.erroMsg = 'Não foi possível atualizar o cancelamento automaticamente.';
-            this.buscarDetalhes(baseApi);
-          },
-        });
+
+    // Se tem subscription_id, é cancelamento de assinatura recorrente
+    if (this.subscriptionId) {
+      this.cancelarAssinatura(baseApi);
+    }
+    // Se tem orderId sem subscription_id, é cancelamento de doação avulsa
+    else if (this.orderId) {
+      this.cancelarDoacaoAvulsa(baseApi);
+    } else {
+      this.erroMsg = 'Nenhum identificador de pagamento encontrado.';
     }
   }
 
-  private buscarDetalhes(baseApi: string) {
+  private cancelarAssinatura(baseApi: string) {
+    this.http
+      .get(`${baseApi}/doacoes/cancelar-assinatura/${this.subscriptionId}`)
+      .subscribe({
+        next: (res: any) => {
+          this.statusMsg =
+            'Assinatura recorrente cancelada, nenhum valor foi cobrado.';
+          const d = res?.dados;
+          if (d) {
+            this.tipo = d.tipo ?? 'recorrente';
+            this.plano = d.plano ?? null;
+            this.valor =
+              typeof d.valor === 'number'
+                ? d.valor
+                : d.valor
+                ? Number(d.valor)
+                : null;
+            this.subscriptionId = d.subscription_id ?? this.subscriptionId;
+          } else {
+            this.buscarDetalhesPorAssinatura(baseApi);
+          }
+        },
+        error: (err) => {
+          this.erroMsg =
+            'Não foi possível atualizar o cancelamento da assinatura automaticamente.';
+          console.error('Erro ao cancelar assinatura:', err);
+          this.buscarDetalhesPorAssinatura(baseApi);
+        },
+      });
+  }
+
+  private cancelarDoacaoAvulsa(baseApi: string) {
+    this.http
+      .post(`${baseApi}/doacoes/cancelar`, { orderId: this.orderId })
+      .subscribe({
+        next: () => {
+          this.statusMsg = 'Doação cancelada, nenhum valor foi cobrado.';
+          this.buscarDetalhesPorOrdem(baseApi);
+        },
+        error: (err) => {
+          this.erroMsg =
+            'Não foi possível atualizar o cancelamento automaticamente.';
+          console.error('Erro ao cancelar doação:', err);
+          this.buscarDetalhesPorOrdem(baseApi);
+        },
+      });
+  }
+
+  private buscarDetalhesPorOrdem(baseApi: string) {
     if (!this.orderId) return;
     this.http.get(`${baseApi}/doacoes/por-ordem/${this.orderId}`).subscribe({
       next: (res: any) => {
         const d = res?.dados;
         if (d) {
-          this.tipo = d.tipo ?? null;
+          this.tipo = d.tipo ?? 'avulsa';
           this.plano = d.plano ?? null;
-          this.valor = typeof d.valor === 'number' ? d.valor : (d.valor ? Number(d.valor) : null);
+          this.valor =
+            typeof d.valor === 'number'
+              ? d.valor
+              : d.valor
+              ? Number(d.valor)
+              : null;
           this.subscriptionId = d.subscription_id ?? null;
         }
       },
-      error: () => {}
+      error: (err) => {
+        console.error('Erro ao buscar detalhes por ordem:', err);
+      },
     });
+  }
+
+  private buscarDetalhesPorAssinatura(baseApi: string) {
+    if (!this.subscriptionId) return;
+    this.http
+      .get(`${baseApi}/doacoes/por-assinatura/${this.subscriptionId}`)
+      .subscribe({
+        next: (res: any) => {
+          const d = res?.dados;
+          if (d) {
+            this.tipo = d.tipo ?? 'recorrente';
+            this.plano = d.plano ?? null;
+            this.valor =
+              typeof d.valor === 'number'
+                ? d.valor
+                : d.valor
+                ? Number(d.valor)
+                : null;
+            this.subscriptionId = d.subscription_id ?? this.subscriptionId;
+          }
+        },
+        error: (err) => {
+          console.error('Erro ao buscar detalhes por assinatura:', err);
+        },
+      });
   }
 }

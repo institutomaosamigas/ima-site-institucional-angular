@@ -46,11 +46,20 @@
         <div class="detalhes" *ngIf="tipo || valor !== null">
           <h3>Detalhes da Doação</h3>
           <ul>
-            <li><strong>Tipo:</strong> {{ tipo === 'recorrente' ? 'Recorrente' : 'Avulsa' }}</li>
+            <li>
+              <strong>Tipo:</strong>
+              {{ tipo === "recorrente" ? "Recorrente" : "Avulsa" }}
+            </li>
             <li *ngIf="plano"><strong>Plano:</strong> {{ plano }}</li>
-            <li *ngIf="valor !== null"><strong>Valor:</strong> {{ valor | currency:'BRL':'symbol-narrow' }}</li>
-            <li *ngIf="subscriptionId"><strong>Subscription ID:</strong> {{ subscriptionId }}</li>
+            <li *ngIf="valor !== null">
+              <strong>Valor:</strong>
+              {{ valor | currency : "BRL" : "symbol-narrow" }}
+            </li>
+            <li *ngIf="subscriptionId">
+              <strong>Subscription ID:</strong> {{ subscriptionId }}
+            </li>
             <li *ngIf="payerId"><strong>PayerID:</strong> {{ payerId }}</li>
+            <li *ngIf="baToken"><strong>BA Token:</strong> {{ baToken }}</li>
           </ul>
         </div>
       </div>
