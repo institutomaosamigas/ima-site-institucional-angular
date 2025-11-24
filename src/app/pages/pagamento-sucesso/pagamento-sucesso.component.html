@@ -41,6 +41,18 @@
         <p *ngIf="orderId" class="order-id">
           <strong>ID da Transação:</strong> {{ orderId }}
         </p>
+        <p *ngIf="statusMsg" class="status-msg">{{ statusMsg }}</p>
+        <p *ngIf="erroMsg" class="erro-msg">{{ erroMsg }}</p>
+        <div class="detalhes" *ngIf="tipo || valor !== null">
+          <h3>Detalhes da Doação</h3>
+          <ul>
+            <li><strong>Tipo:</strong> {{ tipo === 'recorrente' ? 'Recorrente' : 'Avulsa' }}</li>
+            <li *ngIf="plano"><strong>Plano:</strong> {{ plano }}</li>
+            <li *ngIf="valor !== null"><strong>Valor:</strong> {{ valor | currency:'BRL':'symbol-narrow' }}</li>
+            <li *ngIf="subscriptionId"><strong>Subscription ID:</strong> {{ subscriptionId }}</li>
+            <li *ngIf="payerId"><strong>PayerID:</strong> {{ payerId }}</li>
+          </ul>
+        </div>
       </div>
 
       <div class="acoes">
