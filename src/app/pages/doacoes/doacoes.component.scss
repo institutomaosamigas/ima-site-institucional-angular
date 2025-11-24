@@ -277,3 +277,56 @@
     border-radius: 5px;
     color: #856404;
 }
+
+/* ALERTA PAYPAL INDISPONIVEL */
+.alerta-paypal {
+    width: 100%;
+    background: linear-gradient(90deg, #ff4f4f, #d90000);
+    color: white;
+    padding: 14px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    animation: alertaSlide .35s ease-out;
+}
+
+@keyframes alertaSlide {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.alerta-warning {
+    width: 100%;
+    background: linear-gradient(90deg, #ffdd57, #ffbe0b);
+    color: #4a3d00;
+    padding: 14px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    animation: alertaSlide .35s ease-out;
+}
+
+/* Reusa a animação do alerta vermelho */
+@keyframes alertaSlide {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* IMAGEM QR CODE */
+.qrcode-pix {
+  display: flex;
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 40px auto;
+}
