@@ -1,164 +1,300 @@
 <section class="pagina-doacao" role="main" aria-labelledby="doacao-heading">
-    <div class="doacao-container">
-        <h1 id="doacao-heading">Faça sua doação</h1>
-        
-        <div class="doacao-mensagem">
-            <p class="destaque">SUA CONTRIBUIÇÃO TRANSFORMA VIDAS!</p>
-            <p class="descricao">
-                No IMA, cada doação ajuda a ampliar o alcance de nossos atendimentos, garantindo que mais pessoas em situação de vulnerabilidade tenham apoio multidisciplinar gratuito.
-                <br>Não importa o valor — toda contribuição faz a diferença e nos permite continuar oferecendo acolhimento, orientação e oportunidades de transformação.
-            </p>
-        </div>
+  <div class="doacao-container">
+    <h1 id="doacao-heading">Faça sua doação</h1>
 
-        <!-- ALERTA PAYPAL INDISPONÍVEL -->
-        <div  
-        class="alerta-paypal" 
-        role="alert" 
-        aria-live="assertive"
-        aria-atomic="true"
-        >
-            ⚠️ Atenção:
-            Pagamento via PayPal está indisponível no momento, devido a manutenções. Desculpe-nos pelo transtorno.
-
-        </div>
-        <div
-            class="alerta-warning"
-            role="alert"
-            aria-live="polite"
-            aria-atomic="true"
-            >
-                ⚠️ Mas não se preocupe. Você ainda pode contribuir via Pix por meio do QR Code abaixo.
-        </div>
-
-        <img class="qrcode-pix" src="assets/imgs/QRCode-Doacao.jpg" alt="QR Code para fazer Pix" aria-hidden="true" />
-
-        <p class="doacao-intro">
-            Escolha um dos valores abaixo ou insira o valor desejado:
-        </p>
-
-        <!-- Valores sugeridos com binding do Angular -->
-        <fieldset class="valor-grid" aria-labelledby="valores-sugeridos-label">
-            <legend id="valores-sugeridos-label" class="sr-only">Valores sugeridos para doação</legend>
-            
-            <button #valorBtn
-                    class="valor-btn" 
-                    [class.selecionado]="isBotaoSelecionado(10)"
-                    [attr.aria-pressed]="isBotaoSelecionado(10)"
-                    (click)="selecionarValor(10, $event)"
-                    (keydown)="onInputKeydown($event)"
-                    type="button" 
-                    aria-describedby="valor-10-desc">
-                R$10
-                <span id="valor-10-desc" class="sr-only">Dez reais</span>
-            </button>
-            
-            <button #valorBtn
-                    class="valor-btn" 
-                    [class.selecionado]="isBotaoSelecionado(25)"
-                    [attr.aria-pressed]="isBotaoSelecionado(25)"
-                    (click)="selecionarValor(25, $event)"
-                    (keydown)="onInputKeydown($event)"
-                    type="button" 
-                    aria-describedby="valor-25-desc">
-                R$25
-                <span id="valor-25-desc" class="sr-only">Vinte e cinco reais</span>
-            </button>
-            
-            <button #valorBtn
-                    class="valor-btn" 
-                    [class.selecionado]="isBotaoSelecionado(50)"
-                    [attr.aria-pressed]="isBotaoSelecionado(50)"
-                    (click)="selecionarValor(50, $event)"
-                    (keydown)="onInputKeydown($event)"
-                    type="button" 
-                    aria-describedby="valor-50-desc">
-                R$50
-                <span id="valor-50-desc" class="sr-only">Cinquenta reais</span>
-            </button>
-            
-            <button #valorBtn
-                    class="valor-btn" 
-                    [class.selecionado]="isBotaoSelecionado(100)"
-                    [attr.aria-pressed]="isBotaoSelecionado(100)"
-                    (click)="selecionarValor(100, $event)"
-                    (keydown)="onInputKeydown($event)"
-                    type="button" 
-                    aria-describedby="valor-100-desc">
-                R$100
-                <span id="valor-100-desc" class="sr-only">Cem reais</span>
-            </button>
-            
-            <button #valorBtn
-                    class="valor-btn" 
-                    [class.selecionado]="isBotaoSelecionado(200)"
-                    [attr.aria-pressed]="isBotaoSelecionado(200)"
-                    (click)="selecionarValor(200, $event)"
-                    (keydown)="onInputKeydown($event)"
-                    type="button" 
-                    aria-describedby="valor-200-desc">
-                R$200
-                <span id="valor-200-desc" class="sr-only">Duzentos reais</span>
-            </button>
-        </fieldset>
-
-        <!-- Formulário de valor personalizado com two-way binding -->
-        <div class="doacao-form">
-            <label for="valor-final">
-                Valor final (R$):
-                <span class="sr-only">Insira o valor desejado para doação</span>
-            </label>
-            <input type="number" 
-                   id="valor-final" 
-                   name="valor-final"
-                   [(ngModel)]="valorPersonalizado"
-                   (ngModelChange)="onValorPersonalizadoChange()"
-                   (keydown)="onInputKeydown($event)"
-                   min="1" 
-                   step="1" 
-                   aria-required="true"
-                   aria-describedby="valor-instructions" />
-            <div id="valor-instructions" class="instrucoes sr-only">
-                Insira o valor desejado para doação. Valor mínimo: R$ 1,00
-            </div>
-        </div>
-
-        <!-- Opções de pagamento com métodos do componente -->
-        <div class="pagamento-opcoes" role="group" aria-labelledby="opcoes-pagamento-label">
-            <h2 id="opcoes-pagamento-label" class="sr-only">Opções de pagamento</h2>
-            
-            <button class="paypal-btn" 
-                    (click)="doarComPaypal($event)"
-                    [attr.aria-disabled]="valorAtual < 1"
-                    [class.disabled]="valorAtual < 1"
-                    role="button"
-                    aria-label="Doar usando PayPal - Será redirecionado para página externa">
-                <span aria-hidden="true">PayPal</span>
-                <span class="sr-only">Doar com </span>Doar
-            </button>
-            
-            <button class="cartao-btn" 
-                    (click)="doarComCartao($event)"
-                    [attr.aria-disabled]="valorAtual < 1"
-                    [class.disabled]="valorAtual < 1"
-                    role="button"
-                    aria-label="Doar com cartão de crédito ou débito - Será redirecionado para página externa">
-                <i class="fa-regular fa-credit-card" aria-hidden="true"></i>
-                <span>Cartão de Débito ou Crédito</span>
-            </button>
-            
-            <div class="powered-paypal" aria-label="Sistema de pagamento fornecido por PayPal">
-                Powered by <strong>PayPal</strong>
-            </div>
-        </div>
-
-        <!-- Informações adicionais -->
-        <div class="seguranca-info" role="complementary" aria-label="Informações de segurança">
-            <p><strong>Doação segura:</strong> Todas as transações são processadas pelo PayPal com criptografia de dados.</p>
-        </div>
-
-        <!-- Mensagem de valor mínimo -->
-        <div *ngIf="valorAtual < 1" class="alerta-valor" role="alert" aria-live="polite">
-            <p>Por favor, selecione ou insira um valor mínimo de R$ 1,00 para prosseguir com a doação.</p>
-        </div>
+    <div class="doacao-mensagem">
+      <p class="destaque">SUA CONTRIBUIÇÃO TRANSFORMA VIDAS!</p>
+      <p class="descricao">
+        No IMA, cada doação ajuda a ampliar o alcance de nossos atendimentos,
+        garantindo que mais pessoas em situação de vulnerabilidade tenham apoio
+        multidisciplinar gratuito.
+        <br />Não importa o valor — toda contribuição faz a diferença e nos
+        permite continuar oferecendo acolhimento, orientação e oportunidades de
+        transformação.
+      </p>
     </div>
+
+    <!-- ALERTA PAYPAL INDISPONÍVEL -->
+    <div
+      class="alerta-paypal"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      ⚠️ Atenção: Pagamento via PayPal está indisponível no momento, devido a
+      manutenções. Desculpe-nos pelo transtorno.
+    </div>
+    <div
+      class="alerta-warning"
+      role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      ⚠️ Mas não se preocupe. Você ainda pode contribuir via Pix por meio do QR
+      Code abaixo.
+    </div>
+
+    <img
+      class="qrcode-pix"
+      src="assets/imgs/QRCode-Doacao.jpg"
+      alt="QR Code para fazer Pix"
+      aria-hidden="true"
+    />
+
+    <p class="doacao-intro">Escolha o tipo de doação:</p>
+
+    <!-- Tipo de Doação -->
+    <fieldset class="tipo-doacao-grid" aria-labelledby="tipo-doacao-label">
+      <legend id="tipo-doacao-label">Tipo de Doação</legend>
+
+      <button
+        class="tipo-btn"
+        [class.selecionado]="tipoDoacao === 'avulsa'"
+        [attr.aria-pressed]="tipoDoacao === 'avulsa'"
+        (click)="tipoDoacao = 'avulsa'; planoSelecionado = null"
+        type="button"
+      >
+        <strong>Doação Única</strong>
+        <span class="tipo-desc">Faça uma contribuição pontual</span>
+      </button>
+
+      <button
+        class="tipo-btn"
+        [class.selecionado]="tipoDoacao === 'recorrente'"
+        [attr.aria-pressed]="tipoDoacao === 'recorrente'"
+        (click)="tipoDoacao = 'recorrente'; botaoSelecionado = null"
+        type="button"
+      >
+        <strong>Doação Mensal</strong>
+        <span class="tipo-desc">Transforme vidas todos os meses</span>
+      </button>
+    </fieldset>
+
+    <!-- Planos de Doação Recorrente -->
+    <div *ngIf="tipoDoacao === 'recorrente'" class="planos-container">
+      <h3>Escolha seu plano mensal:</h3>
+
+      <div class="planos-grid">
+        <button
+          *ngFor="let plano of planos"
+          class="plano-card"
+          [class.selecionado]="isPlanoSelecionado(plano.id)"
+          [attr.aria-pressed]="isPlanoSelecionado(plano.id)"
+          (click)="selecionarPlano(plano.id)"
+          type="button"
+        >
+          <h4>{{ plano.nome }}</h4>
+          <p class="plano-valor">R$ {{ plano.valor }}<span>/mês</span></p>
+          <p class="plano-descricao">{{ plano.descricao }}</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Valores para Doação Avulsa -->
+    <div *ngIf="tipoDoacao === 'avulsa'" class="planos-container">
+      <h3>Escolha o valor da sua doação:</h3>
+
+      <div class="planos-grid valores-avulsa">
+        <button
+          class="plano-card"
+          [class.selecionado]="isBotaoSelecionado(10)"
+          [attr.aria-pressed]="isBotaoSelecionado(10)"
+          (click)="selecionarValor(10, $event)"
+          type="button"
+        >
+          <h4>Básico</h4>
+          <p class="plano-valor">R$ 10</p>
+          <p class="plano-descricao">Toda ajuda é bem-vinda</p>
+        </button>
+
+        <button
+          class="plano-card"
+          [class.selecionado]="isBotaoSelecionado(25)"
+          [attr.aria-pressed]="isBotaoSelecionado(25)"
+          (click)="selecionarValor(25, $event)"
+          type="button"
+        >
+          <h4>Solidário</h4>
+          <p class="plano-valor">R$ 25</p>
+          <p class="plano-descricao">Amplie seu impacto</p>
+        </button>
+
+        <button
+          class="plano-card"
+          [class.selecionado]="isBotaoSelecionado(50)"
+          [attr.aria-pressed]="isBotaoSelecionado(50)"
+          (click)="selecionarValor(50, $event)"
+          type="button"
+        >
+          <h4>Generoso</h4>
+          <p class="plano-valor">R$ 50</p>
+          <p class="plano-descricao">Faça a diferença</p>
+        </button>
+
+        <button
+          class="plano-card"
+          [class.selecionado]="isBotaoSelecionado(100)"
+          [attr.aria-pressed]="isBotaoSelecionado(100)"
+          (click)="selecionarValor(100, $event)"
+          type="button"
+        >
+          <h4>Transformador</h4>
+          <p class="plano-valor">R$ 100</p>
+          <p class="plano-descricao">Grande impacto social</p>
+        </button>
+
+        <button
+          class="plano-card"
+          [class.selecionado]="isBotaoSelecionado(200)"
+          [attr.aria-pressed]="isBotaoSelecionado(200)"
+          (click)="selecionarValor(200, $event)"
+          type="button"
+        >
+          <h4>Extraordinário</h4>
+          <p class="plano-valor">R$ 200</p>
+          <p class="plano-descricao">Mude vidas profundamente</p>
+        </button>
+      </div>
+
+      <!-- Formulário de valor personalizado -->
+      <div class="doacao-form">
+        <label for="valor-final">
+          Ou insira outro valor (R$):
+          <span class="sr-only">Insira o valor desejado para doação</span>
+        </label>
+        <input
+          type="number"
+          id="valor-final"
+          name="valor-final"
+          [(ngModel)]="valorPersonalizado"
+          (ngModelChange)="onValorPersonalizadoChange()"
+          (keydown)="onInputKeydown($event)"
+          min="1"
+          step="1"
+          aria-required="true"
+          aria-describedby="valor-instructions"
+        />
+        <div id="valor-instructions" class="instrucoes sr-only">
+          Insira o valor desejado para doação. Valor mínimo: R$ 1,00
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div
+      *ngIf="mensagemErro"
+      class="alerta-erro"
+      role="alert"
+      aria-live="assertive"
+    >
+      ❌ {{ mensagemErro }}
+    </div>
+
+    <!-- Loading -->
+    <div
+      *ngIf="carregando"
+      class="loading-container"
+      role="status"
+      aria-live="polite"
+    >
+      <p>Processando sua doação...</p>
+    </div>
+
+    <!-- Opções de pagamento com métodos do componente -->
+    <div
+      class="pagamento-opcoes"
+      role="group"
+      aria-labelledby="opcoes-pagamento-label"
+    >
+      <h2 id="opcoes-pagamento-label" class="sr-only">Opções de pagamento</h2>
+
+      <button
+        class="doar-btn"
+        (click)="criarDoacao($event)"
+        [attr.aria-disabled]="
+          carregando ||
+          (tipoDoacao === 'avulsa' && valorAtual < 1) ||
+          (tipoDoacao === 'recorrente' && !planoSelecionado)
+        "
+        [class.disabled]="
+          carregando ||
+          (tipoDoacao === 'avulsa' && valorAtual < 1) ||
+          (tipoDoacao === 'recorrente' && !planoSelecionado)
+        "
+        [disabled]="carregando"
+        role="button"
+        aria-label="Fazer doação - Será redirecionado para página de pagamento"
+      >
+        Fazer Doação
+      </button>
+
+      <div
+        class="powered-paypal"
+        aria-label="Sistema de pagamento fornecido por PayPal"
+      >
+        Powered by <strong>PayPal</strong>
+      </div>
+    </div>
+
+    <!-- Mensagem de valor mínimo -->
+    <div
+      *ngIf="valorAtual < 1 && tipoDoacao === 'avulsa'"
+      class="alerta-valor"
+      role="alert"
+      aria-live="polite"
+    >
+      <p>
+        Por favor, selecione ou insira um valor mínimo de R$ 1,00 para
+        prosseguir com a doação.
+      </p>
+    </div>
+
+    <!-- Informações adicionais -->
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm9 13H6v-8h12v8z"
+              fill="#C2185B"
+            />
+            <circle cx="12" cy="16" r="1.5" fill="#C2185B" />
+          </svg>
+        </div>
+        <h3>Doação 100% Segura</h3>
+        <p>
+          Todas as transações são processadas com criptografia de dados e
+          proteção garantida.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              fill="#C2185B"
+            />
+          </svg>
+        </div>
+        <h3>Transparência Total</h3>
+        <p>
+          Você receberá um comprovante por e-mail e poderá acompanhar o impacto
+          da sua contribuição.
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
