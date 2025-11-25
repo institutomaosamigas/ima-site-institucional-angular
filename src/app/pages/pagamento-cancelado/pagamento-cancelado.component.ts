@@ -26,7 +26,9 @@ export class PagamentoCanceladoComponent implements OnInit {
     this.subscriptionId =
       this.route.snapshot.queryParamMap.get('subscription_id');
 
-    const baseApi = (window as any).IMA_BFF_URL || 'http://localhost:3336';
+    const baseApi =
+      (window as any).IMA_BFF_URL ||
+      'https://3imdkv3u35sj4p2sevuwfjbru40afuzv.lambda-url.us-east-1.on.aws';
 
     // Se tem subscription_id, é cancelamento de assinatura recorrente
     if (this.subscriptionId) {
