@@ -1,8 +1,780 @@
+/* ===== PÁGINA DE DOAÇÃO ===== */
 .pagina-doacao {
   display: block;
-  padding: 10vh 0 6vh;
+  padding: 8vh 0 6vh;
   min-height: 100vh;
   background-color: var(--Branco-Gelo);
+}
+
+.doacao-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.doacao-container h1 {
+  font-weight: bold;
+  color: var(--Preto);
+  text-align: left;
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.doacao-mensagem {
+  color: var(--Preto);
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.doacao-mensagem .descricao {
+  color: #666;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== ABAS DE PAGAMENTO ===== */
+.payment-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 32px;
+  background: transparent;
+  border: none;
+  border-bottom: 4px solid transparent;
+  color: #666;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: var(--Magenta);
+  background: rgba(179, 0, 170, 0.05);
+}
+
+.tab-btn.active {
+  color: var(--Magenta);
+  border-bottom-color: var(--Magenta);
+}
+
+.tab-btn.active svg {
+  color: var(--Magenta);
+}
+
+.tab-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===== CONTEÚDO DE PAGAMENTO ===== */
+.payment-content {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 32px;
+}
+
+.section-title {
+  color: var(--Preto);
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.section-subtitle {
+  color: #666;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-label {
+  display: block;
+  color: var(--Preto);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* ===== TIPO DE DOAÇÃO ===== */
+.tipo-doacao-section {
+  margin-bottom: 32px;
+}
+
+.tipo-doacao-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.tipo-btn-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 16px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--Preto);
+  position: relative;
+}
+
+.tipo-btn-inline svg {
+  width: 24px;
+  height: 24px;
+  color: var(--Magenta);
+}
+
+.tipo-btn-inline .tipo-subtitle {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: #666;
+}
+
+.tipo-btn-inline:hover {
+  border-color: rgba(179, 0, 170, 0.5);
+  background: rgba(179, 0, 170, 0.02);
+}
+
+.tipo-btn-inline.active:hover {
+  border-color: var(--Magenta);
+  background: rgba(179, 0, 170, 0.1);
+  transform: none;
+}
+
+.tipo-btn-inline.active {
+  border-color: var(--Magenta);
+  border-width: 3px;
+  background: rgba(179, 0, 170, 0.1);
+  color: var(--Magenta);
+}
+
+.tipo-btn-inline.active svg {
+  color: var(--Magenta);
+}
+
+.tipo-btn-inline.active::after {
+  content: "✓";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: var(--Magenta);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.tipo-btn-inline {
+  position: relative;
+}
+
+/* ===== VALOR DA DOAÇÃO ===== */
+.valor-doacao-section {
+  margin-bottom: 32px;
+}
+
+/* ===== PLANOS MENSAIS ===== */
+.planos-doacao-section {
+  margin-bottom: 32px;
+}
+
+.planos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.plano-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.plano-card:hover {
+  border-color: rgba(179, 0, 170, 0.4);
+  background: rgba(179, 0, 170, 0.02);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(179, 0, 170, 0.1);
+}
+
+.plano-card.active {
+  border-color: var(--Magenta);
+  border-width: 3px;
+  background: var(--Magenta);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(179, 0, 170, 0.25);
+}
+
+.plano-card.active:hover {
+  border-color: var(--Magenta);
+  border-width: 3px;
+  background: var(--Magenta);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(179, 0, 170, 0.25);
+}
+
+.plano-nome {
+  color: var(--Magenta);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.plano-card.active .plano-nome {
+  color: white;
+}
+
+.plano-valor {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--Preto);
+  margin: 8px 0;
+  line-height: 1;
+}
+
+.plano-card.active .plano-valor {
+  color: white;
+}
+
+.plano-valor span {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.plano-descricao {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 12px 0 0 0;
+  line-height: 1.4;
+}
+
+.plano-card.active .plano-descricao {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.plano-card .check-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: white;
+}
+
+.valor-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.valor-btn-pill {
+  flex: 1;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--Preto);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.valor-btn-pill:hover {
+  border-color: var(--Magenta);
+  background: rgba(179, 0, 170, 0.03);
+  transform: translateY(-1px);
+}
+
+.valor-btn-pill.active {
+  background: var(--Magenta);
+  border-color: var(--Magenta);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(179, 0, 170, 0.3);
+}
+
+.valor-btn-pill.active:hover {
+  background: var(--Magenta);
+  border-color: var(--Magenta);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(179, 0, 170, 0.3);
+}
+
+.valor-btn-pill svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== CAMPO DE VALOR PERSONALIZADO ===== */
+.custom-value-input-inline {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.custom-value-input-inline label {
+  display: block;
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.input-wrapper .currency {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--Magenta);
+}
+
+.input-wrapper input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--Preto);
+  transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: var(--Magenta);
+  box-shadow: 0 0 0 3px rgba(179, 0, 170, 0.1);
+}
+
+.input-wrapper input::placeholder {
+  color: #ccc;
+}
+
+/* Remove setas do input number */
+.input-wrapper input::-webkit-outer-spin-button,
+.input-wrapper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-wrapper input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.valor-minimo-aviso {
+  margin-top: 15px;
+  padding: 10px 14px;
+  background: #ffebee;
+  border-left: 3px solid #c62828;
+  border-radius: 4px;
+  color: #c62828;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ===== BOTÃO DE DOAÇÃO ===== */
+.btn-doar-paypal {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 32px;
+  background: var(--Magenta);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(179, 0, 170, 0.3);
+  margin-bottom: 16px;
+}
+
+.btn-doar-paypal:hover:not(.disabled) {
+  background: var(--roxo);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(179, 0, 170, 0.4);
+}
+
+.btn-doar-paypal:active:not(.disabled) {
+  transform: translateY(0);
+}
+
+.btn-doar-paypal.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-doar-paypal svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===== LOADING SPINNER ===== */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.redirect-notice {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0 0 32px 0;
+}
+
+/* ===== CARDS DE SEGURANÇA ===== */
+.security-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.security-card {
+  padding: 24px;
+  background: white;
+  border-left: 4px solid var(--Magenta);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.security-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(179, 0, 170, 0.15);
+}
+
+.security-card svg {
+  margin-bottom: 12px;
+}
+
+.security-card h4 {
+  color: var(--Preto);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.security-card p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===== ALERTAS ===== */
+.alerta-erro {
+  margin: 20px 0;
+  padding: 16px 20px;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  border-left: 4px solid #c62828;
+  font-weight: 500;
+}
+
+.loading-overlay {
+  margin: 20px 0;
+  padding: 20px;
+  text-align: center;
+  background: rgba(179, 0, 170, 0.1);
+  border-radius: 8px;
+  color: var(--Magenta);
+  font-weight: 600;
+}
+
+/* ===== CONTEÚDO PIX ===== */
+.pix-content {
+  text-align: center;
+}
+
+.pix-qrcode-box {
+  margin: 32px 0;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.qrcode-img {
+  max-width: 480px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 3px solid var(--Magenta);
+  padding: 12px;
+  background: white;
+  margin: 0 auto;
+}
+
+.qrcode-instruction {
+  margin-top: 16px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.pix-key-section {
+  margin: 32px 0;
+}
+
+.pix-key-box {
+  display: flex;
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pix-key-input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  text-align: center;
+  background: white;
+  color: var(--Preto);
+  font-weight: 600;
+}
+
+.btn-copy {
+  padding: 16px 28px;
+  background: var(--Magenta);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-copy:hover {
+  background: var(--roxo);
+  transform: translateY(-2px);
+}
+
+.pix-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.pix-benefit-card {
+  padding: 20px 24px;
+  background: white;
+  border-left: 4px solid var(--Magenta);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.pix-benefit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(179, 0, 170, 0.15);
+}
+
+.pix-benefit-card svg {
+  margin-bottom: 8px;
+  width: 32px;
+  height: 32px;
+}
+
+.pix-benefit-card h4 {
+  color: var(--Preto);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.pix-benefit-card p {
+  color: #666;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ===== SEÇÃO DE IMPACTO ===== */
+.impact-section {
+  margin-top: 48px;
+  padding: 40px 48px;
+  background: white;
+  border-radius: 16px;
+  border: 2px solid rgba(179, 0, 170, 0.1);
+  box-shadow: 0 4px 16px rgba(179, 0, 170, 0.08);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--Magenta) 0%, var(--roxo) 100%);
+}
+
+.impact-title {
+  color: var(--Magenta);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.impact-description {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media screen and (max-width: 768px) {
+  .doacao-container {
+    padding: 0 16px;
+  }
+
+  .doacao-container h1 {
+    font-size: 2rem;
+  }
+
+  .payment-content {
+    padding: 24px 20px;
+  }
+
+  .tipo-doacao-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .valor-buttons {
+    flex-direction: column;
+  }
+
+  .valor-btn-pill {
+    flex: none;
+  }
+
+  .planos-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .security-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .pix-benefits {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .btn-doar-paypal {
+    font-size: 1.1rem;
+    padding: 16px 24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .doacao-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .payment-tabs {
+    flex-direction: column;
+    border-bottom: none;
+  }
+
+  .tab-btn {
+    border-bottom: none;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .tab-btn.active {
+    border-color: var(--Magenta);
+  }
+}
+
+/* Acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .doacao-container {
@@ -42,7 +814,7 @@
   cursor: pointer;
 }
 .valor-btn:hover {
-  background: rgba(194, 24, 91, 0.08);
+  background: rgba(179, 0, 170, 0.08);
 }
 
 .doacao-form {
@@ -68,7 +840,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 520px;
   margin: 24px 0;
 }
 
@@ -85,14 +856,25 @@
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(194, 24, 91, 0.3);
+  box-shadow: 0 4px 12px rgba(179, 0, 170, 0.3);
   width: 100%;
 }
 
 .doar-btn:hover:not(.disabled) {
-  background: linear-gradient(135deg, #d9176d, var(--Magenta));
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(194, 24, 91, 0.4);
+  background: linear-gradient(135deg, var(--roxo), var(--Magenta));
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(179, 0, 170, 0.5);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 8px 24px rgba(179, 0, 170, 0.5);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(179, 0, 170, 0.7);
+  }
 }
 
 .doar-btn:active:not(.disabled) {
@@ -249,7 +1031,7 @@
 
 .info-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(194, 24, 91, 0.15);
+  box-shadow: 0 4px 16px rgba(179, 0, 170, 0.15);
 }
 
 .info-icon {
@@ -282,69 +1064,104 @@
   color: #856404;
 }
 
-/* ALERTA PAYPAL INDISPONIVEL */
-.alerta-paypal {
-  width: 100%;
-  background: linear-gradient(90deg, #ff4f4f, #d90000);
-  color: white;
-  padding: 14px 20px;
-  margin: 20px 0;
-  border-radius: 8px;
-  font-weight: 600;
+/* Seção de Doação via Pix */
+.pix-section {
+  margin: 48px 0;
+  padding: 32px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.pix-divider {
   display: flex;
   align-items: center;
-  gap: 12px;
-  position: relative;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  animation: alertaSlide 0.35s ease-out;
+  text-align: center;
+  margin: 32px 0 24px;
 }
 
-@keyframes alertaSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.pix-divider::before,
+.pix-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 2px solid #ddd;
 }
 
-.alerta-warning {
-  width: 100%;
-  background: linear-gradient(90deg, #ffdd57, #ffbe0b);
-  color: #4a3d00;
-  padding: 14px 20px;
-  margin: 20px 0;
-  border-radius: 8px;
+.pix-divider span {
+  padding: 0 16px;
+  color: #666;
   font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.pix-title {
+  color: var(--Magenta);
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  position: relative;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-  animation: alertaSlide 0.35s ease-out;
 }
 
-/* Reusa a animação do alerta vermelho */
-@keyframes alertaSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.pix-description {
+  color: #555;
+  font-size: 1.05rem;
+  margin-bottom: 32px;
+  line-height: 1.6;
 }
 
-/* IMAGEM QR CODE */
+.qrcode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
 .qrcode-pix {
-  display: flex;
-  position: relative;
-  width: 300px;
-  height: 400px;
-  margin: 40px auto;
+  width: 420px;
+  height: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 3px solid var(--Magenta);
+  padding: 8px;
+  background: white;
+}
+
+.pix-instrucao {
+  margin-top: 16px;
+  color: #666;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+/* Responsividade para Pix */
+@media screen and (max-width: 768px) {
+  .pix-section {
+    padding: 24px 16px;
+    margin: 32px 0;
+  }
+
+  .pix-title {
+    font-size: 1.5rem;
+  }
+
+  .pix-description {
+    font-size: 1rem;
+  }
+
+  .qrcode-pix {
+    width: 320px;
+  }
 }
 
 /* Tipo de Doação */
@@ -371,20 +1188,36 @@
   gap: 8px;
   padding: 20px;
   border: 2px solid var(--Magenta);
-  background: white;
+  background: var(--Magenta);
+  color: white;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .tipo-btn:hover {
-  background: rgba(194, 24, 91, 0.08);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--roxo) 0%, var(--Magenta) 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(179, 0, 170, 0.4);
+  filter: brightness(1.1);
 }
 
 .tipo-btn.selecionado {
-  background: var(--Magenta);
-  color: white;
+  background: white;
+  color: var(--Magenta);
+  border: 3px solid var(--Magenta);
+  box-shadow: 0 4px 16px rgba(179, 0, 170, 0.25);
+  font-weight: 600;
+}
+
+.tipo-btn.selecionado:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(179, 0, 170, 0.08) 0%,
+    rgba(80, 1, 80, 0.08) 100%
+  );
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(179, 0, 170, 0.3);
 }
 
 .tipo-btn strong {
@@ -413,36 +1246,101 @@
 
 .planos-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.planos-grid.valores-avulsa {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .plano-card {
   display: flex;
   flex-direction: column;
-  padding: 16px 12px;
-  border: 2px solid #ddd;
+  padding: 20px 16px;
+  border: 2px solid var(--Magenta);
   background: white;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.plano-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(179, 0, 170, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.plano-card:hover::before {
+  left: 100%;
 }
 
 .plano-card:hover {
-  border-color: var(--Magenta);
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(194, 24, 91, 0.2);
+  border-color: var(--roxo);
+  border-width: 3px;
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(179, 0, 170, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
 }
 
 .plano-card.selecionado {
   border-color: var(--Magenta);
-  background: linear-gradient(
-    135deg,
-    rgba(194, 24, 91, 0.1),
-    rgba(194, 24, 91, 0.05)
-  );
-  box-shadow: 0 4px 12px rgba(194, 24, 91, 0.3);
+  border-width: 3px;
+  background: linear-gradient(135deg, var(--Magenta) 0%, var(--roxo) 100%);
+  box-shadow: 0 8px 28px rgba(179, 0, 170, 0.45);
+  transform: translateY(-4px) scale(1.05);
+}
+
+.plano-card.selecionado::after {
+  content: "✓";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  background: white;
+  color: var(--Magenta);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.plano-card.selecionado:hover {
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 12px 32px rgba(179, 0, 170, 0.5);
+  filter: brightness(1.05);
+}
+
+.plano-card.selecionado h4 {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.plano-card.selecionado .plano-valor {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.plano-card.selecionado .plano-descricao {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .plano-card h4 {
@@ -472,12 +1370,6 @@
 }
 
 /* Responsividade para telas menores */
-@media screen and (max-width: 1200px) {
-  .planos-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media screen and (max-width: 768px) {
   .planos-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -488,6 +1380,88 @@
   .planos-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Custom Value Input Card */
+.plano-card-custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  padding: 20px 16px;
+}
+
+.plano-card-custom h4 {
+  margin-bottom: 12px;
+}
+
+.custom-valor-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.currency-symbol {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--Magenta);
+}
+
+.plano-card-custom.selecionado .currency-symbol {
+  color: white;
+}
+
+.custom-valor-input input {
+  width: 100%;
+  max-width: 120px;
+  padding: 10px 12px;
+  border: 2px solid var(--Magenta);
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  background: white;
+  color: var(--Preto);
+  transition: all 0.3s ease;
+}
+
+.custom-valor-input input:focus {
+  outline: 3px solid var(--Magenta);
+  outline-offset: 2px;
+  border-color: var(--roxo);
+  box-shadow: 0 0 0 4px rgba(179, 0, 170, 0.1);
+}
+
+.custom-valor-input input::placeholder {
+  color: #999;
+  font-weight: normal;
+}
+
+.plano-card-custom.selecionado .custom-valor-input input {
+  background: white;
+  color: var(--Magenta);
+  border-color: white;
+}
+
+.plano-card-custom.selecionado .custom-valor-input input:focus {
+  outline-color: white;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Remove number input arrows */
+.custom-valor-input input::-webkit-outer-spin-button,
+.custom-valor-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-valor-input input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* Alertas e Loading */

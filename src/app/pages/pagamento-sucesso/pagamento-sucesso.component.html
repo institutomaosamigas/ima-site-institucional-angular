@@ -6,7 +6,22 @@
   <div class="sucesso-container">
     <div class="sucesso-header">
       <div class="sucesso-icon">
-        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <svg
+          width="80"
+          height="80"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="12" cy="12" r="10" fill="#28a745" />
+          <path
+            d="M9 12l2 2 4-4"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
       </div>
       <h1 id="sucesso-heading">Doação realizada com sucesso!</h1>
     </div>
@@ -26,16 +41,55 @@
         <h2>O que acontece agora?</h2>
         <ul>
           <li>
-            <i class="fa-solid fa-check" aria-hidden="true"></i> Você receberá
-            um email de confirmação
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="20 6 9 17 4 12"
+                stroke="#28a745"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+            Você receberá um email de confirmação
           </li>
           <li>
-            <i class="fa-solid fa-check" aria-hidden="true"></i> Sua
-            contribuição já está ajudando a transformar vidas
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="20 6 9 17 4 12"
+                stroke="#28a745"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+            Sua contribuição já está ajudando a transformar vidas
           </li>
           <li>
-            <i class="fa-solid fa-check" aria-hidden="true"></i> Acompanhe nosso
-            trabalho nas redes sociais
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline
+                points="20 6 9 17 4 12"
+                stroke="#28a745"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+            Acompanhe nosso trabalho nas redes sociais
           </li>
         </ul>
         <p *ngIf="orderId" class="order-id">
@@ -70,7 +124,26 @@
           routerLink="/"
           aria-label="Voltar para a página inicial"
         >
-          <i class="fa-solid fa-house" aria-hidden="true"></i>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+            />
+            <polyline
+              points="9 22 9 12 15 12 15 22"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
           Voltar para a Página Inicial
         </a>
         <a
@@ -78,7 +151,20 @@
           routerLink="/doacoes"
           aria-label="Fazer outra doação"
         >
-          <i class="fa-solid fa-heart" aria-hidden="true"></i>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
           Fazer Outra Doação
         </a>
       </div>

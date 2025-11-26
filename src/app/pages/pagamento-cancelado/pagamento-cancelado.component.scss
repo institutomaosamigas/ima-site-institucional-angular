@@ -1,14 +1,14 @@
 .pagamento-cancelado {
   display: block;
-  padding: 10vh 0 6vh;
+  padding: 8vh 0 6vh;
   min-height: 100vh;
   background-color: var(--Branco-Gelo);
 }
 
 .cancelado-container {
-  width: 80vw;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .cancelado-header {
@@ -17,10 +17,13 @@
 }
 
 .cancelado-icon {
-  font-size: 80px;
-  color: #dc3545;
   margin-bottom: 20px;
   animation: shakeIn 0.5s ease-out;
+}
+
+.cancelado-icon svg {
+  width: 80px;
+  height: 80px;
 }
 
 @keyframes shakeIn {
@@ -100,9 +103,8 @@
   gap: 12px;
 }
 
-.info-card ul li i {
-  color: #dc3545;
-  font-size: 1.2rem;
+.info-card ul li svg {
+  flex-shrink: 0;
 }
 
 .order-id {
@@ -224,13 +226,10 @@
 }
 
 /* Responsividade */
-@media screen and (max-width: 1024px) {
-  .cancelado-container {
-    width: 90vw;
-  }
-}
-
 @media screen and (max-width: 768px) {
+  .cancelado-container {
+    padding: 0 16px;
+  }
   .pagamento-cancelado {
     padding: 8vh 0 4vh;
   }
@@ -239,8 +238,9 @@
     font-size: 1.8rem;
   }
 
-  .cancelado-icon {
-    font-size: 60px;
+  .cancelado-icon svg {
+    width: 60px;
+    height: 60px;
   }
 
   .mensagem-principal {

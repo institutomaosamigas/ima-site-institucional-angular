@@ -1,14 +1,14 @@
 .pagamento-sucesso {
   display: block;
-  padding: 10vh 0 6vh;
+  padding: 8vh 0 6vh;
   min-height: 100vh;
   background-color: var(--Branco-Gelo);
 }
 
 .sucesso-container {
-  width: 80vw;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .sucesso-header {
@@ -17,10 +17,13 @@
 }
 
 .sucesso-icon {
-  font-size: 80px;
-  color: #28a745;
   margin-bottom: 20px;
   animation: scaleIn 0.5s ease-out;
+}
+
+.sucesso-icon svg {
+  width: 80px;
+  height: 80px;
 }
 
 @keyframes scaleIn {
@@ -97,9 +100,8 @@
   gap: 12px;
 }
 
-.info-card ul li i {
-  color: #28a745;
-  font-size: 1.2rem;
+.info-card ul li svg {
+  flex-shrink: 0;
 }
 
 .order-id {
@@ -221,13 +223,10 @@
 }
 
 /* Responsividade */
-@media screen and (max-width: 1024px) {
-  .sucesso-container {
-    width: 90vw;
-  }
-}
-
 @media screen and (max-width: 768px) {
+  .sucesso-container {
+    padding: 0 16px;
+  }
   .pagamento-sucesso {
     padding: 8vh 0 4vh;
   }
@@ -236,8 +235,9 @@
     font-size: 1.8rem;
   }
 
-  .sucesso-icon {
-    font-size: 60px;
+  .sucesso-icon svg {
+    width: 60px;
+    height: 60px;
   }
 
   .mensagem-principal {

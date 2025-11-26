@@ -22,8 +22,11 @@ export class DoacoesComponent {
   valorAtual: number = 0;
   valorPersonalizado: number = 0;
   botaoSelecionado: number | null = null;
+  valorCustomSelecionado: boolean = false;
   tipoDoacao: 'avulsa' | 'recorrente' = 'avulsa';
   planoSelecionado: 'semente' | 'crescimento' | 'transformacao' | null = null;
+  metodoSelecionado: 'paypal' | 'pix' = 'paypal';
+  valoresPreDefinidos: number[] = [10, 25, 50, 100, 200];
 
   planos = [
     {
@@ -55,7 +58,6 @@ export class DoacoesComponent {
   constructor(private http: HttpClient) {}
 
   ngAfterViewInit(): void {
-    // Configurar eventos dos botões após a view ser inicializada
     this.configurarEventosBotoes();
   }
 
@@ -63,7 +65,6 @@ export class DoacoesComponent {
     this.valorButtons.forEach((botaoRef) => {
       const botao = botaoRef.nativeElement;
 
-      // Já temos o (click) no template, mas podemos adicionar eventos de teclado aqui se necessário
       botao.addEventListener('keydown', (event: KeyboardEvent) => {
         this.manipularTecladoValor(event, botao);
       });
@@ -78,10 +79,10 @@ export class DoacoesComponent {
     this.valorAtual = valor;
     this.valorPersonalizado = valor;
     this.botaoSelecionado = valor;
+    this.valorCustomSelecionado = false;
     this.tipoDoacao = 'avulsa';
     this.planoSelecionado = null;
 
-    // Anunciar mudança para leitores de tela
     this.anunciarMudanca(`Valor selecionado: R$ ${valor}`);
   }
 
@@ -101,14 +102,78 @@ export class DoacoesComponent {
 
   onValorPersonalizadoChange(): void {
     this.valorAtual = this.valorPersonalizado;
-    this.botaoSelecionado = null;
     this.tipoDoacao = 'avulsa';
     this.planoSelecionado = null;
 
-    // Verificar se corresponde a algum botão
-    const botoes = [10, 25, 50, 100, 200];
+    const botoes = [10, 50, 200];
     if (botoes.includes(this.valorPersonalizado)) {
       this.botaoSelecionado = this.valorPersonalizado;
+      this.valorCustomSelecionado = false;
+    } else {
+      this.botaoSelecionado = null;
+      this.valorCustomSelecionado = true;
+    }
+  }
+
+  onCustomInputFocus(): void {
+    this.valorCustomSelecionado = true;
+    this.botaoSelecionado = null;
+  }
+
+  validarValorMinimo(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let valor = parseFloat(input.value);
+
+    if (!isNaN(valor)) {
+      valor = Math.floor(valor * 100) / 100;
+      this.valorPersonalizado = valor;
+      this.valorAtual = valor;
+    }
+
+    if (valor > 0 && valor < 1) {
+      this.mensagemErro = 'O valor mínimo para doação é R$ 1,00';
+    } else if (valor >= 1) {
+      this.mensagemErro = '';
+    } else if (valor === 0 || isNaN(valor)) {
+      this.mensagemErro = '';
+      this.valorPersonalizado = 0;
+      this.valorAtual = 0;
+    }
+  }
+
+  bloquearDecimais(event: KeyboardEvent): void {
+    const input = event.target as HTMLInputElement;
+    const valor = input.value;
+
+    if (
+      event.key === 'Backspace' ||
+      event.key === 'Delete' ||
+      event.key === 'Tab' ||
+      event.key === 'Escape' ||
+      event.key === 'Enter' ||
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowRight'
+    ) {
+      return;
+    }
+
+    if (valor.includes('.') || valor.includes(',')) {
+      const partes = valor.split(/[.,]/);
+      if (partes[1] && partes[1].length >= 2) {
+        event.preventDefault();
+      }
+    }
+  }
+
+  formatarValor(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let valor = parseFloat(input.value);
+
+    if (!isNaN(valor) && valor > 0) {
+      valor = Math.floor(valor * 100) / 100;
+      this.valorPersonalizado = valor;
+      this.valorAtual = valor;
+      input.value = valor.toFixed(2);
     }
   }
 
@@ -132,14 +197,28 @@ export class DoacoesComponent {
   }
 
   private anunciarMudanca(mensagem: string): void {
-    // Em um ambiente real, você pode usar um serviço de anúncio para leitores de tela
     console.log('Leitor de tela:', mensagem);
-
-    // Alternativa: usar Live Announcer do Angular CDK se disponível
-    // this.liveAnnouncer.announce(mensagem);
   }
 
-  // Método para criar doação
+  copiarChavePix(): void {
+    const chavePix = 'contato@imasaoamg.org.br';
+    navigator.clipboard
+      .writeText(chavePix)
+      .then(() => {
+        alert('Chave PIX copiada com sucesso!');
+      })
+      .catch((err) => {
+        console.error('Erro ao copiar chave PIX:', err);
+      });
+  }
+
+  resetarValores(): void {
+    this.valorAtual = 0;
+    this.valorPersonalizado = 0;
+    this.botaoSelecionado = null;
+    this.valorCustomSelecionado = false;
+  }
+
   criarDoacao(event?: Event): void {
     if (event) {
       event.preventDefault();
@@ -166,7 +245,6 @@ export class DoacoesComponent {
     let body: any;
 
     if (this.tipoDoacao === 'avulsa') {
-      // Garantir que o valor seja um número decimal (formato esperado pela API)
       const valorNumerico = parseFloat(this.valorAtual.toString());
       body = {
         tipo: 'avulsa',
@@ -180,7 +258,6 @@ export class DoacoesComponent {
         typeof valorNumerico + ')'
       );
     } else if (this.tipoDoacao === 'recorrente' && this.planoSelecionado) {
-      // Doação recorrente: envia apenas tipo e plano (não envia valor)
       body = {
         tipo: 'recorrente',
         plano: this.planoSelecionado,
@@ -210,7 +287,6 @@ export class DoacoesComponent {
           console.log('Resposta completa da API:', response);
 
           if (response.sucesso && response.dados?.approveLink) {
-            // Redirecionar para o PayPal
             console.log('Redirecionando para:', response.dados.approveLink);
             window.location.href = response.dados.approveLink;
           } else {
