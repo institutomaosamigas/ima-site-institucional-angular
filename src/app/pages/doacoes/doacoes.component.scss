@@ -421,6 +421,47 @@
   font-weight: 600;
 }
 
+/* ===== ALERTA DE MANUTENÇÃO ===== */
+.alerta-manutencao {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border: 2px solid #ffc107;
+  border-left: 6px solid #ff9800;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
+}
+
+.alerta-manutencao svg {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  color: #ff9800;
+  margin-top: 2px;
+}
+
+.alerta-conteudo h4 {
+  color: #7c4700;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.alerta-conteudo p {
+  color: #654300;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.alerta-conteudo strong {
+  color: var(--Magenta);
+  font-weight: 700;
+}
+
 /* ===== BOTÃO DE DOAÇÃO ===== */
 .btn-doar-paypal {
   width: 100%;
@@ -452,9 +493,11 @@
 }
 
 .btn-doar-paypal.disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none !important;
+  background: #9e9e9e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-doar-paypal svg {
@@ -784,6 +827,25 @@
   .impact-description {
     font-size: 0.95rem;
     line-height: 1.6;
+  }
+
+  .alerta-manutencao {
+    flex-direction: column;
+    padding: 16px 18px;
+    gap: 12px;
+  }
+
+  .alerta-manutencao svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .alerta-conteudo h4 {
+    font-size: 1rem;
+  }
+
+  .alerta-conteudo p {
+    font-size: 0.9rem;
   }
 }
 

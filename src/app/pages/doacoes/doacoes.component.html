@@ -47,6 +47,30 @@
 
     <!-- Conteúdo PayPal -->
     <div *ngIf="metodoSelecionado === 'paypal'" class="payment-content">
+      <!-- Alerta de Manutenção -->
+      <div class="alerta-manutencao">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+            fill="currentColor"
+          />
+        </svg>
+        <div class="alerta-conteudo">
+          <h4>Pagamento via PayPal temporariamente indisponível</h4>
+          <p>
+            Estamos em manutenção. Por favor, utilize o
+            <strong>PIX</strong> para fazer sua doação. Agradecemos a
+            compreensão!
+          </p>
+        </div>
+      </div>
+
       <h3 class="section-title">Doar via PayPal</h3>
       <p class="section-subtitle">
         Escolha o tipo de doação e o valor que deseja contribuir
@@ -194,13 +218,12 @@
       <!-- Botão de Doação -->
       <button
         class="btn-doar-paypal"
-        (click)="criarDoacao($event)"
-        [disabled]="carregando || valorAtual < 1"
-        [class.disabled]="carregando || valorAtual < 1"
+        disabled
+        class="btn-doar-paypal disabled"
         type="button"
+        title="PayPal temporariamente indisponível"
       >
         <svg
-          *ngIf="!carregando"
           width="20"
           height="20"
           viewBox="0 0 24 24"
@@ -208,19 +231,15 @@
           stroke="currentColor"
           stroke-width="2"
         >
-          <path
-            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-          />
+          <circle cx="12" cy="12" r="10" />
+          <line x1="15" y1="9" x2="9" y2="15" />
+          <line x1="9" y1="9" x2="15" y2="15" />
         </svg>
-        <span *ngIf="!carregando"
-          >Doar R$ {{ valorAtual > 0 ? valorAtual : "0" }}</span
-        >
-        <span *ngIf="carregando" class="loading-spinner"></span>
-        <span *ngIf="carregando">Processando sua doação...</span>
+        <span>Temporariamente Indisponível</span>
       </button>
 
-      <p class="redirect-notice">
-        Você será redirecionado para o PayPal de forma segura
+      <p class="redirect-notice" style="color: #999">
+        Por favor, utilize o PIX para fazer sua doação
       </p>
 
       <!-- Cards de Segurança -->
