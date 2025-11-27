@@ -372,10 +372,12 @@
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--Magenta);
+  flex-shrink: 0;
 }
 
 .input-wrapper input {
   flex: 1;
+  min-width: 0;
   padding: 14px 16px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
@@ -581,10 +583,12 @@
   gap: 12px;
   max-width: 600px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .pix-key-input {
   flex: 1;
+  min-width: 0;
   padding: 16px 20px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
@@ -593,6 +597,7 @@
   background: white;
   color: var(--Preto);
   font-weight: 600;
+  word-break: break-all;
 }
 
 .btn-copy {
@@ -605,6 +610,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .btn-copy:hover {
@@ -740,11 +746,58 @@
     font-size: 1.1rem;
     padding: 16px 24px;
   }
+
+  .pix-key-box {
+    flex-direction: column;
+  }
+
+  .pix-key-input {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 14px 16px;
+  }
+
+  .btn-copy {
+    width: 100%;
+    padding: 14px 20px;
+  }
+
+  .input-wrapper .currency {
+    font-size: 1.1rem;
+  }
+
+  .input-wrapper input {
+    font-size: 1rem;
+    padding: 12px 14px;
+  }
+
+  .impact-section {
+    margin-top: 32px;
+    padding: 24px 20px;
+  }
+
+  .impact-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .impact-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
 }
 
 @media screen and (max-width: 480px) {
+  .doacao-container {
+    padding: 0 12px;
+  }
+
   .doacao-container h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+  }
+
+  .payment-content {
+    padding: 20px 16px;
   }
 
   .payment-tabs {
@@ -757,10 +810,57 @@
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     margin-bottom: 8px;
+    padding: 14px 16px;
+    font-size: 1rem;
   }
 
   .tab-btn.active {
     border-color: var(--Magenta);
+  }
+
+  .custom-value-input-inline label {
+    font-size: 0.9rem;
+  }
+
+  .input-wrapper .currency {
+    font-size: 1rem;
+  }
+
+  .input-wrapper input {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  .pix-key-input {
+    font-size: 0.85rem;
+    padding: 12px 14px;
+  }
+
+  .btn-copy {
+    font-size: 0.95rem;
+    padding: 12px 16px;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .qrcode-img {
+    max-width: 100%;
+    width: 95%;
+  }
+
+  .impact-section {
+    margin-top: 24px;
+    padding: 20px 16px;
+  }
+
+  .impact-title {
+    font-size: 1.3rem;
+  }
+
+  .impact-description {
+    font-size: 0.9rem;
   }
 }
 

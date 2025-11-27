@@ -604,6 +604,11 @@
   .valores-container {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  .valor-card {
+    padding: 20px 15px;
+    width: 120px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
