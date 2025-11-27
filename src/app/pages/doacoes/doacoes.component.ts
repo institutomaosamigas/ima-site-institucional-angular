@@ -51,6 +51,8 @@ export class DoacoesComponent {
 
   carregando: boolean = false;
   mensagemErro: string = '';
+  isProcessandoPagamento: boolean = false;
+  valorDoacao: number = 0;
 
   private baseApi =
     'https://3imdkv3u35sj4p2sevuwfjbru40afuzv.lambda-url.us-east-1.on.aws';
@@ -78,6 +80,7 @@ export class DoacoesComponent {
 
     this.valorAtual = valor;
     this.valorPersonalizado = valor;
+    this.valorDoacao = valor;
     this.botaoSelecionado = valor;
     this.valorCustomSelecionado = false;
     this.tipoDoacao = 'avulsa';
@@ -93,6 +96,7 @@ export class DoacoesComponent {
     if (planoData) {
       this.valorAtual = planoData.valor;
       this.valorPersonalizado = planoData.valor;
+      this.valorDoacao = planoData.valor;
       this.botaoSelecionado = null;
       this.anunciarMudanca(
         `Plano ${planoData.nome} selecionado: R$ ${planoData.valor}/mês`
@@ -102,6 +106,7 @@ export class DoacoesComponent {
 
   onValorPersonalizadoChange(): void {
     this.valorAtual = this.valorPersonalizado;
+    this.valorDoacao = this.valorPersonalizado;
     this.tipoDoacao = 'avulsa';
     this.planoSelecionado = null;
 
@@ -283,6 +288,7 @@ export class DoacoesComponent {
       .subscribe({
         next: (response) => {
           this.carregando = false;
+          this.isProcessandoPagamento = false;
 
           console.log('Resposta completa da API:', response);
 
@@ -297,6 +303,7 @@ export class DoacoesComponent {
         },
         error: (error) => {
           this.carregando = false;
+          this.isProcessandoPagamento = false;
           console.error('Erro ao criar doação:', error);
           console.error('Detalhes do erro:', error.error);
 
@@ -321,5 +328,10 @@ export class DoacoesComponent {
 
   isPlanoSelecionado(plano: string): boolean {
     return this.planoSelecionado === plano;
+  }
+
+  processarPagamentoPayPal(): void {
+    this.isProcessandoPagamento = true;
+    this.criarDoacao();
   }
 }

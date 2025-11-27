@@ -421,7 +421,7 @@
   font-weight: 600;
 }
 
-/* ===== ALERTA DE MANUTENÇÃO ===== */
+/* ===== ALERTA DE MANUTENÇÃO (Comentado) =====
 .alerta-manutencao {
   display: flex;
   align-items: flex-start;
@@ -461,6 +461,7 @@
   color: var(--Magenta);
   font-weight: 700;
 }
+*/
 
 /* ===== BOTÃO DE DOAÇÃO ===== */
 .btn-doar-paypal {
@@ -829,6 +830,7 @@
     line-height: 1.6;
   }
 
+  /*
   .alerta-manutencao {
     flex-direction: column;
     padding: 16px 18px;
@@ -847,6 +849,7 @@
   .alerta-conteudo p {
     font-size: 0.9rem;
   }
+  */
 }
 
 @media screen and (max-width: 480px) {
