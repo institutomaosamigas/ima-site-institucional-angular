@@ -24,8 +24,11 @@
   <div class="quem-somos-text">
     <h1 id="quem-somos-heading">QUEM SOMOS</h1>
     <p>
-      O Instituto Mãos Amigas é uma organização sem fins lucrativos com uma rede de profissionais voluntários multidisciplinar, dedicada a acolher, orientar pessoas em situação de vulnerabilidade social.
-      <br>Nosso trabalho é guiado pelo propósito de transformar vidas por meio do apoio humanizado, do conhecimento e da solidariedade.
+      O Instituto Mãos Amigas é uma organização sem fins lucrativos com uma rede
+      de profissionais voluntários multidisciplinar, dedicada a acolher,
+      orientar pessoas em situação de vulnerabilidade social.
+      <br />Nosso trabalho é guiado pelo propósito de transformar vidas por meio
+      do apoio humanizado, do conhecimento e da solidariedade.
     </p>
   </div>
   <div class="quem-somos-container">
@@ -249,8 +252,8 @@
         role="link"
         tabindex="0"
         aria-label="Gerador de Currículo - Em andamento"
-        onclick="window.location.href='view/curriculo.html'"
-        onkeydown="if(event.key==='Enter'||event.key===' '){window.location.href='view/curriculo.html'}"
+        routerLink="/gerador-curriculo"
+        (keydown)="handleCardKeydown($event, '/gerador-curriculo')"
       >
         <h3>Gerador de currículo (Em andamento)</h3>
         <p>Crie seu currículo e receba sugestões de melhoria com IA.</p>

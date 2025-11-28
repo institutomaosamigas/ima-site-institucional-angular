@@ -12,9 +12,10 @@ export const appRoutes: Routes = [
   { path: 'seja-voluntario', component: SejaVoluntarioComponent },
   { path: 'doacoes', component: DoacoesComponent },
   { path: 'transparencia', component: TransparenciaComponent },
+  { path: 'gerador-curriculo', component: GeradorCurriculoComponent },
   { path: 'pagamento-sucesso', component: PagamentoSucessoComponent },
   { path: 'sucesso', component: PagamentoSucessoComponent },
   { path: 'pagamento-cancelado', component: PagamentoCanceladoComponent },
   { path: 'cancelado', component: PagamentoCanceladoComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];

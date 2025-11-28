@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth@0,75;1,75&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
+/* Flatpickr styles */
+@import 'flatpickr/dist/flatpickr.css';
+@import 'flatpickr/dist/plugins/monthSelect/style.css';
+
 
 :root {
     /* Botões com rosa escuro (Magenta) */

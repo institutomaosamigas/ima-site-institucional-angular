@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, NgZone } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   images = [
@@ -26,20 +27,25 @@ export class HomeComponent {
     'assets/galeria/acao14.jpg',
     'assets/galeria/acao15.jpg',
     'assets/galeria/acao16.jpg',
-    'assets/galeria/acao17.jpg'
-
+    'assets/galeria/acao17.jpg',
   ];
 
   currentIndex = 0;
   autoplay = true;
   interval: any;
 
-  constructor(private zone: NgZone, private el: ElementRef) {}
-  
+  constructor(
+    private zone: NgZone,
+    private el: ElementRef,
+    private router: Router
+  ) {}
+
   ngAfterViewInit() {
     this.startAutoplay();
 
-    const questions = this.el.nativeElement.querySelectorAll('.faq-question') as NodeListOf<HTMLElement>;
+    const questions = this.el.nativeElement.querySelectorAll(
+      '.faq-question'
+    ) as NodeListOf<HTMLElement>;
 
     questions.forEach((item: HTMLElement) => {
       item.addEventListener('click', () => {
@@ -89,6 +95,16 @@ export class HomeComponent {
   }
 
   abrirWhatsApp() {
-    window.open('https://api.whatsapp.com/send?phone=5511967884145&text=Ol%C3%A1!%20Vim%20por%20meio%20do%20site%20maosamigas.org.', '_blank');
+    window.open(
+      'https://api.whatsapp.com/send?phone=5511967884145&text=Ol%C3%A1!%20Vim%20por%20meio%20do%20site%20maosamigas.org.',
+      '_blank'
+    );
+  }
+
+  handleCardKeydown(event: KeyboardEvent, route: string) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.router.navigate([route]);
+    }
   }
 }

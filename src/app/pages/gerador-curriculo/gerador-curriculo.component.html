@@ -1,51 +1,1099 @@
 <section class="curriculo-container">
+  <div class="curriculo-header">
     <h1>Gerador de Currículo</h1>
-    <p class="intro">Preencha suas informações abaixo para gerar o currículo.<br>
-        Ao finalizar o preenchimento, você receberá uma análise feita por IA com sugestões de melhoria.</p>
+    <p class="intro">
+      Crie seu currículo profissional de forma fácil e rápida. Preencha as
+      seções abaixo e visualize o resultado em tempo real.
+    </p>
+  </div>
 
-    <div class="curriculo-grid">
-        <form id="curriculoForm" class="curriculo-form">
-        <div class="duo">
-            <label>Nome completo</label>
-            <input type="text" id="nome" placeholder="Seu nome" required />
-        </div>
-        <div class="duo">
-            <label>Email</label>
-            <input type="email" id="email" placeholder="seu@email.com" />
-        </div>
-        <div class="duo">
-            <label>Telefone</label>
-            <input type="text" id="telefone" placeholder="(xx) xxxxx-xxxx" />
-        </div>
+  <div class="curriculo-grid">
+    <!-- FORMULÁRIO -->
+    <div class="curriculo-form">
+      <!-- SEÇÃO: Paleta de Cores -->
+      <div class="form-section">
+        <button
+          type="button"
+          class="section-header"
+          (click)="toggleSecao('paleta')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+          <h2>Escolha a Paleta de Cores</h2>
+          <svg
+            class="chevron"
+            [class.expanded]="secaoPaletaExpandida"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
 
-        <div class="full">
-            <label>Título profissional</label>
-            <input type="text" id="titulo" placeholder="Ex.: Analista de Dados" />
+        <div class="section-content" *ngIf="secaoPaletaExpandida">
+          <p class="section-description">
+            Escolha a paleta de cores que melhor representa seu estilo
+            profissional.
+          </p>
+          <div class="paletas-grid">
+            <div
+              *ngFor="let paleta of paletasCores"
+              class="paleta-card"
+              [class.selected]="paletaSelecionada === paleta"
+              (click)="paletaSelecionada = paleta"
+            >
+              <div class="paleta-preview">
+                <div
+                  class="cor-primaria"
+                  [style.background]="paleta.primaria"
+                ></div>
+                <div
+                  class="cor-secundaria"
+                  [style.background]="paleta.secundaria"
+                ></div>
+              </div>
+              <span class="paleta-nome">{{ paleta.nome }}</span>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="full">
-            <label>Resumo profissional</label>
-            <textarea id="resumo" rows="4" placeholder="Resumo breve das suas experiências e conquistas"></textarea>
-        </div>
+      <!-- SEÇÃO: Dados Pessoais -->
+      <div class="form-section">
+        <button
+          type="button"
+          class="section-header"
+          (click)="toggleSecao('dados')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <h2>Dados Pessoais</h2>
+          <svg
+            class="chevron"
+            [class.expanded]="secaoDadosExpandida"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
 
-        <div class="full">
-            <label>Habilidades</label>
-            <textarea id="habilidades" rows="3" placeholder="Ex.: Excel, Python, Comunicação"></textarea>
-        </div>
+        <div class="section-content" *ngIf="secaoDadosExpandida">
+          <p class="section-description">
+            Preencha suas informações de contato. Os campos com * são
+            obrigatórios.
+          </p>
+          <div class="form-row">
+            <div class="form-field full">
+              <label>Nome Completo *</label>
+              <input
+                type="text"
+                [(ngModel)]="nome"
+                (blur)="nome = nome.trim()"
+                placeholder="Digite seu nome completo"
+              />
+            </div>
+          </div>
 
-        <div class="full">
-            <label>Experiências</label>
-            <textarea id="experiencias" rows="6" placeholder="Empresa, cargo, período e principais resultados"></textarea>
-        </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Cidade</label>
+              <input
+                type="text"
+                [(ngModel)]="cidade"
+                (blur)="cidade = cidade.trim()"
+                placeholder="Ex: Carapicuíba"
+              />
+            </div>
+            <div class="form-field">
+              <label>Estado</label>
+              <input
+                type="text"
+                [(ngModel)]="estado"
+                (blur)="estado = estado.trim()"
+                placeholder="Ex: SP"
+              />
+            </div>
+          </div>
 
-        <div class="full">
-            <label>Formação</label>
-            <textarea id="formacao" rows="3" placeholder="Cursos, graduação, certificações"></textarea>
-        </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Telefone</label>
+              <input
+                type="tel"
+                [(ngModel)]="telefone"
+                (input)="aplicarMascaraTelefone($event)"
+                placeholder="(11) 94547-5813"
+                maxlength="15"
+              />
+            </div>
+            <div class="form-field">
+              <label>E-mail *</label>
+              <input
+                type="email"
+                [(ngModel)]="email"
+                (blur)="email = email.trim()"
+                placeholder="seu@email.com"
+              />
+            </div>
+          </div>
 
-        <div class="actions">
-            <button type="button" id="btnGerar">Gerar currículo</button>
+          <div class="form-row">
+            <div class="form-field">
+              <label>LinkedIn</label>
+              <input
+                type="url"
+                [(ngModel)]="linkedin"
+                (blur)="linkedin = linkedin.trim()"
+                placeholder="linkedin.com/in/seu-perfil"
+              />
+            </div>
+            <div class="form-field">
+              <label>GitHub</label>
+              <input
+                type="url"
+                [(ngModel)]="github"
+                (blur)="github = github.trim()"
+                placeholder="github.com/seu-usuario"
+              />
+            </div>
+          </div>
         </div>
-        </form>
+      </div>
+
+      <!-- SEÇÃO: Resumo Profissional -->
+      <div class="form-section">
+        <button
+          type="button"
+          class="section-header"
+          (click)="toggleSecao('resumo')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+          <h2>Resumo Profissional</h2>
+          <svg
+            class="chevron"
+            [class.expanded]="secaoResumoExpandida"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        <div class="section-content" *ngIf="secaoResumoExpandida">
+          <p class="section-description">
+            Escreva um breve resumo sobre você, suas experiências e o que você
+            busca profissionalmente.
+          </p>
+          <div class="form-row">
+            <div class="form-field full">
+              <label>Resumo</label>
+              <textarea
+                [(ngModel)]="resumoProfissional"
+                (blur)="resumoProfissional = resumoProfissional.trim()"
+                rows="6"
+                placeholder="Descreva sua trajetória profissional, principais habilidades e diferenciais. Foque em resultados e experiências relevantes."
+              ></textarea>
+              <span class="field-hint"
+                >Dica: Destaque suas competências principais e o que você pode
+                agregar à empresa.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEÇÃO: Experiências Profissionais -->
+      <div class="form-section">
+        <button
+          type="button"
+          class="section-header"
+          (click)="toggleSecao('experiencias')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <h2>Experiências Profissionais</h2>
+          <svg
+            class="chevron"
+            [class.expanded]="secaoExperienciasExpandida"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        <div class="section-content" *ngIf="secaoExperienciasExpandida">
+          <p class="section-description">
+            Liste suas experiências de trabalho, estágios ou trabalhos
+            voluntários. Comece pela mais recente.
+          </p>
+          <div
+            class="experiencia-item"
+            *ngFor="let exp of experiencias; let i = index"
+          >
+            <div class="item-header">
+              <span class="item-number">Experiência {{ i + 1 }}</span>
+              <button
+                type="button"
+                class="btn-remove"
+                (click)="removerExperiencia(i)"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                Remover
+              </button>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label>Cargo</label>
+                <input
+                  type="text"
+                  [(ngModel)]="exp.cargo"
+                  (blur)="exp.cargo = exp.cargo.trim()"
+                  placeholder="Ex: Analista de Engenharia de TI Jr"
+                />
+              </div>
+              <div class="form-field">
+                <label>Empresa</label>
+                <input
+                  type="text"
+                  [(ngModel)]="exp.empresa"
+                  (blur)="exp.empresa = exp.empresa.trim()"
+                  placeholder="Ex: Itaú Unibanco"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label>Data Início *</label>
+                <div class="input-with-icon">
+                  <input
+                    type="text"
+                    class="date-input"
+                    [(ngModel)]="exp.dataInicio"
+                    placeholder="Selecione a data"
+                  />
+                  <svg
+                    class="calendar-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </div>
+              </div>
+              <div class="form-field">
+                <label>Data Fim</label>
+                <div class="input-with-icon">
+                  <input
+                    type="text"
+                    class="date-input"
+                    [(ngModel)]="exp.dataFim"
+                    placeholder="Deixe vazio se for atual"
+                  />
+                  <svg
+                    class="calendar-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field full">
+                <label>Descrição das atividades</label>
+                <textarea
+                  [(ngModel)]="exp.descricao"
+                  (blur)="exp.descricao = exp.descricao.trim()"
+                  rows="5"
+                  placeholder="Descreva suas principais responsabilidades, projetos e conquistas. Use bullet points separados por quebra de linha."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="btn-add"
+            (click)="adicionarExperiencia()"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Adicionar Experiência
+          </button>
+        </div>
+      </div>
+
+      <!-- SEÇÃO: Formação Acadêmica -->
+      <div class="form-section">
+        <button
+          type="button"
+          class="section-header"
+          (click)="toggleSecao('formacao')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+          <h2>Formação Acadêmica</h2>
+          <svg
+            class="chevron"
+            [class.expanded]="secaoFormacaoExpandida"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        <div class="section-content" *ngIf="secaoFormacaoExpandida">
+          <p class="section-description">
+            Adicione sua formação acadêmica: graduação, cursos técnicos,
+            pós-graduação, etc.
+          </p>
+          <div
+            class="formacao-item"
+            *ngFor="let form of formacoes; let i = index"
+          >
+            <div class="item-header">
+              <span class="item-number">Formação {{ i + 1 }}</span>
+              <button
+                type="button"
+                class="btn-remove"
+                (click)="removerFormacao(i)"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                Remover
+              </button>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field full">
+                <label>Instituição</label>
+                <input
+                  type="text"
+                  [(ngModel)]="form.instituicao"
+                  (blur)="form.instituicao = form.instituicao.trim()"
+                  placeholder="Ex: São Paulo Tech School – SPTech"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field full">
+                <label>Curso</label>
+                <input
+                  type="text"
+                  [(ngModel)]="form.curso"
+                  (blur)="form.curso = form.curso.trim()"
+                  placeholder="Ex: Tecnólogo em Análise e Desenvolvimento de Sistemas"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label>Data Início *</label>
+                <div class="input-with-icon">
+                  <input
+                    type="text"
+                    class="date-input"
+                    [(ngModel)]="form.dataInicio"
+                    placeholder="Selecione a data"
+                  />
+                  <svg
+                    class="calendar-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </div>
+              </div>
+              <div class="form-field">
+                <label>Data Fim</label>
+                <div class="input-with-icon">
+                  <input
+                    type="text"
+                    class="date-input"
+                    [(ngModel)]="form.dataFim"
+                    placeholder="Deixe vazio se estiver cursando"
+                  />
+                  <svg
+                    class="calendar-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field full">
+                <label>Status</label>
+                <select [(ngModel)]="form.status">
+                  <option
+                    *ngFor="let status of statusFormacao"
+                    [value]="status"
+                  >
+                    {{ status }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-add" (click)="adicionarFormacao()">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Adicionar Formação
+          </button>
+        </div>
+      </div>
+
+      <!-- SEÇÃO: Projetos de Destaque -->
+      <div class="form-section">
+        <button
+          type="button"
+          class="section-header"
+          (click)="toggleSecao('projetos')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+          <h2>Projetos de Destaque</h2>
+          <svg
+            class="chevron"
+            [class.expanded]="secaoProjetosExpandida"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        <div class="section-content" *ngIf="secaoProjetosExpandida">
+          <p class="section-description">
+            Adicione projetos relevantes que demonstrem suas habilidades e
+            experiências práticas.
+          </p>
+          <div
+            class="projeto-item"
+            *ngFor="let proj of projetos; let i = index"
+          >
+            <div class="item-header">
+              <span class="item-number">Projeto {{ i + 1 }}</span>
+              <button
+                type="button"
+                class="btn-remove"
+                (click)="removerProjeto(i)"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                Remover
+              </button>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field full">
+                <label>Nome do Projeto</label>
+                <input
+                  type="text"
+                  [(ngModel)]="proj.nome"
+                  (blur)="proj.nome = proj.nome.trim()"
+                  placeholder="Ex: Sistema de Gestão de Atividades Físicas"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field full">
+                <label>Descrição</label>
+                <textarea
+                  [(ngModel)]="proj.descricao"
+                  (blur)="proj.descricao = proj.descricao.trim()"
+                  rows="4"
+                  placeholder="Descreva o projeto, objetivos alcançados e resultados."
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label>Tecnologias</label>
+                <input
+                  type="text"
+                  [(ngModel)]="proj.tecnologias"
+                  (blur)="proj.tecnologias = proj.tecnologias.trim()"
+                  placeholder="Ex: Java 17, Spring Boot, React, Docker"
+                />
+              </div>
+              <div class="form-field">
+                <label>Link (GitHub/Demo)</label>
+                <input
+                  type="url"
+                  [(ngModel)]="proj.link"
+                  (blur)="proj.link = proj.link.trim()"
+                  placeholder="https://github.com/..."
+                />
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-add" (click)="adicionarProjeto()">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Adicionar Projeto
+          </button>
+        </div>
+      </div>
+
+      <!-- SEÇÃO: Habilidades Técnicas -->
+      <div class="form-section">
+        <button
+          type="button"
+          class="section-header"
+          (click)="toggleSecao('habilidades')"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          <h2>Habilidades e Ferramentas</h2>
+          <svg
+            class="chevron"
+            [class.expanded]="secaoHabilidadesExpandida"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        <div class="section-content" *ngIf="secaoHabilidadesExpandida">
+          <p class="section-description">
+            Liste suas habilidades técnicas, linguagens de programação,
+            ferramentas e tecnologias que você domina.
+          </p>
+          <div
+            class="habilidade-item"
+            *ngFor="let hab of habilidades; let i = index"
+          >
+            <div class="habilidade-row">
+              <span class="habilidade-texto">{{ hab }}</span>
+              <button
+                type="button"
+                class="btn-remove-small"
+                (click)="removerHabilidade(i)"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field full">
+              <label>Adicionar Habilidade</label>
+              <div class="input-with-button">
+                <input
+                  type="text"
+                  [(ngModel)]="novaHabilidade"
+                  (keyup.enter)="adicionarHabilidade()"
+                  placeholder="Ex: Java, Spring Boot, React, AWS"
+                />
+                <button
+                  type="button"
+                  class="btn-add-inline"
+                  (click)="adicionarHabilidade()"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                  Adicionar
+                </button>
+              </div>
+              <span class="field-hint"
+                >Pressione Enter ou clique em Adicionar para incluir cada
+                habilidade.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- PREVIEW -->
+    <div
+      class="curriculo-preview"
+      [style.--cor-primaria]="paletaSelecionada.primaria"
+      [style.--cor-secundaria]="paletaSelecionada.secundaria"
+    >
+      <div class="preview-header">
+        <h2>Preview do Currículo</h2>
+        <button type="button" class="btn-download" (click)="gerarPDF()">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Baixar PDF
+        </button>
+      </div>
+
+      <div class="preview-content">
+        <!-- Cabeçalho -->
+        <div class="cv-header" *ngIf="nome || email || telefone">
+          <h1 class="cv-nome" [style.color]="paletaSelecionada.primaria">
+            {{ nome || "Seu Nome Completo" }}
+          </h1>
+          <div class="cv-contato">
+            <span *ngIf="cidade || estado"
+              >{{ cidade }}<span *ngIf="cidade && estado">, </span
+              >{{ estado }}</span
+            >
+            <span
+              *ngIf="
+                (cidade || estado) &&
+                (telefone ||
+                  email ||
+                  linkedin ||
+                  github ||
+                  linksCustomizados.length > 0)
+              "
+            >
+              |
+            </span>
+            <span *ngIf="telefone">{{ telefone }}</span>
+            <span
+              *ngIf="
+                telefone &&
+                (email || linkedin || github || linksCustomizados.length > 0)
+              "
+            >
+              |
+            </span>
+            <span *ngIf="email">{{ email }}</span>
+            <span
+              *ngIf="
+                email && (linkedin || github || linksCustomizados.length > 0)
+              "
+            >
+              |
+            </span>
+            <span *ngIf="linkedin">LinkedIn</span>
+            <span *ngIf="linkedin && (github || linksCustomizados.length > 0)">
+              |
+            </span>
+            <span *ngIf="github">GitHub</span>
+            <ng-container *ngFor="let link of linksCustomizados; let i = index">
+              <span
+                *ngIf="
+                  (github && i === 0) ||
+                  (linkedin && !github && i === 0) ||
+                  (email && !linkedin && !github && i === 0) ||
+                  (telefone && !email && !linkedin && !github && i === 0) ||
+                  ((cidade || estado) &&
+                    !telefone &&
+                    !email &&
+                    !linkedin &&
+                    !github &&
+                    i === 0) ||
+                  i > 0
+                "
+              >
+                |
+              </span>
+              <span>{{ link.rotulo }}</span>
+            </ng-container>
+            <!-- Preview do link que está sendo digitado -->
+            <ng-container *ngIf="novoLinkRotulo && mostrarInputLink">
+              <span
+                *ngIf="
+                  github ||
+                  linkedin ||
+                  email ||
+                  telefone ||
+                  cidade ||
+                  estado ||
+                  linksCustomizados.length > 0
+                "
+              >
+                |
+              </span>
+              <span>{{ novoLinkRotulo }}</span>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Resumo Profissional -->
+        <div class="cv-section" *ngIf="resumoProfissional">
+          <h2
+            class="cv-section-title"
+            [style.color]="paletaSelecionada.primaria"
+          >
+            RESUMO PROFISSIONAL
+          </h2>
+          <p class="cv-text">{{ resumoProfissional }}</p>
+        </div>
+
+        <!-- Experiências -->
+        <div class="cv-section" *ngIf="experiencias.length > 0">
+          <h2
+            class="cv-section-title"
+            [style.color]="paletaSelecionada.primaria"
+          >
+            EXPERIÊNCIAS PROFISSIONAIS
+          </h2>
+          <div class="cv-experiencia" *ngFor="let exp of experiencias">
+            <div class="cv-exp-header">
+              <strong>{{ exp.cargo }}</strong>
+              <span *ngIf="exp.cargo && exp.empresa"> | </span>
+              <span>{{ exp.empresa }}</span>
+              <span *ngIf="exp.dataInicio">
+                |
+                {{ formatarData(exp.dataInicio) }}
+                <span *ngIf="exp.dataFim">
+                  – {{ formatarData(exp.dataFim) }}</span
+                >
+                <span *ngIf="!exp.dataFim"> – Atual</span>
+              </span>
+            </div>
+            <p class="cv-text" *ngIf="exp.descricao">{{ exp.descricao }}</p>
+          </div>
+        </div>
+
+        <!-- Formação -->
+        <div class="cv-section" *ngIf="formacoes.length > 0">
+          <h2
+            class="cv-section-title"
+            [style.color]="paletaSelecionada.primaria"
+          >
+            FORMAÇÃO ACADÊMICA
+          </h2>
+          <div class="cv-formacao" *ngFor="let form of formacoes">
+            <div class="cv-form-header">
+              <strong>{{ form.instituicao }}</strong>
+            </div>
+            <p class="cv-text">
+              {{ form.curso }}
+              <span *ngIf="form.dataInicio">
+                |
+                {{ formatarData(form.dataInicio) }}
+                <span *ngIf="form.dataFim">
+                  – {{ formatarData(form.dataFim) }}</span
+                >
+                <span *ngIf="!form.dataFim"> – Atual</span>
+              </span>
+              <span *ngIf="form.status"> | {{ form.status }}</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Projetos -->
+        <div class="cv-section" *ngIf="projetos.length > 0">
+          <h2
+            class="cv-section-title"
+            [style.color]="paletaSelecionada.primaria"
+          >
+            PROJETOS DE DESTAQUE
+          </h2>
+          <div class="cv-projeto" *ngFor="let proj of projetos">
+            <div class="cv-proj-header">
+              <strong>{{ proj.nome }}</strong>
+              <span *ngIf="proj.link"> – Acesse o projeto</span>
+            </div>
+            <p class="cv-text" *ngIf="proj.descricao">{{ proj.descricao }}</p>
+            <p class="cv-text cv-tech" *ngIf="proj.tecnologias">
+              Stack: {{ proj.tecnologias }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Habilidades -->
+        <div class="cv-section" *ngIf="habilidades.length > 0">
+          <h2
+            class="cv-section-title"
+            [style.color]="paletaSelecionada.primaria"
+          >
+            HABILIDADES E FERRAMENTAS
+          </h2>
+          <ul class="cv-habilidades-list">
+            <li *ngFor="let hab of habilidades">{{ hab }}</li>
+          </ul>
+        </div>
+
+        <!-- Placeholder quando vazio -->
+        <div
+          class="preview-placeholder"
+          *ngIf="
+            !nome &&
+            !resumoProfissional &&
+            experiencias.length === 0 &&
+            formacoes.length === 0 &&
+            projetos.length === 0 &&
+            habilidades.length === 0
+          "
+        >
+          <svg
+            width="80"
+            height="80"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+          <p>Preencha as informações ao lado para visualizar seu currículo</p>
+        </div>
+      </div>
+
+      <!-- Botão IA - aparece quando há conteúdo -->
+      <div
+        class="preview-ia-section"
+        *ngIf="
+          nome ||
+          resumoProfissional ||
+          experiencias.length > 0 ||
+          formacoes.length > 0 ||
+          projetos.length > 0 ||
+          habilidades.length > 0
+        "
+      >
+        <button type="button" class="btn-ia" (click)="melhorarComIA()">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          Melhorar com IA
+        </button>
+      </div>
+    </div>
+  </div>
 </section>
