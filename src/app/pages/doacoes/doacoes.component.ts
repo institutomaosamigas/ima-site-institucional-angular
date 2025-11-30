@@ -38,13 +38,13 @@ export class DoacoesComponent {
     {
       id: 'crescimento' as const,
       nome: 'Crescimento',
-      valor: 50,
+      valor: 100,
       descricao: 'Amplie o impacto dos nossos atendimentos',
     },
     {
       id: 'transformacao' as const,
       nome: 'Transformação',
-      valor: 100,
+      valor: 50,
       descricao: 'Seja parceiro na mudança de vidas',
     },
   ];
