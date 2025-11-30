@@ -36,18 +36,22 @@ export class DoacoesComponent {
       descricao: 'Apoio essencial para iniciar transformações',
     },
     {
-      id: 'crescimento' as const,
-      nome: 'Crescimento',
-      valor: 100,
-      descricao: 'Amplie o impacto dos nossos atendimentos',
-    },
-    {
       id: 'transformacao' as const,
       nome: 'Transformação',
       valor: 50,
       descricao: 'Seja parceiro na mudança de vidas',
     },
+    {
+      id: 'crescimento' as const,
+      nome: 'Crescimento',
+      valor: 100,
+      descricao: 'Amplie o impacto dos nossos atendimentos',
+    },
   ];
+
+  get planosOrdenados() {
+    return [...this.planos].sort((a, b) => a.valor - b.valor);
+  }
 
   carregando: boolean = false;
   mensagemErro: string = '';

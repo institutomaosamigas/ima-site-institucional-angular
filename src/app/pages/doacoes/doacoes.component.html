@@ -193,7 +193,7 @@
         <label class="section-label">Escolha seu plano mensal:</label>
         <div class="planos-grid">
           <button
-            *ngFor="let plano of planos"
+            *ngFor="let plano of planosOrdenados"
             class="plano-card"
             [class.active]="isPlanoSelecionado(plano.id)"
             (click)="selecionarPlano(plano.id)"
