@@ -210,7 +210,8 @@ export class DoacoesComponent {
   }
 
   copiarChavePix(): void {
-    const chavePix = 'contato@imasaoamg.org.br';
+    const input = document.getElementById('pix-key') as HTMLInputElement | null;
+    const chavePix = input?.value || '53.065.585/0001-94';
     navigator.clipboard
       .writeText(chavePix)
       .then(() => {
