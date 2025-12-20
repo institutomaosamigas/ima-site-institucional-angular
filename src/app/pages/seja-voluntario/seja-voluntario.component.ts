@@ -18,18 +18,19 @@ export class SejaVoluntarioComponent {
   constructor(private fb: FormBuilder, private router: Router) {
     this.volunteerForm = this.fb.group({
       nome: ['', Validators.required],
-      maior18: [false, Validators.requiredTrue],
+      maioridade: [false, Validators.requiredTrue],
       cpf: ['', [Validators.required, Validators.minLength(14)]], // 14 = 11 dígitos + 2 pontos + 1 traço
-      cidadeEstado: ['', Validators.required],
+      localizacao: ['', Validators.required],
       whatsapp: ['', [Validators.required, Validators.pattern(/^\(\d{2}\) \d{5}-\d{4}$/)]],
       email: ['', [Validators.required, Validators.email]],
       profissao: ['', Validators.required],
       setorInteresse: ['', Validators.required],
       contribuicao: ['', Validators.required],
       disponibilidadeHoras: ['', [Validators.required, Validators.min(1)]],
-      tipoDisponibilidade: ['', Validators.required],
+      modeloDeTrabalho: ['', Validators.required],
       linkedin: [''],
       portfolio: [''],
+      curriculoBase64: [''],
     });
   }
 
@@ -56,15 +57,27 @@ export class SejaVoluntarioComponent {
     if (this.volunteerForm.valid) {
       const formData = this.volunteerForm.value;
 
-      fetch('https://formspree.io/f/xrborngr', { // substitua pela sua URL
+      fetch('https://olh6eduueqtdx7myc4es5ql56y0qbftq.lambda-url.us-east-1.on.aws/candidatos', { // substitua pela sua URL
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ...formData,
-          _replyto: formData.email
+        nome: formData.nome,
+        maioridade: formData.maioridade,
+        cpf: formData.cpf,
+        localizacao: formData.localizacao,
+        whatsapp: formData.whatsapp,
+        email: formData.email,
+        profissao: formData.profissao,
+        setorInteresse: formData.setorInteresse,
+        contribuicao: formData.contribuicao,
+        disponibilidadeHoras: Number(formData.disponibilidadeHoras),
+        modeloDeTrabalho: formData.modeloDeTrabalho,
+        linkedin: formData.linkedin,
+        portfolio: formData.portfolio,
+        curriculoBase64: formData.curriculoBase64
         })
       }).then(response => {
           if (response.ok) {
@@ -111,5 +124,17 @@ export class SejaVoluntarioComponent {
 
     input.value = value;
     this.volunteerForm.get('cpf')?.setValue(value, { emitEvent: false });
+  }
+
+  convertFileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.split(",")[1]);
+    };
+    reader.onerror = () => reject();
+    reader.readAsDataURL(file);
+    });
   }
 }
