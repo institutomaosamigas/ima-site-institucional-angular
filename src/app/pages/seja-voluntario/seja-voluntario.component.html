@@ -20,10 +20,10 @@
         <div class="form-row">
         <div class="form-group">
             <label>
-                <input type="checkbox" formControlName="maior18" />
+                <input type="checkbox" formControlName="maioridade" />
                 Sou maior de 18 anos *
             </label>
-            <div *ngIf="volunteerForm.get('maior18')?.touched && volunteerForm.get('maior18')?.invalid" class="error">
+            <div *ngIf="volunteerForm.get('maioridade')?.touched && volunteerForm.get('maioridade')?.invalid" class="error">
                 Você precisa confirmar que é maior de 18 anos
             </div>
         </div>
@@ -47,8 +47,8 @@
 
         <div class="form-group">
             <label>Localização *</label>
-            <input formControlName="cidadeEstado" type="text" [class.invalid]="isInvalid('cidadeEstado')" placeholder="Ex: São Paulo - SP" />
-            <small *ngIf="isInvalid('cidadeEstado')">Campo obrigatório</small>
+            <input formControlName="localizacao" type="text" [class.invalid]="isInvalid('localizacao')" placeholder="Ex: São Paulo - SP" />
+            <small *ngIf="isInvalid('localizacao')">Campo obrigatório</small>
         </div>
         </div>
 
@@ -131,13 +131,13 @@
 
         <div class="form-group">
             <label>Modelo de trabalho *</label>
-            <select formControlName="tipoDisponibilidade" [class.invalid]="isInvalid('tipoDisponibilidade')">
+            <select formControlName="modeloDeTrabalho" [class.invalid]="isInvalid('modeloDeTrabalho')">
             <option value="">Selecione</option>
             <option value="Remoto">Remoto</option>
             <option value="Presencial">Presencial</option>
             <option value="Híbrido">Híbrido</option>
             </select>
-            <small *ngIf="isInvalid('tipoDisponibilidade')">Campo obrigatório</small>
+            <small *ngIf="isInvalid('modeloDeTrabalho')">Campo obrigatório</small>
         </div>
         </div>
 

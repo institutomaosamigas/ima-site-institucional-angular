@@ -53,9 +53,11 @@ export class SejaVoluntarioComponent {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.volunteerForm.valid) {
       const formData = this.volunteerForm.value;
+
+      const curriculo64 = await this.convertFileToBase64(this.curriculoFile);
 
       fetch('https://olh6eduueqtdx7myc4es5ql56y0qbftq.lambda-url.us-east-1.on.aws/candidatos', { // substitua pela sua URL
         method: 'POST',
@@ -77,7 +79,7 @@ export class SejaVoluntarioComponent {
         modeloDeTrabalho: formData.modeloDeTrabalho,
         linkedin: formData.linkedin,
         portfolio: formData.portfolio,
-        curriculoBase64: formData.curriculoBase64
+        curriculoBase64: curriculo64
         })
       }).then(response => {
           if (response.ok) {
@@ -126,15 +128,31 @@ export class SejaVoluntarioComponent {
     this.volunteerForm.get('cpf')?.setValue(value, { emitEvent: false });
   }
 
-  convertFileToBase64(file: File): Promise<string> {
+  convertFileToBase64(file: File | null): Promise<string> {
   return new Promise((resolve, reject) => {
+
+    if (!file) {
+      reject(new Error('Arquivo inválido ou não informado'));
+      return;
+    }
+
     const reader = new FileReader();
+
     reader.onload = () => {
-      const result = reader.result as string;
-      resolve(result.split(",")[1]);
+      const result = reader.result;
+
+      if (typeof result === 'string') {
+        resolve(result.split(',')[1]);
+      } else {
+        reject(new Error('Erro ao converter arquivo'));
+      }
     };
-    reader.onerror = () => reject();
+
+    reader.onerror = () => {
+      reject(new Error('Erro na leitura do arquivo'));
+    };
+
     reader.readAsDataURL(file);
-    });
-  }
+  });
+}
 }
