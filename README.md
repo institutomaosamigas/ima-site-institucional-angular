@@ -1,9 +1,12 @@
 # Site IMA
 
-## Instruções de como subir para o github-pages
-1) Rodar o comando "ng build --configuration production --base-href / --deploy-url /"
-2) Copiar todo o conteúdo dentro de dist/site-institucional-ima-angular/browser para a raíz do projeto (onde tem as pastas dist, src, etc)
-3) Commit, push e comemoração.
+## Instruções de deploy
+O deploy deste projeto é realizado no GitHub Pages. Para manter o repositório limpo, não copie os arquivos da pasta `dist` para a raiz manualmente.
+
+Recomenda-se o uso de uma ferramenta de deploy ou GitHub Actions.
+Para deploy manual correto (usando a pasta `dist/browser` sem poluir a raiz):
+1) `ng build`
+2) Use `npx angular-cli-ghpages --dir=dist/site-institucional-ima-angular/browser`
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
 
