@@ -54,23 +54,33 @@
 
         <!-- Contato -->
         <div class="form-row">
-        <div class="form-group">
-            <label>WhatsApp *</label>
-            <input
-            formControlName="whatsapp"
-            type="text"
-            [class.invalid]="isInvalid('whatsapp')"
-            placeholder="(99) 99999-9999"
-            (input)="formatPhone($event)"
-            />
-            <small *ngIf="isInvalid('whatsapp')">Informe um número válido</small>
-        </div>
+            <div class="form-group">
+                <label>WhatsApp *</label>
+                <ngx-intl-tel-input
+                    [cssClass]="isInvalid('whatsapp') ? 'custom-tel-input invalid' : 'custom-tel-input'"
+                    [preferredCountries]="[CountryISO.Brazil, CountryISO.UnitedStates, CountryISO.Portugal]"
+                    [enableAutoCountrySelect]="true"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.Brazil"
+                    [maxLength]="15"
+                    [phoneValidation]="true"
+                    [separateDialCode]="true"
+                    [numberFormat]="PhoneNumberFormat.International"
+                    name="whatsapp"
+                    formControlName="whatsapp">
+                </ngx-intl-tel-input>
 
-        <div class="form-group">
-            <label>E-mail *</label>
-            <input formControlName="email" type="email" [class.invalid]="isInvalid('email')" placeholder="seuemail@exemplo.com" />
-            <small *ngIf="isInvalid('email')">E-mail inválido</small>
-        </div>
+                <small *ngIf="isInvalid('whatsapp')" class="error-text">Informe um número válido</small>
+            </div>
+
+            <div class="form-group">
+                <label>E-mail *</label>
+                <input formControlName="email" type="email" [class.invalid]="isInvalid('email')" placeholder="seuemail@exemplo.com" />
+                <small *ngIf="isInvalid('email')">E-mail inválido</small>
+            </div>
         </div>
 
         <!-- Profissão -->

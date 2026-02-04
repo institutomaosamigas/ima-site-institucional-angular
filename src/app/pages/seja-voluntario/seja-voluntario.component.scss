@@ -1,3 +1,5 @@
+@import "intl-tel-input/build/css/intlTelInput.css";
+
 .voluntario-container {
   display: block;
   /* Mais espaço no desktop para não "comer" o título sob o header */
@@ -31,6 +33,36 @@ form {
   flex: 1;
   display: flex;
   flex-direction: column;
+  ::ng-deep .ngx-intl-tel-input {
+    width: 100%;
+
+    input {
+      // Herda seus estilos de input padrão
+      padding: 10px 10px 10px 52px !important; // Padding esquerdo maior para DDI + Bandeira
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      width: 100% !important;
+      height: 41px; // Alinha a altura com seus outros inputs (padding 10px + font)
+      transition: border-color 0.2s ease;
+      background-color: white;
+
+      &:focus {
+        border-color: #5e17eb;
+        outline: none;
+      }
+
+      &.invalid {
+        border-color: #e74c3c !important;
+      }
+    }
+    // Ajuste da lista suspensa de países
+    .intl-tel-input .country-list {
+      border-radius: 8px;
+      z-index: 10;
+      width: 280px; // Largura para caber Nome + DDI confortavelmente
+    }
+  }
 }
 
 label {

@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxIntlTelInputModule, CountryISO, SearchCountryField, PhoneNumberFormat } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-seja-voluntario',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgxIntlTelInputModule],
   templateUrl: './seja-voluntario.component.html',
   styleUrl: './seja-voluntario.component.scss'
 })
@@ -14,6 +15,9 @@ export class SejaVoluntarioComponent {
   volunteerForm: FormGroup;
   curriculoFile: File | null = null;
   showSuccess: boolean = false;
+  CountryISO = CountryISO;
+  SearchCountryField = SearchCountryField;
+  PhoneNumberFormat = PhoneNumberFormat;
   
   constructor(private fb: FormBuilder, private router: Router) {
     this.volunteerForm = this.fb.group({
@@ -21,7 +25,7 @@ export class SejaVoluntarioComponent {
       maioridade: [false, Validators.requiredTrue],
       cpf: ['', [Validators.required, Validators.minLength(14)]], // 14 = 11 dígitos + 2 pontos + 1 traço
       localizacao: ['', Validators.required],
-      whatsapp: ['', [Validators.required, Validators.pattern(/^\(\d{2}\) \d{5}-\d{4}$/)]],
+      whatsapp: [null, [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       profissao: ['', Validators.required],
       setorInteresse: ['', Validators.required],
@@ -34,20 +38,6 @@ export class SejaVoluntarioComponent {
     });
   }
 
-  // máscara para telefone
-  formatPhone(event: any) {
-    let value = event.target.value.replace(/\D/g, '');
-    if (value.length > 11) value = value.slice(0, 11);
-    if (value.length > 6) {
-      event.target.value = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
-    } else if (value.length > 2) {
-      event.target.value = value.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
-    } else {
-      event.target.value = value.replace(/^(\d*)/, '($1');
-    }
-    this.volunteerForm.get('whatsapp')?.setValue(event.target.value, { emitEvent: false });
-  }
-
   isInvalid(field: string): boolean {
     const control = this.volunteerForm.get(field);
     return !!(control && control.invalid && (control.dirty || control.touched));
@@ -58,6 +48,8 @@ export class SejaVoluntarioComponent {
       const formData = this.volunteerForm.value;
 
       const curriculo64 = await this.convertFileToBase64(this.curriculoFile);
+
+      const whatsappValue = formData.whatsapp?.e164Number || formData.whatsapp;
 
       fetch('https://olh6eduueqtdx7myc4es5ql56y0qbftq.lambda-url.us-east-1.on.aws/candidatos', { // substitua pela sua URL
         method: 'POST',
@@ -101,6 +93,11 @@ export class SejaVoluntarioComponent {
     }
     else {
       this.volunteerForm.markAllAsTouched();
+
+      // Feedback específico se o WhatsApp estiver inválido
+      if (this.volunteerForm.get('whatsapp')?.invalid) {
+        console.error('Telefone inválido para o país selecionado');
+      }
     }
   }
 

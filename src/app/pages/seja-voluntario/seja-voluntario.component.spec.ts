@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SejaVoluntarioComponent } from './seja-voluntario.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('SejaVoluntarioComponent', () => {
   let component: SejaVoluntarioComponent;
@@ -8,7 +9,8 @@ describe('SejaVoluntarioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SejaVoluntarioComponent]
+      imports: [SejaVoluntarioComponent],
+      providers: [provideAnimations()]
     })
     .compileComponents();
     
