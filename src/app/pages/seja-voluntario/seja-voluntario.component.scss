@@ -1,5 +1,3 @@
-@import "intl-tel-input/build/css/intlTelInput.css";
-
 .voluntario-container {
   display: block;
   /* Mais espaço no desktop para não "comer" o título sob o header */
@@ -33,36 +31,6 @@ form {
   flex: 1;
   display: flex;
   flex-direction: column;
-  ::ng-deep .ngx-intl-tel-input {
-    width: 100%;
-
-    input {
-      // Herda seus estilos de input padrão
-      padding: 10px 10px 10px 52px !important; // Padding esquerdo maior para DDI + Bandeira
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-      width: 100% !important;
-      height: 41px; // Alinha a altura com seus outros inputs (padding 10px + font)
-      transition: border-color 0.2s ease;
-      background-color: white;
-
-      &:focus {
-        border-color: #5e17eb;
-        outline: none;
-      }
-
-      &.invalid {
-        border-color: #e74c3c !important;
-      }
-    }
-    // Ajuste da lista suspensa de países
-    .intl-tel-input .country-list {
-      border-radius: 8px;
-      z-index: 10;
-      width: 280px; // Largura para caber Nome + DDI confortavelmente
-    }
-  }
 }
 
 label {
@@ -165,3 +133,55 @@ input[type="text"] {
 .inicio-forms-vol {
   margin-top: 50px;
 }
+
+/* wrapper ocupa 100% */
+:host ::ng-deep ngx-intl-tel-input,
+:host ::ng-deep ngx-intl-tel-input .iti {
+  display: block;
+  width: 100%;
+}
+
+:host ::ng-deep ngx-intl-tel-input .iti input.iti__tel-input {
+  width: 100% !important;
+  height: 41px !important;
+  padding: 10px 10px 10px 95px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+  line-height: normal !important;       /* evita sobreposição */
+}
+
+:host ::ng-deep ngx-intl-tel-input .iti input.iti__tel-input:focus {
+  border-color: #5e17eb !important;
+  outline: none !important;
+}
+
+:host ::ng-deep ngx-intl-tel-input .iti input.iti__tel-input.ng-invalid.ng-touched {
+  border-color: #e74c3c !important;
+}
+
+:host ::ng-deep ngx-intl-tel-input .iti__selected-flag {
+  height: 41px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+:host ::ng-deep .iti__country-list {
+  border-radius: 8px;
+  z-index: 9999;
+  width: 280px;
+}
+
+:host ::ng-deep ngx-intl-tel-input .iti--separate-dial-code .iti__selected-dial-code {
+  margin-left: 6px;
+  font-size: 15px;
+  line-height: 41px;
+}
+
+:host ::ng-deep ngx-intl-tel-input .iti--separate-dial-code .iti__selected-dial-code {
+  line-height: 41px;
+  font-size: 15px;
+}
+
