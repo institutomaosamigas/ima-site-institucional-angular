@@ -172,6 +172,14 @@ input[type="text"] {
   border-radius: 8px;
   z-index: 9999;
   width: 280px;
+
+  max-height: 280px;      /* limita altura */
+  overflow-y: auto;       /* ativa scroll vertical */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* melhora no mobile */
+
+  /* Solução: força o item pesquisado a aparecer no topo */
+  scroll-padding-bottom: 235px; /* Altura do max-height (280px) menos o tamanho aproximado de 1 item (45px) */
 }
 
 :host ::ng-deep ngx-intl-tel-input .iti--separate-dial-code .iti__selected-dial-code {

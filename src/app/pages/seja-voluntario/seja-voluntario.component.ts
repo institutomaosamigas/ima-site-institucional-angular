@@ -25,7 +25,7 @@ export class SejaVoluntarioComponent {
       maioridade: [false, Validators.requiredTrue],
       cpf: ['', [Validators.required, Validators.minLength(14)]], // 14 = 11 dígitos + 2 pontos + 1 traço
       localizacao: ['', Validators.required],
-      whatsapp: [null, [Validators.required]],
+      whatsapp: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       profissao: ['', Validators.required],
       setorInteresse: ['', Validators.required],
@@ -43,7 +43,17 @@ export class SejaVoluntarioComponent {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  async onSubmit() {
+  hasInteractedWhatsapp: boolean = false;
+  triedSubmit: boolean = false;
+
+  isWhatsAppInvalid(): boolean {
+    const control = this.volunteerForm.get("whatsapp");
+    return !!(control && control.invalid && (this.hasInteractedWhatsapp || this.triedSubmit));
+  }
+
+  async onSubmit(): Promise<void> {
+    this.triedSubmit = true;
+
     if (this.volunteerForm.valid) {
       const formData = this.volunteerForm.value;
 
@@ -81,6 +91,8 @@ export class SejaVoluntarioComponent {
             this.showSuccess = true;
             setTimeout(() => {
               this.showSuccess = false;
+              this.triedSubmit = false;
+              this.hasInteractedWhatsapp = false;
               this.volunteerForm.reset();
             }, 4000); // 4 segundos
             

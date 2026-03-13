@@ -57,13 +57,14 @@
             <div class="form-group">
                 <label>WhatsApp *</label>
                 <ngx-intl-tel-input
-                    [cssClass]="isInvalid('whatsapp') ? 'custom-tel-input invalid' : 'custom-tel-input'"
+                    (focusout)="hasInteractedWhatsapp = true"
+                    [cssClass]='isWhatsAppInvalid() ? "custom-tel-input invalid" : "custom-tel-input"'
                     [preferredCountries]="[CountryISO.Brazil, CountryISO.UnitedStates, CountryISO.Portugal]"
                     [enableAutoCountrySelect]="true"
                     [enablePlaceholder]="true"
                     [searchCountryFlag]="true"
-                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
-                    [selectFirstCountry]="false"
+                    [searchCountryField]="[SearchCountryField.All]"
+                    [selectFirstCountry]="true"
                     [selectedCountryISO]="CountryISO.Brazil"
                     [maxLength]="15"
                     [phoneValidation]="true"
@@ -73,7 +74,7 @@
                     formControlName="whatsapp">
                 </ngx-intl-tel-input>
 
-                <small *ngIf="isInvalid('whatsapp')" class="error-text">Informe um número válido</small>
+                <small *ngIf="isWhatsAppInvalid()" class="error-text">Informe um número válido</small>
             </div>
 
             <div class="form-group">
